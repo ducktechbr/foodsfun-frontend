@@ -20,14 +20,15 @@ export default function Home() {
         <div className={styles.logo}></div>
 
           <div className={styles.inputContainer}>
+            <input className={styles.input} type='text' placeholder='Nome' />
             <input className={styles.input} type='email' placeholder='Email' />
             <input className={styles.input} type='password' placeholder='Senha' />
-            <button className={styles.button} type='submit'> Acessar </button>
+            <button className={styles.button} type='submit'> Cadastrar </button>
           </div>
 
             <div className={styles.textArea}>
-              <Link href="#"><a className={styles.text} >Esqueceu a senha?</a></Link>
-              <Link href="/signUp"><a className={styles.text} >Não possui uma conta? Cadastre-se!</a></Link>
+              
+              <Link href="/"><a className={styles.text} >Já possui uma conta? Acesse!</a></Link>
             </div>
           
 
