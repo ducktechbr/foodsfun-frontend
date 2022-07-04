@@ -22,6 +22,13 @@ module.exports = {
 			},
 			dropShadow: { buttonIcon: '0 35px 35px rgba(115, 223, 31, 0.75)' },
 		},
+
+		backgroundImage: {
+			eye: "url('/eye.svg')",
+			edit: "url('/edit.svg')",
+			trash: "url('/trash.svg')",
+			enabled: "url('/enabled.svg')"
+		}
 	},
 	plugins: [],
 };
