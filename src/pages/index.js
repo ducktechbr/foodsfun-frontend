@@ -2,7 +2,7 @@ import styles from '../../styles/login.module.css'
 
 import Head from "next/head";
 
-import Input from '../components/input/Input';
+
 
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
 
         <div className={styles.logo}></div>
 
-        <Input/>
+
         
       </div>
       
