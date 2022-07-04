@@ -27,10 +27,11 @@ export default function Home() {
 					type="password"
 					placeholder="Senha"
 				/>
-				<button className={styles.button} type="submit">
-					{' '}
-					Acessar{' '}
-				</button>
+				<Link href="../../Pedidos" >
+				  <a className={styles.button} type="submit">
+				  	Acessar
+				  </a>
+				</Link>
 			</div>
 
 			<div className={styles.textArea}>
