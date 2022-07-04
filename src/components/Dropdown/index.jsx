@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import './style.module.css';
 
 export default function DropDown(props) {
 	const info = [
