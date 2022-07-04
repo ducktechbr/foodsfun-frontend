@@ -1,15 +1,71 @@
-.body{
-    height: 100vh;
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-}
+
 
 .logo{
-    height: 100px;
-    width: 100px;
-    border: 1px solid;
+    height: 280px;
+    width: 380px;
+    margin: auto;
+    margin-top: 200px;
     background: url(../public/logo.png) no-repeat center center;
-    background-size: cover;
-    
+    background-size: cover;   
 }
+
+
+.inputContainer{
+    margin: auto;
+    width: 40%;
+}
+
+.input{
+    display: block;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    padding: 10px;
+    background: #eee;
+    border: none;
+    outline: none;
+}
+
+.button{
+    font-family: 'MuseoModerno', cursive;
+    display: block;
+    width: 53%;
+    margin: auto;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #FF7527;
+    color: #FFF;
+    font-size: 18px;
+}
+
+.text{
+    display: block;
+    margin-top: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: #222222;
+}
+
+.text:hover{
+    text-decoration: underline;
+}
+
+.textArea{
+    margin-top: 15px;
+}
+
+
+@media (max-width: 800px){
+    .inputContainer{
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px){
+    .inputContainer{
+        width: 100%;
+    }
+}
+
