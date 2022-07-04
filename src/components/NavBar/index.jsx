@@ -1,6 +1,6 @@
 import Image from 'next/dist/client/image';
 import logo from '../../assets/logo.png';
-import styles from './style.module.css';
+import cubo from '../../assets/cubo.svg';
 
 export function NavBar(props) {
 	return (
@@ -10,10 +10,16 @@ export function NavBar(props) {
 					<Image src={logo} alt="logo" />
 				</div>
 				<div className="h-3/8 bg-themeWhite flex flex-col items-center pt-12">
-					<div className="w-52 h-14 rounded-navBar bg-themeWhite hover:bg-themeSoft group transition-all duration-500 ease-in-out flex items-center">
-						<div className="rounded-full group-hover:bg-themeOrange bg-themeWhite transition-all duration-500 h-10 w-10 ml-5 group-hover:shadow-2xl group-hover:shadow-themeOrange"></div>
+					<div className="w-52 h-14 rounded-navBar hover:bg-themeSoft transition-all duration-500 ease-in-out flex items-center">
+						<div className="rounded-full hover:bg-themeOrange transition-all duration-500 h-10 w-10 ml-5 flex justify-center items-center hover:shadow-2xl hover:shadow-themeOrange">
+							<Image
+								src={cubo}
+								alt="cubo"
+								className="bg-transparent"
+							/>
+						</div>
 						<div className="text-themeOrange ">
-							<h1 className="bg-themeWhite pl-4 group-hover:bg-themeSoft transition-all duration-500 ease-in-out font-medium text-lg ">
+							<h1 className=" pl-4 hover:bg-themeSoft transition-all duration-500 ease-in-out font-medium text-lg ">
 								Produtos
 							</h1>
 						</div>

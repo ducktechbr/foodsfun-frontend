@@ -21,6 +21,9 @@ module.exports = {
 				navBar: '20px',
 			},
 			dropShadow: { buttonIcon: '0 35px 35px rgba(115, 223, 31, 0.75)' },
+			fontFamily: {
+				theme: ['MuseoModerno'],
+			},
 		},
 	},
 	plugins: [],
