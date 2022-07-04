@@ -23,23 +23,24 @@
     margin-bottom: 15px;
     border-radius: 8px;
     padding: 10px;
-    background: #eee;
+    background: #FEFEFE;
     font-family: 'MuseoModerno', cursive; 
     border: none;
     outline: none;
 }
 
 .button{
-    font-family: 'MuseoModerno', cursive;
     display: block;
-    width: 53%;
+    width: 50%;
     margin: auto;
     padding: 10px;
     border: none;
     border-radius: 8px;
     background: #FF7527;
     color: #FFF;
+    font-family: 'MuseoModerno', cursive;
     font-size: 18px;
+    text-align: center;
 }
 
 .text{
