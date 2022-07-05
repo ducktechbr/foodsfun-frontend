@@ -27,10 +27,10 @@ export default function Home() {
 					type="password"
 					placeholder="Senha"
 				/>
-				<Link href="../../pedidos">
-					<a className={styles.button} type="submit">
-						Acessar
-					</a>
+				<Link href="../../pedidos" >
+				  <a className={styles.button} type="submit">
+				  	Acessar
+				  </a>
 				</Link>
 			</div>
 
@@ -38,7 +38,7 @@ export default function Home() {
 				<Link href="#">
 					<a className={styles.text}>Esqueceu a senha?</a>
 				</Link>
-				<Link href="/signUp">
+				<Link href="../signup">
 					<a className={styles.text}>
 						Não possui uma conta? Cadastre-se!
 					</a>

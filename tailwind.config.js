@@ -27,6 +27,13 @@ module.exports = {
 				theme: ['MuseoModerno'],
 			},
 		},
+
+		backgroundImage: {
+			eye: "url('/eye.svg')",
+			edit: "url('/edit.svg')",
+			trash: "url('/trash.svg')",
+			enabled: "url('/enabled.svg')"
+		}
 	},
 	plugins: [],
 };
