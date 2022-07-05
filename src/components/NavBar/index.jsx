@@ -6,6 +6,9 @@ import mesas from '../../assets/mesas.svg';
 import DropDown from '../Dropdown';
 
 export function NavBar(props) {
+
+	
+
 	return (
 		<div className="fixed h-full w-60 font-theme">
 			<div className="h-2/8 bg-themeWhite rounded-tr-navBar flex justify-center items-center">
@@ -56,13 +59,13 @@ export function NavBar(props) {
 				</div>
 			</div>
 			<div className="h-3/8 bg-themeWhite rounded-br-navBar">
-				<DropDown
+				{/* <DropDown
 					info1="aranha"
 					info2="bode"
 					info3="macaco"
 					header="NOME DO zÉ"
 					button="/xeipe-beis"
-				/>
+				/> */}
 			</div>
 		</div>
 	);
