@@ -32,7 +32,8 @@ module.exports = {
 			eye: "url('/eye.svg')",
 			edit: "url('/edit.svg')",
 			trash: "url('/trash.svg')",
-			enabled: "url('/enabled.svg')"
+			enabled: "url('/enabled.svg')",
+			burguer: "urk('/hamburguer.svg')"
 		}
 	},
 	plugins: [],

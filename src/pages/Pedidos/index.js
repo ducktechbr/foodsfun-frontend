@@ -5,6 +5,6 @@ export default function Pedidos() {
 	return (
     <>
     <NavBar/>
-    <Card/>
+    <Card/>   
     </>);
 }
