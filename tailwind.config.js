@@ -16,11 +16,16 @@ module.exports = {
 				themeWhite: '#FFFFFF',
 				themeSoft: '#FFF3F0',
 				themeOrange: '#FF7527',
+				themeGray: 'rgba(0,0,0,0.5)',
+				golden: '#D6A84C',
 			},
 			borderRadius: {
 				navBar: '20px',
 			},
-			dropShadow: { buttonIcon: '0 35px 35px rgba(115, 223, 31, 0.75)' },
+			dropShadow: { buttonIcon: '0 4px 4px rgba(0, 0, 0, 0.40)' },
+			fontFamily: {
+				theme: ['MuseoModerno'],
+			},
 		},
 
 		backgroundImage: {

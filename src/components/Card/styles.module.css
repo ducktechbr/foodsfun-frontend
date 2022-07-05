@@ -1,6 +1,6 @@
 .container{
-    width: 280px;
-    height: 500px;
+    width: 270px;
+    height: 380px;
     color: red;
     /* border: 1px solid; */
     margin-left: 250px;
@@ -11,14 +11,13 @@
     width: 150px;
     height: 150px;
     margin: auto;
-    position: relative;
-    top: 80px;
+    z-index: 999;
     border-radius: 50%;
     border: 1px solid;
 }
 
 .content{
-    width: 280px;
+    width: 270px;
     height: 300px;
     margin: auto;
     background: #FEFEFE;
