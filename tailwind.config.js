@@ -12,13 +12,13 @@ module.exports = {
         "4/8": "50%",
         "5/8": "62.5%",
         buttonBox: "18px",
+        dropdownHeader: "530px",
       },
       colors: {
         themeWhite: "#FFFFFF",
         themeSoft: "#FFF3F0",
         themeOrange: "#FF7527",
         themeGray: "rgba(0,0,0,0.5)",
-        golden: "#D6A84C",
       },
       borderRadius: {
         navBar: "20px",
@@ -27,7 +27,7 @@ module.exports = {
       fontFamily: {
         theme: ["MuseoModerno"],
       },
-      screens: { "3xl": "2000px" },
+      screens: { "3xl": "1900px" },
     },
 
     backgroundImage: {

@@ -3,7 +3,6 @@ import logo from "../../assets/logo.png";
 import cubo from "../../assets/cubo.svg";
 import pedidos from "../../assets/pedidos.svg";
 import mesas from "../../assets/mesas.svg";
-import DropDown from "../Dropdown";
 
 export function NavBar(props) {
   return (
@@ -43,15 +42,7 @@ export function NavBar(props) {
           </div>
         </div>
       </div>
-      <div className="h-3/8 bg-themeWhite rounded-br-navBar">
-        {/* <DropDown
-					info1="aranha"
-					info2="bode"
-					info3="macaco"
-					header="NOME DO zÉ"
-					button="/xeipe-beis"
-				/> */}
-      </div>
+      <div className="h-3/8 bg-themeWhite rounded-br-navBar"></div>
     </aside>
   );
 }
