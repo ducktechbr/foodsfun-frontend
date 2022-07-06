@@ -1,5 +1,10 @@
 import "../../styles/globals.css";
+
 import Head from "next/head";
+
+import { Provider }  from "react-redux";
+import store from "../store";
+
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -7,7 +12,13 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link rel="stylesheet" href="/fonts/style.css" />
       </Head>
-      <Component {...pageProps} />
+      
+
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+
+
     </div>
   );
 }
