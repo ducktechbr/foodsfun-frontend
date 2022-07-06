@@ -27,7 +27,7 @@ module.exports = {
       fontFamily: {
         theme: ["MuseoModerno"],
       },
-      screens: { "3xl": "1900px" },
+      screens: { "3xl": "1700px", "4xl": "1900px" },
     },
 
     backgroundImage: {

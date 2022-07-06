@@ -11,7 +11,7 @@ export default function Pedidos() {
         <div className="fixed z-50 left-64 rounded-2xl">
           <DropDown />
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 ml-60 w-full place-items-center mt-40">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5  ml-60 w-full place-items-center mt-40">
           <AddButton />
           <Card />
           <Card />
