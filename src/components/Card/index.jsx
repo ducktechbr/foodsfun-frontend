@@ -37,6 +37,7 @@ export default function Card(props) {
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
             >
               <div className="bg-enabled h-buttonBox w-buttonBox bg-center bg-no-repeat bg-cover bg-white" />
+              
               <div className={`${styles.iconsText} bg-white`}>ativar</div>
             </button>
           </div>
