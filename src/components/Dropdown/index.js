@@ -1,18 +1,29 @@
 import styles from "./styles.module.css";
 import Image from "next/image";
 import dash from "../../assets/dash.svg";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
+import { api } from "../../api/index";
 
 export function DropDown(props) {
+  const [category, setCategory] = useState([{ title: "" }, { title: "" }]);
+
+  async function getCategories() {
+    setCategory(await api.post("/getCategory"));
+  }
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   return (
-    <Menu as="div" className="relative inline-block text-left z-50 rounded-2xl">
+    <Menu as="div" className="relative inline-block text-left rounded-2xl">
       <Menu.Button className="h-28 w-dropdownHeader bg-themeWhite rounded-2xl p-3 flex">
         <div className="bg-themeWhite">
           <h1
             className={`${styles.textH1} flex items-center text-themeOrange bg-themeWhite`}
           >
-            Pratos
+            {category[0].title}
           </h1>
           <p
             className={`${styles.textP} flex items-center text-xs bg-themeWhite`}
@@ -37,30 +48,18 @@ export function DropDown(props) {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-2xl shadow-lg bg-themeWhite ring-1 ring-black ring-opacity-5 focus:outline-none p-3">
           <div className="py-1 flex flex-col bg-themeWhite ">
-            <Menu.Item>
-              <a
-                href="#"
-                className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
-              >
-                Bebidas
-              </a>
-            </Menu.Item>
-            <Menu.Item>
-              <a
-                href="#"
-                className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
-              >
-                Sobremesa
-              </a>
-            </Menu.Item>
-            <Menu.Item>
-              <a
-                href="#"
-                className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
-              >
-                Pizzas
-              </a>
-            </Menu.Item>
+            {category.map((current, key) => {
+              return (
+                <Menu.Item key={key}>
+                  <a
+                    href="#"
+                    className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
+                  >
+                    {current}
+                  </a>
+                </Menu.Item>
+              );
+            })}
           </div>
         </Menu.Items>
       </Transition>

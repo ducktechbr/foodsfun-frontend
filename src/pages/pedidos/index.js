@@ -2,10 +2,10 @@ import { NavBar } from "../../components/NavBar";
 import Head from "next/head";
 import { DropDown } from "../../components/Dropdown";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
-import Card from "../../components/Card";
 import AddButton from "../../components/AddButton";
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
 import styles from "./styles.module.css";
+
 
 function Page() {
   return (
@@ -25,9 +25,7 @@ function Page() {
           <AddButton />
         </div>
 
-
-        
-        <div className='space-y-0 border-2 border-red-600 '>
+        <div className="space-y-0 border-2 border-red-600">
           <div className="flex justify-around  ">
             <div className="w-1/8 ">Pedido</div>
             <div className="w-1/8 ">Mesa</div>
