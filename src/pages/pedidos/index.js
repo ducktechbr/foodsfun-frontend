@@ -1,30 +1,25 @@
-import Head from 'next/head'
-
 import { NavBar } from "../../components/NavBar";
+import Head from "next/head";
 import { DropDown } from "../../components/Dropdown";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
-
+import Card from "../../components/Card";
 import AddButton from "../../components/AddButton";
+import { ProtectedRoute } from "../../middlewares/protectedRoute";
 import styles from "./styles.module.css";
 
-export default function Pedidos() {
+function Page() {
   return (
     <div className="flex">
-
       <Head>
         <title>FoodsFun - Pedidos</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-
-      {/* div container da navbar para utilizae position fixed sem quebrar o layout */}
-      <div className="w-60">
-        <NavBar />
-      </div>
+      <div className="w-60"></div>
+      <NavBar />
 
       <div className={styles.screen}>
-        <BackgroundBanner/>
-        
-        
+        <BackgroundBanner />
+
         <div className="w-full mt-11 px-3 rounded-2xl flex justify-between items-center">
           <DropDown />
           <AddButton />
@@ -41,15 +36,11 @@ export default function Pedidos() {
           </div>
           {/* as proximas divs serao geradas automaticamente */}
         </div>
-
-   
-       
-
-  
-      
-      
-
       </div>
     </div>
   );
+}
+
+export default function Pedidos() {
+  return <ProtectedRoute component={Page} />;
 }
