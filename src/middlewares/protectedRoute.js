@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/authContext";
+import { AuthContext } from "../contexts/authContext";
+import Index from "../pages";
 
 export function ProtectedRoute({ component: Component }) {
   const { loggedInUser } = useContext(AuthContext);
@@ -8,6 +9,6 @@ export function ProtectedRoute({ component: Component }) {
   if (loggedInUser.token) {
     return <Component />;
   } else {
-    return <Navigate to="/" />;
+    return <Index />;
   }
 }

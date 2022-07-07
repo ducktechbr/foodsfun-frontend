@@ -2,8 +2,9 @@ import { NavBar } from "../../components/NavBar";
 import { DropDown } from "../../components/Dropdown";
 import Card from "../../components/Card";
 import AddButton from "../../components/AddButton";
+import { ProtectedRoute } from "../../middlewares/protectedRoute";
 
-export default function Pedidos() {
+function Page() {
   return (
     <div className="flex">
       <NavBar />
@@ -30,11 +31,6 @@ export default function Pedidos() {
   );
 }
 
-{
-  /* <div className="md:col-span-2 lg:col-span-3 2xl:col-span-4 3xl:col-span-5 flex justify-around w-full mt-4 mb-4">
-<DropDown />
-<div>
-  <h1></h1>
-</div>
-</div> */
+export default function () {
+  return <ProtectedRoute component={Page} />;
 }
