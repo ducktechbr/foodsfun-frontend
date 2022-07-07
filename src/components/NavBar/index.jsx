@@ -47,7 +47,9 @@ export function NavBar(props) {
         <Image src={logo} alt="logo" className="bg-themeWhite" />
       </div>
       <div className="h-3/8 bg-themeWhite flex flex-col items-center pt-8">
+
         <button
+          href="/produtos"
           type="button"
           onClick={() => handleCurrent(navigation)}
           className={
@@ -57,6 +59,7 @@ export function NavBar(props) {
           }
         >
           <div
+            
             className={
               estado[0].current
                 ? "bg-themeOrange drop-shadow-buttonIcon rounded-full h-10 w-10 ml-5 flex justify-center items-center"
@@ -66,7 +69,7 @@ export function NavBar(props) {
             <Image src={cubo} alt="cubo" className="bg-transparent" />
           </div>
           <div className="text-themeGray group-hover:text-themeOrange ">
-            <Link href="#">
+            <Link href="/produtos">
               <a
                 className={
                   estado[0].current
@@ -81,6 +84,7 @@ export function NavBar(props) {
         </button>
 
         <button
+          
           type="button"
           onClick={() => handleCurrent2(navigation)}
           className={
@@ -90,16 +94,17 @@ export function NavBar(props) {
           }
         >
           <div
+            
             className={
               estado[1].current
                 ? "bg-themeOrange drop-shadow-buttonIcon rounded-full h-10 w-10 ml-5 flex justify-center items-center"
                 : "bg-themeWhite rounded-full h-10 w-10 ml-5 flex justify-center items-center group-hover:bg-themeOrange group-hover:drop-shadow-buttonIcon transition-all duration-500 ease-in-out"
             }
           >
-            <Image src={pedidos} alt="pedidos" className="bg-transparent" />
+            <Image src={pedidos} alt="pedidos" href="/produtos" className="bg-transparent" />
           </div>
           <div className="text-themeGray group-hover:text-themeOrange ">
-            <Link href="#">
+            <Link href="/pedidos">
               <a
                 className={
                   estado[1].current
@@ -112,7 +117,9 @@ export function NavBar(props) {
             </Link>
           </div>
         </button>
+
         <button
+
           type="button"
           onClick={() => handleCurrent3(navigation)}
           className={
