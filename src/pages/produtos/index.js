@@ -1,19 +1,27 @@
+import Head from 'next/head'
+
 import { NavBar } from "../../components/NavBar";
 import { DropDown } from "../../components/Dropdown";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
 import Card from "../../components/Card";
 import AddButton from "../../components/AddButton";
+
 import styles from "./styles.module.css";
 
 export default function Pedidos() {
   return (
+
+    
     <div className="flex">
+
+      <Head>
+        <title>FoodsFun - Produtos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      </Head>
+
       <div className="w-60">
-        
-        
-        
+        <NavBar />  
       </div>
-      <NavBar />
 
       <div className={styles.screen}>
 
