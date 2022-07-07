@@ -36,7 +36,9 @@ module.exports = {
       trash: "url('/trash.png')",
       enabled: "url('/enabled.png')",
       disabled: "url('/disabled.png')",
-      burguer: "url'/hamburguer.svg')",
+      burguer: "url('/hamburguer.svg')",
+      pizza: "url('/pizza.png')",
+      
     },
   },
   plugins: [],
