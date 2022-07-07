@@ -33,7 +33,7 @@ export default function Pedidos() {
 
         
         <div className='space-y-0 border-2 border-red-600 '>
-          <div className="flex justify-around  mt-11">
+          <div className="flex justify-around  ">
             <div className="w-1/8 ">Pedido</div>
             <div className="w-1/8 ">Mesa</div>
             <div className="w-4/8 ">Produto</div>
