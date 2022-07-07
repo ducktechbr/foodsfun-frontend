@@ -27,7 +27,7 @@ module.exports = {
       fontFamily: {
         theme: ["MuseoModerno"],
       },
-      screens: { "3xl": "1900px" },
+      screens: { "3xl": "1700px", "4xl": "1900px" },
     },
 
     backgroundImage: {
@@ -36,7 +36,9 @@ module.exports = {
       trash: "url('/trash.png')",
       enabled: "url('/enabled.png')",
       disabled: "url('/disabled.png')",
-      burguer: "url'/hamburguer.svg')",
+      burguer: "url('/hamburguer.svg')",
+      pizza: "url('/pizza.png')",
+      
     },
   },
   plugins: [],
