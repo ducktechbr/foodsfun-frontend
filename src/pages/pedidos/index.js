@@ -1,10 +1,12 @@
-import { NavBar } from "../../components/NavBar";
 import Head from "next/head";
+
+import { NavBar } from "../../components/NavBar";
 import { DropDown } from "../../components/Dropdown";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
-import Card from "../../components/Card";
 import AddButton from "../../components/AddButton";
+
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
+
 import styles from "./styles.module.css";
 
 function Page() {
@@ -27,15 +29,29 @@ function Page() {
 
 
         
-        <div className='space-y-0 border-2 border-red-600 '>
-          <div className="flex justify-around  ">
-            <div className="w-1/8 ">Pedido</div>
-            <div className="w-1/8 ">Mesa</div>
-            <div className="w-4/8 ">Produto</div>
-            <div className="w-2/8 ">Status</div>
+        <div className="mt-11 mx-4 h-48 border-2 rounded-2xl bg-white ">
+          <div className='space-y-0  h-11 bg-themeOrange text-white text-[1.3rem] py-2 px-2 rounded-2xl'>
+            <div className="flex justify-around bg-transparent">
+              <div className="w-1/8 bg-transparent">Pedido</div>
+              <div className="w-1/8 bg-transparent">Mesa</div>
+              <div className="w-1/8 bg-transparent">Quantidade</div>
+              <div className="w-4/8 bg-transparent">Produto</div>
+              <div className="w-1/8 bg-transparent">Status</div>
+            </div>
+            {/* as proximas divs serao geradas automaticamente */}
           </div>
-          {/* as proximas divs serao geradas automaticamente */}
+
+          <div className="flex mt-5 px-2 bg-white">
+            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border ">002</span></div>
+            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border ">22</span></div>
+            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border ">05</span></div>
+            <div className="w-4/8 bg-white"><span className="rounded-2xl bg-white ">Hamburguer</span></div>
+            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border J">Concluido</span></div>
+            
+          </div>
+
         </div>
+
       </div>
     </div>
   );
