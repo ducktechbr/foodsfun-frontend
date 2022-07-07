@@ -31,13 +31,19 @@ export default function Pedidos() {
         </div>
 
 
-        <thead></thead>
-        {/* <div className="grid grid-cols-4  border-2 border-red-600 mt-11">
-          <div>Pedido</div>
-          <div>Mesa</div>
-          <div>Produto</div>
-          <div>Status</div>
-        </div> */}
+        
+        <div className='space-y-0 border-2 border-red-600 '>
+          <div className="flex justify-around  mt-11">
+            <div className="w-1/8 ">Pedido</div>
+            <div className="w-1/8 ">Mesa</div>
+            <div className="w-4/8 ">Produto</div>
+            <div className="w-2/8 ">Status</div>
+          </div>
+          {/* as proximas divs serao geradas automaticamente */}
+        </div>
+
+   
+       
 
   
       
