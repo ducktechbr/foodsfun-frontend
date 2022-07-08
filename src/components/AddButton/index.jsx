@@ -19,7 +19,7 @@ export default function Card(props) {
   }
 
   return (
-    <>
+ <>
       <button
         type="button"
         onClick={openModal}
@@ -32,7 +32,6 @@ export default function Card(props) {
           </div>
         </div>
       </button>
-
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
