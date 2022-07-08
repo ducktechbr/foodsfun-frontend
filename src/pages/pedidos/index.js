@@ -12,6 +12,7 @@ import { ProtectedRoute } from "../../middlewares/protectedRoute";
 
 import styles from "./styles.module.css";
 
+
 function Page() {
   return (
     <div className="flex">
@@ -29,9 +30,6 @@ function Page() {
           <DropDown />
           <AddButton />
         </div>
-
-
-        
         <div className="mt-11 mx-4 h-48 border-2 rounded-2xl bg-white ">
           <div className='space-y-0  h-16 bg-themeOrange text-white text-[1.3rem] py-2 px-2 rounded-t-lg'>
             <div className="flex justify-around mt-2 bg-transparent">

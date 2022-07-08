@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useDispatch } from "react-redux";
 
 import { NavBar } from "../../components/NavBar";
 import { DropDown } from "../../components/Dropdown";
@@ -8,8 +9,26 @@ import AddButton from "../../components/AddButton";
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
 
 import styles from "./styles.module.css";
+import { useEffect } from "react";
 
 function Page() {
+  const navigation = [
+    { name: "Pedidos", href: "#", current: true },
+    { name: "Produtos", href: "#", current: false },
+    { name: "Mesas", href: "#", current: false },
+  ];
+  const dispatch = useDispatch();
+
+  function handleCurrent(navigation) {
+    dispatch({
+      type: "SELECTED_TWO",
+      navigation,
+    });
+  }
+  useEffect(() => {
+    handleCurrent();
+  }, []);
+
   return (
     <div className="flex">
       <Head>
