@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
-export default function Card(props) {
+export default function AddButton(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
@@ -20,15 +20,15 @@ export default function Card(props) {
 
   return (
  <>
-      <button
+      <button className="" 
         type="button"
         onClick={openModal}
-        className=" flex items-center justify-center"
+      
       >
         <div className={styles.content}>
           <div className={styles.contentText}>
-            <h1>+</h1>
-            <p>Adicionar</p>
+            <h1>Adicionar +</h1>
+            
           </div>
         </div>
       </button>
