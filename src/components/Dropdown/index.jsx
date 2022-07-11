@@ -16,7 +16,6 @@ export function DropDown(props) {
 
   useEffect(() => {
     getCategories();
-    console.log(category.data[0].title);
   }, []);
 
   return (

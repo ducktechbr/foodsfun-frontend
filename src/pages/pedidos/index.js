@@ -1,7 +1,7 @@
 import Head from "next/head";
 
-import { IoIosArrowDropright } from "react-icons/io"
-import { BsFillChatLeftTextFill } from "react-icons/bs"
+import { IoIosArrowDropright } from "react-icons/io";
+import { BsFillChatLeftTextFill } from "react-icons/bs";
 
 import { NavBar } from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
@@ -12,7 +12,6 @@ import { ProtectedRoute } from "../../middlewares/protectedRoute";
 import styles from "./styles.module.css";
 
 function Page() {
-  
   return (
     <div className="flex">
       <Head>
@@ -78,7 +77,7 @@ function Page() {
             <div className="w-4/8 bg-white flex">
               <span className="rounded-2xl bg-white ">Hamburguer</span>
 
-              <button type="button" onClick={handleModalOpenView}>
+              <button type="button" onClick={null}>
                 <BsFillChatLeftTextFill
                   size={16}
                   color="#AAA"
@@ -122,7 +121,6 @@ function Page() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }
