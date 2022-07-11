@@ -8,12 +8,14 @@ import logo from "../../assets/logo.png";
 import cubo from "../../assets/cubo.svg";
 import pedidos from "../../assets/pedidos.svg";
 import mesas from "../../assets/mesas.svg";
+import config from "../../assets/config.svg";
 
 export function NavBar() {
   const navigation = [
     { name: "Pedidos", href: "#", current: true },
     { name: "Produtos", href: "#", current: false },
     { name: "Mesas", href: "#", current: false },
+    { name: "Configurações", href: "#", current: false },
   ];
 
   const dispatch = useDispatch();
@@ -33,6 +35,12 @@ export function NavBar() {
   function handleCurrent3(navigation) {
     dispatch({
       type: "SELECTED_THREE",
+      navigation,
+    });
+  }
+  function handleCurrent4(navigation) {
+    dispatch({
+      type: "SELECTED_FOUR",
       navigation,
     });
   }
@@ -115,7 +123,8 @@ export function NavBar() {
             </div>
           </button>
         </Link>
-        <Link href="#">
+        
+        <Link href="/mesas">
           <button
             type="button"
             onClick={() => handleCurrent3(navigation)}
@@ -143,6 +152,39 @@ export function NavBar() {
                 }
               >
                 Mesas
+              </a>
+            </div>
+          </button>
+        </Link>
+
+        <Link href="/configuracao">
+          <button
+            type="button"
+            onClick={() => handleCurrent4(navigation)}
+            className={
+              estado[3].current
+                ? "bg-themeSoft w-52 h-14 rounded-navBar hover:bg-themeSoft flex items-center group transition-all duration-500 mb-7"
+                : "bg-themeWhite w-52 h-14 rounded-navBar hover:bg-themeSoft flex items-center group transition-all duration-500 mb-7"
+            }
+          >
+            <div
+              className={
+                estado[3].current
+                  ? "bg-themeOrange drop-shadow-buttonIcon rounded-full h-10 w-10 ml-5 flex justify-center items-center"
+                  : "bg-themeWhite rounded-full h-10 w-10 ml-5 flex justify-center items-center group-hover:bg-themeOrange group-hover:drop-shadow-buttonIcon transition-all duration-500 ease-in-out"
+              }
+            >
+              <Image src={config} alt="mesas" className="bg-transparent" />
+            </div>
+            <div className="text-themeGray group-hover:text-themeOrange ">
+              <a
+                className={
+                  estado[3].current
+                    ? "bg-themeSoft font-medium text-lg pl-4 text-themeOrange"
+                    : "bg-themeWhite pl-4 group-hover:bg-themeSoft transition-all duration-500 font-medium text-lg"
+                }
+              >
+                Configurações
               </a>
             </div>
           </button>

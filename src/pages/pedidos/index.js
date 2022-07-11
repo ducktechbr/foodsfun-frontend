@@ -1,19 +1,39 @@
 import Head from "next/head";
 
+import { useState } from "react";
+
 import { IoIosArrowDropright } from "react-icons/io"
 import { BsFillChatLeftTextFill } from "react-icons/bs"
 
 import { NavBar } from "../../components/NavBar";
-import { DropDown } from "../../components/Dropdown";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
 import AddButton from "../../components/AddButton";
+
+import { ModalPedidos } from "../../components/ModaPedidos";
+
 
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
 
 import styles from "./styles.module.css";
 
+import Modal from "react-modal";
+import React from "react";
 
 function Page() {
+
+  const [modalItem, setModalIten] = useState()
+  const [modalVisible, setModalVisible] = useState(false)
+  
+  function handleModalOpenView(){
+    setModalVisible(true);
+  }
+
+  function handleCloseModal(){
+    setModalVisible(false)
+  }
+
+  Modal.setAppElement("#__next")
+  
   return (
     <div className="flex">
       <Head>
@@ -27,7 +47,6 @@ function Page() {
         <BackgroundBanner />
 
         <div className="w-full mt-11 px-5 rounded-2xl flex justify-between items-center">
-          <DropDown />
           <AddButton />
         </div>
         <div className="mt-11 mx-4 h-48 border-2 rounded-2xl bg-white ">
@@ -53,7 +72,7 @@ function Page() {
 
               <button type="button"> 
                   <IoIosArrowDropright 
-                  size={25} color="#fff"  style={{backgroundColor: "transparent", marginLeft: "2px"}}
+                  size={25} color="#fff" style={{backgroundColor: "transparent", marginLeft: "2px"}}
                    /> 
                 </button>
               </div>
@@ -67,11 +86,21 @@ function Page() {
             <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border ">05</span></div>
             <div className="w-4/8 bg-white flex"><span className="rounded-2xl bg-white ">Hamburguer</span> 
             
-              <button type="button"> 
+              <button 
+              type="button"
+              onClick={handleModalOpenView}
+              >
+
                     <BsFillChatLeftTextFill 
                     size={16} color="#AAA"  style={{backgroundColor: "transparent", marginLeft: "10px"}}
-                    /> 
+                    />
+
               </button>
+
+              
+
+              
+
             </div>
             <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-green-400 border border-green-400">Concluido</span></div>
             
@@ -96,10 +125,19 @@ function Page() {
         </div>
 
       </div>
+
+      
+
+     { modalVisible &&(
+        <ModalPedidos
+        
+        />
+     )}
+
     </div>
   );
 }
 
 export default function Pedidos() {
-  return <ProtectedRoute component={Page} />;
+  return <ProtectedRoute component={Page} />
 }

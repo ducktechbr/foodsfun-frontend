@@ -8,7 +8,7 @@ export function BackgroundBanner(props) {
   return (
 
   
-    <div className="w-full h-32 border-2 border-black flex justify-end items-center px-5 ">
+    <div className="w-full h-32 border border-black flex justify-end items-center px-5">
 
       <Menu as="div" className="">
         <Menu.Button className="  bg-themeWhite rounded-2xl px-11 flex justify-between items-center">
@@ -21,7 +21,7 @@ export function BackgroundBanner(props) {
           
            
           </div>
-          <div className="bg-themeWhite flex items-center m-5">
+          <div className="bg-themeWhite flex items-center ml-3 w-5">
             <Image src={dash} alt="dash" className="bg-themeWhite" />
           </div>
         </Menu.Button>

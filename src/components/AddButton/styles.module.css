@@ -1,4 +1,4 @@
-.content {
+/* .content {
   width: 200px;
   height: 112px;
   margin: auto;
@@ -8,28 +8,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .contentText {
   text-align: center;
 }
 
-.contentText h1 {
-  background: #fff;
+.contentText h1{
   font-family: "MuseoModerno";
   font-weight: 800;
   font-size: 80px;
   line-height: 20px;
   text-shadow: 0px 1.4902px 1.4902px rgba(0, 0, 0, 0.25);
   padding-top: 10px;
-}
-.contentText p {
   font-family: "MuseoModerno";
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 29px;
-  background: #fff;
+  
   padding-top: 10px;
 }
 
@@ -53,7 +50,7 @@
   border: none;
   border-radius: 8px;
   background: #ff7527;
-  color: #fff;
+  
   font-family: "MuseoModerno", cursive;
   font-size: 18px;
   text-align: center;
