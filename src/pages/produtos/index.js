@@ -43,12 +43,14 @@ function Page() {
       <div className={styles.screen}>
         <BackgroundBanner />
 
-        <div className="w-full mt-11 px-3 rounded-2xl flex justify-between items-center">
-          <DropDown />
-          <AddButton />
+        <div className="w-full rounded-2xl flex justify-between items-center">
+          <div className="h-24 mt-5 px-5 flex w-full justify-between items-center">
+            <DropDown/>
+            <AddButton/>
+          </div>
         </div>
 
-        <div className="grid  md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5  w-full place-items-center mt-40">
+        <div className="grid  md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5  w-full place-items-center mt-14">
           <Card />
           <Card />
           <Card />
