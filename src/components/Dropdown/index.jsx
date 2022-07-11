@@ -6,10 +6,12 @@ import { Menu, Transition } from "@headlessui/react";
 import { api } from "../../api/index";
 
 export function DropDown(props) {
-  const [category, setCategory] = useState([{ title: "" }, { title: "" }]);
+  const [category, setCategory] = useState({
+    data: [{ title: "" }, { title: "" }],
+  });
 
   async function getCategories() {
-    setCategory(await api.post("/getCategory"));
+    setCategory(await api.get("/getCategory"));
   }
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export function DropDown(props) {
           <h1
             className={`${styles.textH1} flex items-center text-themeOrange bg-themeWhite`}
           >
-            {category[0].title}
+            {category.data[0].title}
           </h1>
           <p
             className={`${styles.textP} flex items-center text-xs bg-themeWhite`}
@@ -48,18 +50,20 @@ export function DropDown(props) {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-2xl shadow-lg bg-themeWhite ring-1 ring-black ring-opacity-5 focus:outline-none p-3">
           <div className="py-1 flex flex-col bg-themeWhite ">
-            {category.map((current, key) => {
-              return (
-                <Menu.Item key={key}>
-                  <a
-                    href="#"
-                    className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
-                  >
-                    {current}
-                  </a>
-                </Menu.Item>
-              );
-            })}
+            {category.data[0].title !== ""
+              ? category.data.map((current, key) => {
+                  return (
+                    <Menu.Item key={key}>
+                      <a
+                        href="#"
+                        className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
+                      >
+                        {current.title}
+                      </a>
+                    </Menu.Item>
+                  );
+                })
+              : null}
           </div>
         </Menu.Items>
       </Transition>

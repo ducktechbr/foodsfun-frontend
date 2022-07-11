@@ -19,7 +19,6 @@ export default function Login() {
     setForm({ ...form, [event.target.name]: event.target.value });
   }
 
-  
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -33,9 +32,6 @@ export default function Login() {
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
 
       setLoading(false);
-
-      //   console.log("logado");
-      //   router.push("/pedidos");
     } catch (error) {
       console.log(error);
       setLoading(false);
