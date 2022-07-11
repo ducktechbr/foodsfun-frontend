@@ -1,7 +1,5 @@
 import Head from "next/head";
 
-import { useState } from "react";
-
 import { IoIosArrowDropright } from "react-icons/io"
 import { BsFillChatLeftTextFill } from "react-icons/bs"
 
@@ -9,30 +7,11 @@ import { NavBar } from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
 import AddButton from "../../components/AddButton";
 
-import { ModalPedidos } from "../../components/ModaPedidos";
-
-
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
 
 import styles from "./styles.module.css";
 
-import Modal from "react-modal";
-import React from "react";
-
 function Page() {
-
-  const [modalItem, setModalIten] = useState()
-  const [modalVisible, setModalVisible] = useState(false)
-  
-  function handleModalOpenView(){
-    setModalVisible(true);
-  }
-
-  function handleCloseModal(){
-    setModalVisible(false)
-  }
-
-  Modal.setAppElement("#__next")
   
   return (
     <div className="flex">
@@ -125,14 +104,6 @@ function Page() {
         </div>
 
       </div>
-
-      
-
-     { modalVisible &&(
-        <ModalPedidos
-        
-        />
-     )}
 
     </div>
   );

@@ -16,7 +16,7 @@ export default function page() {
     <div className={styles.screen}>
       <BackgroundBanner/>
            
-      <div className="border border-black h-24 px-8 flex justify-end">
+      <div className="border border-black h-24 px-5 flex justify-end">
         <AddButton/>
       </div>
 
