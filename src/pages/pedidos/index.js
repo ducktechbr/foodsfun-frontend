@@ -1,7 +1,7 @@
 import Head from "next/head";
 
-import { IoIosArrowDropright } from "react-icons/io"
-import { BsFillChatLeftTextFill } from "react-icons/bs"
+import { IoIosArrowDropright } from "react-icons/io";
+import { BsFillChatLeftTextFill } from "react-icons/bs";
 
 import { NavBar } from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
@@ -12,7 +12,6 @@ import { ProtectedRoute } from "../../middlewares/protectedRoute";
 import styles from "./styles.module.css";
 
 function Page() {
-  
   return (
     <div className="flex">
       <Head>
@@ -29,30 +28,36 @@ function Page() {
           <AddButton/>
         </div>
         <div className="mt-11 mx-4 h-48 border-2 rounded-2xl bg-white ">
-          <div className='space-y-0  h-16 bg-themeOrange text-white text-[1.3rem] py-2 px-2 rounded-t-lg'>
+          <div className="space-y-0  h-16 bg-themeOrange text-white text-[1.3rem] py-2 px-2 rounded-t-lg">
             <div className="flex justify-around mt-2 bg-transparent">
               <div className="w-1/8 bg-transparent">Pedido</div>
               <div className="w-1/8 bg-transparent flex">
-                
-                Mesa 
-                
-                <button> 
-                  <IoIosArrowDropright 
-                  size={25} color="#fff"  style={{backgroundColor: "transparent", marginLeft: "2px"}}
-                   /> 
+                Mesa
+                <button>
+                  <IoIosArrowDropright
+                    size={25}
+                    color="#fff"
+                    style={{
+                      backgroundColor: "transparent",
+                      marginLeft: "2px",
+                    }}
+                  />
                 </button>
-                </div>
+              </div>
 
               <div className="w-1/8 bg-transparent">Quantidade</div>
               <div className="w-4/8 bg-transparent">Produto</div>
               <div className="w-1/8 bg-transparent flex">
-                
                 Status
-
-              <button type="button"> 
-                  <IoIosArrowDropright 
-                  size={25} color="#fff" style={{backgroundColor: "transparent", marginLeft: "2px"}}
-                   /> 
+                <button type="button">
+                  <IoIosArrowDropright
+                    size={25}
+                    color="#fff"
+                    style={{
+                      backgroundColor: "transparent",
+                      marginLeft: "2px",
+                    }}
+                  />
                 </button>
               </div>
             </div>
@@ -60,55 +65,66 @@ function Page() {
           </div>
 
           <div className="flex mt-5 px-2 bg-white">
-            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border ">002</span></div>
-            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border ">22</span></div>
-            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border ">05</span></div>
-            <div className="w-4/8 bg-white flex"><span className="rounded-2xl bg-white ">Hamburguer</span> 
-            
-              <button 
-              type="button"
-              
-              >
-
-                    <BsFillChatLeftTextFill 
-                    size={16} color="#AAA"  style={{backgroundColor: "transparent", marginLeft: "10px"}}
-                    />
-
-              </button>
-
-              
-
-              
-
+            <div className="w-1/8 bg-white">
+              <span className="p-2 rounded-2xl bg-white border ">002</span>
             </div>
-            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-green-400 border border-green-400">Concluido</span></div>
-            
+            <div className="w-1/8 bg-white">
+              <span className="p-2 rounded-2xl bg-white border ">22</span>
+            </div>
+            <div className="w-1/8 bg-white">
+              <span className="p-2 rounded-2xl bg-white border ">05</span>
+            </div>
+            <div className="w-4/8 bg-white flex">
+              <span className="rounded-2xl bg-white ">Hamburguer</span>
+
+              <button type="button" onClick={null}>
+                <BsFillChatLeftTextFill
+                  size={16}
+                  color="#AAA"
+                  style={{ backgroundColor: "transparent", marginLeft: "10px" }}
+                />
+              </button>
+            </div>
+            <div className="w-1/8 bg-white">
+              <span className="p-2 rounded-2xl bg-green-400 border border-green-400">
+                Concluido
+              </span>
+            </div>
           </div>
 
           <div className="flex mt-8 px-2 bg-white">
-            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border ">002</span></div>
-            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border ">22</span></div>
-            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-white border ">05</span></div>
-            <div className="w-4/8 bg-white flex"><span className="rounded-2xl bg-white ">Hamburguer</span> 
-            
-              <button type="button"> 
-                    <BsFillChatLeftTextFill 
-                    size={16} color="#AAA"  style={{backgroundColor: "transparent", marginLeft: "10px"}}
-                    /> 
+            <div className="w-1/8 bg-white">
+              <span className="p-2 rounded-2xl bg-white border ">002</span>
+            </div>
+            <div className="w-1/8 bg-white">
+              <span className="p-2 rounded-2xl bg-white border ">22</span>
+            </div>
+            <div className="w-1/8 bg-white">
+              <span className="p-2 rounded-2xl bg-white border ">05</span>
+            </div>
+            <div className="w-4/8 bg-white flex">
+              <span className="rounded-2xl bg-white ">Hamburguer</span>
+
+              <button type="button">
+                <BsFillChatLeftTextFill
+                  size={16}
+                  color="#AAA"
+                  style={{ backgroundColor: "transparent", marginLeft: "10px" }}
+                />
               </button>
             </div>
-            <div className="w-1/8 bg-white"><span className="p-2 rounded-2xl bg-yellow-200 border border-yellow-200">Preparando</span></div>
-            
+            <div className="w-1/8 bg-white">
+              <span className="p-2 rounded-2xl bg-yellow-200 border border-yellow-200">
+                Preparando
+              </span>
+            </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 }
 
 export default function Pedidos() {
-  return <ProtectedRoute component={Page} />
+  return <ProtectedRoute component={Page} />;
 }
