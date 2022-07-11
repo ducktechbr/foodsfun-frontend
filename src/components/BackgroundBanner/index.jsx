@@ -21,7 +21,7 @@ export function BackgroundBanner(props) {
           
            
           </div>
-          <div className="bg-themeWhite flex items-center m-5">
+          <div className="bg-themeWhite flex items-center ml-3 w-5">
             <Image src={dash} alt="dash" className="bg-themeWhite" />
           </div>
         </Menu.Button>

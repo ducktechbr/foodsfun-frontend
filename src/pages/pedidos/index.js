@@ -8,6 +8,7 @@ import { BsFillChatLeftTextFill } from "react-icons/bs"
 import { NavBar } from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
 import AddButton from "../../components/AddButton";
+
 import { ModalPedidos } from "../../components/ModaPedidos";
 
 
@@ -125,13 +126,13 @@ function Page() {
 
       </div>
 
-     {/* { modalVisible &&(
+      
+
+     { modalVisible &&(
         <ModalPedidos
-        isOpen={isOpen}
-        onRequestClose={onRequestClose}
-        style={customStyles}
+        
         />
-     )} */}
+     )}
 
     </div>
   );

@@ -3,6 +3,7 @@ export default function selected(
     { name: "Produtos", href: "#", current: true },
     { name: "Pedidos", href: "#", current: false },
     { name: "Mesas", href: "#", current: false },
+    { name: "Configurações", href: "#", current: false },
   ],
   action
 ) {
@@ -12,6 +13,7 @@ export default function selected(
         { name: "Produtos", href: "#", current: true },
         { name: "Pedidos", href: "#", current: false },
         { name: "Mesas", href: "#", current: false },
+        { name: "Configurações", href: "#", current: false },
       ];
       return state;
     case "SELECTED_TWO":
@@ -19,6 +21,7 @@ export default function selected(
         { name: "Produtos", href: "#", current: false },
         { name: "Pedidos", href: "#", current: true },
         { name: "Mesas", href: "#", current: false },
+        { name: "Configurações", href: "#", current: false },
       ];
       return state;
     case "SELECTED_THREE":
@@ -26,6 +29,15 @@ export default function selected(
         { name: "Produtos", href: "#", current: false },
         { name: "Pedidos", href: "#", current: false },
         { name: "Mesas", href: "#", current: true },
+        { name: "Configurações", href: "#", current: false },
+      ];
+      return state;
+    case "SELECTED_FOUR":
+      state = [
+        { name: "Produtos", href: "#", current: false },
+        { name: "Pedidos", href: "#", current: false },
+        { name: "Mesas", href: "#", current: false },
+        { name: "Configurações", href: "#", current: true },
       ];
       return state;
     default:
