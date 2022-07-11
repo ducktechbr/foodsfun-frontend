@@ -9,7 +9,7 @@ export function DropDown(props) {
   const [category, setCategory] = useState([{ title: "" }, { title: "" }]);
 
   async function getCategories() {
-    setCategory(await api.post("/getCategory"));
+    setCategory(await api.get("/getCategory"));
   }
 
   useEffect(() => {

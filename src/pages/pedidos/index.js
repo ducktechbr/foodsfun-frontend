@@ -25,8 +25,8 @@ function Page() {
       <div className={styles.screen}>
         <BackgroundBanner />
 
-        <div className="w-full mt-11 px-5 rounded-2xl flex justify-between items-center">
-          <AddButton />
+        <div className="border border-black h-24 px-5 flex justify-end">
+          <AddButton/>
         </div>
         <div className="mt-11 mx-4 h-48 border-2 rounded-2xl bg-white ">
           <div className='space-y-0  h-16 bg-themeOrange text-white text-[1.3rem] py-2 px-2 rounded-t-lg'>
@@ -67,7 +67,7 @@ function Page() {
             
               <button 
               type="button"
-              onClick={handleModalOpenView}
+              
               >
 
                     <BsFillChatLeftTextFill 
