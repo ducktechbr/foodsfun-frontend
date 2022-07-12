@@ -4,11 +4,26 @@ import dash from "../../assets/dash.svg";
 import { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { api } from "../../api/index";
+import { useDispatch, useSelector } from "react-redux";
 
 export function DropDown(props) {
   const [category, setCategory] = useState({
     data: [{ title: "" }, { title: "" }],
   });
+
+  // config redux
+
+  const dispatch = useDispatch();
+
+  function handleSelectCategory(current) {
+    dispatch({
+      type: "CHANGE_CATEGORY",
+      current,
+    });
+  }
+
+  const categoryState = useSelector((state) => state.selectedCategory);
+  // término de config do redux
 
   async function getCategories() {
     setCategory(await api.get("/getCategory"));
@@ -16,6 +31,7 @@ export function DropDown(props) {
 
   useEffect(() => {
     getCategories();
+    handleSelectCategory(category.data[0].title);
   }, []);
 
   return (
@@ -25,7 +41,7 @@ export function DropDown(props) {
           <h1
             className={`${styles.textH1} flex items-center text-themeOrange bg-themeWhite`}
           >
-            {category.data[0].title}
+            {categoryState.category}
           </h1>
           <p
             className={`${styles.textP} flex items-center text-xs bg-themeWhite`}
@@ -53,14 +69,13 @@ export function DropDown(props) {
             {category.data[0].title !== ""
               ? category.data.map((current, key) => {
                   return (
-                    <Menu.Item key={key}>
-                      <a
-                        href="#"
-                        className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
-                      >
-                        {current.title}
-                      </a>
-                    </Menu.Item>
+                    <button
+                      key={key}
+                      onClick={() => handleSelectCategory(current.title)}
+                      className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
+                    >
+                      <Menu.Item as="div">{current.title}</Menu.Item>
+                    </button>
                   );
                 })
               : null}

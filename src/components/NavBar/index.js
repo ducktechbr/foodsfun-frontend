@@ -10,37 +10,28 @@ import mesas from "../../assets/mesas.svg";
 import config from "../../assets/config.svg";
 
 export function NavBar() {
-  const navigation = [
-    { name: "Pedidos", href: "#", current: true },
-    { name: "Produtos", href: "#", current: false },
-    { name: "Mesas", href: "#", current: false },
-    { name: "Configurações", href: "#", current: false },
-  ];
-
   const dispatch = useDispatch();
 
-  function handleCurrent(navigation) {
+  function handleCurrent() {
     dispatch({
-      type: "SELECTED_ONE",
-      navigation,
+      type: "SELECTED_ONE"
     });
   }
-  function handleCurrent2(navigation) {
+  function handleCurrent2() {
     dispatch({
-      type: "SELECTED_TWO",
-      navigation,
+      type: "SELECTED_TWO"
     });
   }
-  function handleCurrent3(navigation) {
+  function handleCurrent3() {
     dispatch({
       type: "SELECTED_THREE",
-      navigation,
+      
     });
   }
-  function handleCurrent4(navigation) {
+  function handleCurrent4() {
     dispatch({
       type: "SELECTED_FOUR",
-      navigation,
+      
     });
   }
 
