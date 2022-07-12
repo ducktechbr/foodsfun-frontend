@@ -1,18 +1,20 @@
 import styles from "./styles.module.css";
 
-export default function Card(props) {
+export default function CardMesas(props) {
   return (
     <>
       <div className={styles.container}>
-        <div className="overflow-visible h-20 z-10">
-          <div className={styles.img}></div>
-        </div>
+        
 
         <div className={styles.content}>
-          <div className={styles.contentText}>
-            <h1>Hamburguer de costela</h1>
-            <p>PF do seu Zé / Pratos<br/>R$:35,00</p>
-          </div>
+
+            <h1>MESA 1</h1>
+            
+            <div className={styles.imgContainer}>
+                <div className={styles.img}>
+            </div>
+
+            </div>
 
           <div className={styles.iconsArea}>
             <button
@@ -24,8 +26,8 @@ export default function Card(props) {
             <button
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
             >
-              <div className="bg-edit h-buttonBox w-buttonBox bg-center bg-cover bg-white bg-no-repeat" />
-              <div className={`${styles.iconsText} bg-white`}>editar</div>
+              <div className="bg-printer h-buttonBox w-buttonBox bg-center bg-cover bg-white bg-no-repeat" />
+              <div className={`${styles.iconsText} bg-white`}>imprimir</div>
             </button>
             <button
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}

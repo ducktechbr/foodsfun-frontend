@@ -8,7 +8,7 @@ export function BackgroundBanner(props) {
   return (
 
   
-    <div className="w-full h-32 border border-black flex justify-end items-center px-5">
+    <div className="w-full h-32 bg- flex justify-end items-center px-5">
 
       <Menu as="div" className="">
         <Menu.Button className="  bg-themeWhite rounded-2xl px-11 flex justify-between items-center">
