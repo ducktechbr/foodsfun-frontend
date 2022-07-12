@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import navStore from "../../store/navStore";
 
 import Link from "next/link";
 
@@ -10,32 +10,33 @@ import mesas from "../../assets/mesas.svg";
 import config from "../../assets/config.svg";
 
 export function NavBar() {
-  const dispatch = useDispatch();
+  const current = navStore((state) => state.current);
+  const changeCurrent = navStore((state) => state.changeCurrent);
 
-  function handleCurrent() {
-    dispatch({
-      type: "SELECTED_ONE"
-    });
-  }
-  function handleCurrent2() {
-    dispatch({
-      type: "SELECTED_TWO"
-    });
-  }
-  function handleCurrent3() {
-    dispatch({
-      type: "SELECTED_THREE",
-      
-    });
-  }
-  function handleCurrent4() {
-    dispatch({
-      type: "SELECTED_FOUR",
-      
-    });
-  }
+  // const dispatch = useDispatch();
 
-  const estado = useSelector((state) => state.selected);
+  // function handleCurrent() {
+  //   dispatch({
+  //     type: "SELECTED_ONE",
+  //   });
+  // }
+  // function handleCurrent2() {
+  //   dispatch({
+  //     type: "SELECTED_TWO",
+  //   });
+  // }
+  // function handleCurrent3() {
+  //   dispatch({
+  //     type: "SELECTED_THREE",
+  //   });
+  // }
+  // function handleCurrent4() {
+  //   dispatch({
+  //     type: "SELECTED_FOUR",
+  //   });
+  // }
+
+  // const estado = useSelector((state) => state.selected);
 
   return (
     <aside className="h-screen w-60 font-theme fixed">
@@ -46,16 +47,16 @@ export function NavBar() {
         <Link href="/pedidos">
           <button
             type="button"
-            onClick={() => handleCurrent(navigation)}
+            onClick={() => changeCurrent("Pedidos")}
             className={
-              estado[0].current
+              current === "Pedidos"
                 ? "bg-themeSoft w-52 h-14 rounded-navBar hover:bg-themeSoft flex items-center group transition-all duration-500 mb-7"
                 : "bg-themeWhite w-52 h-14 rounded-navBar hover:bg-themeSoft flex items-center group transition-all duration-500 mb-7"
             }
           >
             <div
               className={
-                estado[0].current
+                current === "Pedidos"
                   ? "bg-themeOrange drop-shadow-buttonIcon rounded-full h-10 w-10 ml-5 flex justify-center items-center"
                   : "bg-themeWhite rounded-full h-10 w-10 ml-5 flex justify-center items-center group-hover:bg-themeOrange group-hover:drop-shadow-buttonIcon transition-all duration-500 ease-in-out"
               }
@@ -70,7 +71,7 @@ export function NavBar() {
             <div className="text-themeGray group-hover:text-themeOrange ">
               <a
                 className={
-                  estado[0].current
+                  current === "Pedidos"
                     ? "bg-themeSoft font-medium text-lg pl-4 text-themeOrange"
                     : "bg-themeWhite pl-4 group-hover:bg-themeSoft transition-all duration-500 font-medium text-lg"
                 }
@@ -84,16 +85,16 @@ export function NavBar() {
           <button
             href="/produtos"
             type="button"
-            onClick={() => handleCurrent2(navigation)}
+            onClick={() => changeCurrent("Produtos")}
             className={
-              estado[1].current
+              current === "Produtos"
                 ? "bg-themeSoft w-52 h-14 rounded-navBar hover:bg-themeSoft flex items-center group transition-all duration-500 mb-7"
                 : "bg-themeWhite w-52 h-14 rounded-navBar hover:bg-themeSoft flex items-center group transition-all duration-500 mb-7"
             }
           >
             <div
               className={
-                estado[1].current
+                current === "Produtos"
                   ? "bg-themeOrange drop-shadow-buttonIcon rounded-full h-10 w-10 ml-5 flex justify-center items-center"
                   : "bg-themeWhite rounded-full h-10 w-10 ml-5 flex justify-center items-center group-hover:bg-themeOrange group-hover:drop-shadow-buttonIcon transition-all duration-500 ease-in-out"
               }
@@ -103,7 +104,7 @@ export function NavBar() {
             <div className="text-themeGray group-hover:text-themeOrange ">
               <a
                 className={
-                  estado[1].current
+                  current === "Produtos"
                     ? "bg-themeSoft font-medium text-lg pl-4 text-themeOrange"
                     : "bg-themeWhite pl-4 group-hover:bg-themeSoft transition-all duration-500 font-medium text-lg"
                 }
@@ -113,20 +114,20 @@ export function NavBar() {
             </div>
           </button>
         </Link>
-        
+
         <Link href="/mesas">
           <button
             type="button"
-            onClick={() => handleCurrent3(navigation)}
+            onClick={() => changeCurrent("Mesas")}
             className={
-              estado[2].current
+              current === "Mesas"
                 ? "bg-themeSoft w-52 h-14 rounded-navBar hover:bg-themeSoft flex items-center group transition-all duration-500 mb-7"
                 : "bg-themeWhite w-52 h-14 rounded-navBar hover:bg-themeSoft flex items-center group transition-all duration-500 mb-7"
             }
           >
             <div
               className={
-                estado[2].current
+                current === "Mesas"
                   ? "bg-themeOrange drop-shadow-buttonIcon rounded-full h-10 w-10 ml-5 flex justify-center items-center"
                   : "bg-themeWhite rounded-full h-10 w-10 ml-5 flex justify-center items-center group-hover:bg-themeOrange group-hover:drop-shadow-buttonIcon transition-all duration-500 ease-in-out"
               }
@@ -136,7 +137,7 @@ export function NavBar() {
             <div className="text-themeGray group-hover:text-themeOrange ">
               <a
                 className={
-                  estado[2].current
+                  current === "Mesas"
                     ? "bg-themeSoft font-medium text-lg pl-4 text-themeOrange"
                     : "bg-themeWhite pl-4 group-hover:bg-themeSoft transition-all duration-500 font-medium text-lg"
                 }
@@ -150,16 +151,16 @@ export function NavBar() {
         <Link href="/configuracao">
           <button
             type="button"
-            onClick={() => handleCurrent4(navigation)}
+            onClick={() => changeCurrent("Config")}
             className={
-              estado[3].current
+              current === "Config"
                 ? "bg-themeSoft w-52 h-14 rounded-navBar hover:bg-themeSoft flex items-center group transition-all duration-500 mb-7"
                 : "bg-themeWhite w-52 h-14 rounded-navBar hover:bg-themeSoft flex items-center group transition-all duration-500 mb-7"
             }
           >
             <div
               className={
-                estado[3].current
+                current === "Config"
                   ? "bg-themeOrange drop-shadow-buttonIcon rounded-full h-10 w-10 ml-5 flex justify-center items-center"
                   : "bg-themeWhite rounded-full h-10 w-10 ml-5 flex justify-center items-center group-hover:bg-themeOrange group-hover:drop-shadow-buttonIcon transition-all duration-500 ease-in-out"
               }
@@ -169,7 +170,7 @@ export function NavBar() {
             <div className="text-themeGray group-hover:text-themeOrange ">
               <a
                 className={
-                  estado[3].current
+                  current === "Config"
                     ? "bg-themeSoft font-medium text-lg pl-4 text-themeOrange"
                     : "bg-themeWhite pl-4 group-hover:bg-themeSoft transition-all duration-500 font-medium text-lg"
                 }

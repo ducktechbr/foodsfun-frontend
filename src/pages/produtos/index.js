@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useDispatch } from "react-redux";
 
 import { NavBar } from "../../components/NavBar";
 import { DropDown } from "../../components/Dropdown";
@@ -7,27 +6,15 @@ import { BackgroundBanner } from "../../components/BackgroundBanner";
 import Card from "../../components/Card";
 import AddButton from "../../components/AddButton";
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
+import categoryStore from "../../store/categoryStore";
 
 import styles from "./styles.module.css";
-import { useEffect } from "react";
+
+
 
 function Page() {
-  const navigation = [
-    { name: "Pedidos", href: "#", current: true },
-    { name: "Produtos", href: "#", current: false },
-    { name: "Mesas", href: "#", current: false },
-  ];
-  const dispatch = useDispatch();
 
-  function handleCurrent(navigation) {
-    dispatch({
-      type: "SELECTED_TWO",
-      navigation,
-    });
-  }
-  useEffect(() => {
-    handleCurrent();
-  }, []);
+  const selectedCategory = categoryStore((state) => state.selected);
 
   return (
     <div className="flex">

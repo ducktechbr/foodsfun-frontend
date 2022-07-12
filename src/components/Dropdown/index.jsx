@@ -4,35 +4,31 @@ import dash from "../../assets/dash.svg";
 import { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { api } from "../../api/index";
-import { useDispatch, useSelector } from "react-redux";
+import categoryStore from "../../store/categoryStore";
 
-export function DropDown(props) {
+export function DropDown() {
   const [category, setCategory] = useState({
-    data: [{ title: "" }, { title: "" }],
+    data: [{ title: "" }],
   });
-
-  // config redux
-
-  const dispatch = useDispatch();
-
-  function handleSelectCategory(current) {
-    dispatch({
-      type: "CHANGE_CATEGORY",
-      current,
-    });
-  }
-
-  const categoryState = useSelector((state) => state.selectedCategory);
-  // término de config do redux
 
   async function getCategories() {
     setCategory(await api.get("/getCategory"));
   }
 
+  const selectedCategory = categoryStore((state) => state.selected);
+  const changeCategory = categoryStore((state) => state.changeCategory);
+
+  function handleSelectedCategory(target) {
+    changeCategory(target);
+  }
+
   useEffect(() => {
     getCategories();
-    handleSelectCategory(category.data[0].title);
-  }, []);
+  }, [""]);
+
+  useEffect(() => {
+    changeCategory(category.data[0].title);
+  }, [category]);
 
   return (
     <Menu as="div" className="relative inline-block text-left rounded-2xl">
@@ -41,7 +37,7 @@ export function DropDown(props) {
           <h1
             className={`${styles.textH1} flex items-center text-themeOrange bg-themeWhite`}
           >
-            {categoryState.category}
+            {selectedCategory}
           </h1>
           <p
             className={`${styles.textP} flex items-center text-xs bg-themeWhite`}
@@ -71,7 +67,7 @@ export function DropDown(props) {
                   return (
                     <button
                       key={key}
-                      onClick={() => handleSelectCategory(current.title)}
+                      onClick={() => handleSelectedCategory(current.title)}
                       className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
                     >
                       <Menu.Item as="div">{current.title}</Menu.Item>
