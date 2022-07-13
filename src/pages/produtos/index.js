@@ -20,6 +20,7 @@ function Page() {
     setProducts(await api.get(`/getProducts/${selectedCategory}`));
   }
   useEffect(() => {
+    console.log("entrei no useEffect");
     getProducts();
   }, [selectedCategory]);
 
