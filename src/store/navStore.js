@@ -1,7 +1,7 @@
 import create from "zustand";
 
 const navStore = create((set) => ({
-  current: "Produtos",
+  current: "Pedidos",
   changeCurrent: (target) => {
     set((state) => ({ current: target }));
   },

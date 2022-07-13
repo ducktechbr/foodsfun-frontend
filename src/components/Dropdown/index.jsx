@@ -24,6 +24,7 @@ export function DropDown() {
 
   useEffect(() => {
     getCategories();
+    changeCategory(category.data[0].title);
   }, [""]);
 
   useEffect(() => {
@@ -39,7 +40,6 @@ export function DropDown() {
           >
             {selectedCategory}
           </h1>
-          
         </div>
         <div className="bg-themeWhite flex items-center ml-5 mt-2">
           <Image src={dash} alt="dash" className="bg-themeWhite" />
@@ -55,7 +55,7 @@ export function DropDown() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-2xl shadow-lg bg-themeWhite ring-1 ring-black ring-opacity-5 focus:outline-none p-3">
+        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-2xl shadow-lg bg-themeWhite ring-1 ring-black ring-opacity-5 focus:outline-none p-3 z-20">
           <div className="py-1 flex flex-col bg-themeWhite ">
             {category.data[0].title !== ""
               ? category.data.map((current, key) => {

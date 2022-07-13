@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-const jwt = require("jsonwebtoken");
 
 const AuthContext = createContext({ token: "", user: {} });
 
@@ -13,18 +12,6 @@ function AuthContextComponent(props) {
 
     if (parsedStoredUser.token) {
       setLoggedInUser(parsedStoredUser);
-      try {
-        var decodedToken = jwt.verify(
-          parsedStoredUser.token,
-          process.env.TOKEN_SIGN_SECRET
-        );
-        var dateNow = new Date();
-        if (decodedToken.exp > dateNow.getTime()) {
-          localStorage.setItem("loggedInUser", JSON.stringify(""));
-        }
-      } catch (error) {
-        localStorage.setItem("loggedInUser", JSON.stringify(""));
-      }
     }
   }, []);
 

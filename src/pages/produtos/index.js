@@ -7,14 +7,21 @@ import Card from "../../components/Card";
 import AddButton from "../../components/AddButton";
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
 import categoryStore from "../../store/categoryStore";
-
+import { api } from "../../api";
 import styles from "./styles.module.css";
-
-
+import { useEffect, useState } from "react";
 
 function Page() {
-
+  const [products, setProducts] = useState({ data: [{ title: "" }] });
   const selectedCategory = categoryStore((state) => state.selected);
+
+  // pega o array de produtos ligados à categoria selecionada
+  async function getProducts() {
+    setProducts(await api.get(`/getProducts/${selectedCategory}`));
+  }
+  useEffect(() => {
+    getProducts();
+  }, [selectedCategory]);
 
   return (
     <div className="flex">
@@ -32,23 +39,23 @@ function Page() {
 
         <div className="w-full rounded-2xl flex justify-between items-center">
           <div className="h-24 mt-5 px-5 flex w-full justify-between items-center">
-            <DropDown/>
-            <AddButton/>
+            <DropDown />
+            <AddButton />
           </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5  w-full place-items-center mt-14">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {products.data[0]
+            ? products.data.map((cur, key) => {
+                return (
+                  <Card
+                    title={cur.title}
+                    category={selectedCategory}
+                    key={key}
+                  />
+                );
+              })
+            : null}
         </div>
       </div>
     </div>
