@@ -16,7 +16,7 @@ function AuthContextComponent(props) {
       try {
         var decodedToken = jwt.verify(
           parsedStoredUser.token,
-          "pxo4SWV91vaT2lHEKxmNamIYH49Gak0V"
+          process.env.TOKEN_SIGN_SECRET
         );
         var dateNow = new Date();
         if (decodedToken.exp > dateNow.getTime()) {

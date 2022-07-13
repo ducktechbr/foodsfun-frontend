@@ -35,9 +35,11 @@ module.exports = {
       edit: "url('/edit.png')",
       trash: "url('/trash.png')",
       enabled: "url('/enabled.png')",
+      printer: "url('/printer.png')",
       disabled: "url('/disabled.png')",
       burguer: "url('/hamburguer.svg')",
-      pizza: "url('/pizza.png')",
+      qrcode: "url('/qrcode.png')",
+      
       
     },
   },
