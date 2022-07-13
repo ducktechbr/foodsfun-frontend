@@ -1,5 +1,7 @@
 import { NavBar } from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
+import  AddButton  from "../../components/AddButton";
+
 
 import styles from "./styles.module.css"
 
@@ -12,7 +14,8 @@ export default function page() {
     <NavBar/>
 
     <div className={styles.screen}>
-      <BackgroundBanner/>     
+      <BackgroundBanner/>
+
     </div>
    </div>
  );

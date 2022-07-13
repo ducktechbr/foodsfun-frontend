@@ -10,7 +10,16 @@
   background: #eee;
   box-sizing: border-box;
   outline: none;
+}
+
+::-webkit-scrollbar{
+  width: 10px;
   
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #FF7527;
+  border-radius: 8px;
 }
 
 
