@@ -10,8 +10,8 @@ export default function Card(props) {
 
         <div className={styles.content}>
           <div className={styles.contentText}>
-            <h1>Hamburguer de costela</h1>
-            <p>PF do seu Zé / Pratos<br/>R$:35,00</p>
+            <h1>{props.title}</h1>
+            <p>PF do seu Zé / {props.category}<br/>R$:35,00</p>
           </div>
 
           <div className={styles.iconsArea}>
