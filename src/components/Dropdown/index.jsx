@@ -7,28 +7,39 @@ import { api } from "../../api/index";
 import categoryStore from "../../store/categoryStore";
 
 export function DropDown() {
+
+  // cria novo estado de categoria
+
   const [category, setCategory] = useState({
     data: [{ title: "" }],
   });
+
+// função de buscar as categorias do usuário com a requisição da api
 
   async function getCategories() {
     setCategory(await api.get("/getCategory"));
   }
 
+// declaração dos estados do zustand de categoria selecionada e de set de categoria selecionada
+
   const selectedCategory = categoryStore((state) => state.selected);
   const changeCategory = categoryStore((state) => state.changeCategory);
 
-  function handleSelectedCategory(target) {
-    changeCategory(target);
+  // função que muda no store do zustand o nome da categoria e seu ID
+
+  function handleSelectedCategory(target, targetId) {
+    changeCategory(target, targetId);
   }
+
+  
 
   useEffect(() => {
     getCategories();
-    changeCategory(category.data[0].title);
+    changeCategory(category.data[0].title, category.data[0].id);
   }, []);
 
   useEffect(() => {
-    changeCategory(category.data[0].title);
+    changeCategory(category.data[0].title, category.data[0].id);
   }, [category]);
 
   return (
@@ -62,7 +73,9 @@ export function DropDown() {
                   return (
                     <button
                       key={key}
-                      onClick={() => handleSelectedCategory(current.title)}
+                      onClick={() =>
+                        handleSelectedCategory(current.title, current.id)
+                      }
                       className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
                     >
                       <Menu.Item as="div">{current.title}</Menu.Item>

@@ -1,11 +1,22 @@
 import styles from "./styles.module.css";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { api } from "../../api/index";
+import categoryStore from "../../store/categoryStore";
+import CurrencyInput from "react-currency-input-field";
 
 export default function AddButton(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ email: "", password: "" });
+  const selectedCategoryId = categoryStore((state) => state.selectedId);
+
+  const [form, setForm] = useState({
+    title: "",
+    price: 0,
+    category: selectedCategoryId,
+    description: "",
+    image: "",
+  });
 
   function closeModal() {
     setIsOpen(false);
@@ -14,21 +25,58 @@ export default function AddButton(props) {
   function openModal() {
     setIsOpen(true);
   }
-  function handleChange(event) {
-    setForm({ ...form, [event.target.name]: event.target.value });
+
+  function handleChange(event, value) {
+    event === "price"
+      ? setForm({
+          ...form,
+          [event]: value,
+          category: selectedCategoryId,
+        })
+      : setForm({
+          ...form,
+          [event.target.name]: event.target.value,
+          category: selectedCategoryId,
+        });
+    console.log(form);
+    console.log(selectedCategoryId);
+  }
+
+  async function handleSubmit(event, closeModal) {
+    // event preventDefault prevente que o submit mande as informações do form para a url
+
+    event.preventDefault();
+
+    // try catch para tentar pegar erros na requisição
+
+    try {
+      // seta o loading para true, desabilitando o preenchimento do form
+
+      setLoading(true);
+
+      //  faz o post do produto com o from preenchido
+
+      await api.post("/newProduct", form);
+
+      // caso a requisição de certo ele seta o loading pra falso novamente e fecha o modal
+
+      closeModal();
+
+      setLoading(false);
+    } catch (error) {
+      // caso tenha algum erro, mostra o erro no console e reabilita o preenchimento do form
+
+      console.log(error);
+      setLoading(false);
+    }
   }
 
   return (
- <>
-      <button className="" 
-        type="button"
-        onClick={openModal}
-      
-      >
+    <>
+      <button className="" type="button" onClick={openModal}>
         <div className={styles.content}>
           <div className={styles.contentText}>
             <h1>Adicionar +</h1>
-            
           </div>
         </div>
       </button>
@@ -67,27 +115,46 @@ export default function AddButton(props) {
                   <form>
                     <input
                       className={styles.input}
-                      type="email"
-                      placeholder="Email"
+                      type="text"
+                      placeholder="Nome do produto"
                       readOnly={loading}
                       required={true}
                       onChange={handleChange}
-                      name="email"
+                      name="title"
+                    />
+                    {/* <input
+                      className={styles.input}
+                      type="number"
+                      placeholder="25.89"
+                      readOnly={loading}
+                      required={true}
+                      onChange={handleChange}
+                      name="price"
+                    /> */}
+                    <CurrencyInput
+                      prefix="R$:"
+                      className={styles.input}
+                      name="price"
+                      placeholder="R$:25,89"
+                      decimalsLimit={2}
+                      decimalSeparator=","
+                      disableGroupSeparators
+                      onValueChange={(value, name) => handleChange(name, value)}
                     />
                     <input
                       className={styles.input}
-                      type="password"
-                      placeholder="Senha"
+                      type="text"
+                      placeholder="Descrição do produto"
                       readOnly={loading}
                       required={true}
                       onChange={handleChange}
-                      name="password"
+                      name="description"
                     />
                     <button
                       type="button"
                       disabled={loading}
                       className={`${styles.button}`}
-                      onClick={closeModal}
+                      onClick={() => handleSubmit(event, closeModal)}
                     >
                       Adicionar
                     </button>
