@@ -5,20 +5,29 @@ import { api } from "../../api";
 export default function Card(props) {
   // retirando o id da categoria atual do estado do zustand
 
-  const selectedCategory = categoryStore((state) => state.selectedId);
+  const selectedCategoryId = categoryStore((state) => state.selectedId);
 
   // lógica para deletar o produto usando o id do produto que vem de props, e o id da categoria atual carregada do zustand
 
   async function handleDelete(id, catId) {
     const body = { prodId: id, catId };
-    console.log(body);
+
     const response = await api.delete("/deleteProduct", {
       data: body,
     });
     console.log(response);
   }
 
-  
+  // lógica fazer toggle no active do produto usando o id do produto que vem de props, e o id da categoria atual carregada do zustand
+
+  async function handleToggle(id, catId) {
+    const body = { prodId: id, catId };
+    const response = await api.patch("/toggleProduct", {
+      data: body,
+    });
+
+    console.log(response);
+  }
 
   return (
     <>
@@ -52,13 +61,14 @@ export default function Card(props) {
             </button>
             <button
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
-              onClick={() => handleDelete(props.id, selectedCategory)}
+              onClick={() => handleDelete(props.id, selectedCategoryId)}
             >
               <div className="bg-trash h-buttonBox w-buttonBox bg-center bg-no-repeat bg-cover bg-white" />
               <div className={`${styles.iconsText} bg-white`}>deletar</div>
             </button>
             <button
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
+              onClick={() => handleToggle(props.id, selectedCategoryId)}
             >
               <div className="bg-enabled h-buttonBox w-buttonBox bg-center bg-no-repeat bg-cover bg-white" />
 

@@ -38,8 +38,6 @@ export default function AddButton(props) {
           [event.target.name]: event.target.value,
           category: selectedCategoryId,
         });
-    console.log(form);
-    console.log(selectedCategoryId);
   }
 
   async function handleSubmit(event, closeModal) {
