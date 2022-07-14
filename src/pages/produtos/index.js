@@ -12,15 +12,26 @@ import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 
 function Page() {
+// criação do estado da lista de produtos, é definida como estado inicial data[0].title = "" para não dar erro de primeiro render no return
+  
   const [products, setProducts] = useState({ data: [{ title: "" }] });
+
+
+// busca a categoria selecionada no store do zustand
+
   const selectedCategory = categoryStore((state) => state.selected);
 
-  // pega o array de produtos ligados à categoria selecionada
+  // função pega o array de produtos ligados à categoria selecionada
+  
   async function getProducts() {
-    setProducts(await api.get(`/getProducts/${selectedCategory}`));
+    selectedCategory !== ""
+      ? setProducts(await api.get(`/getProducts/${selectedCategory}`))
+      : null;
   }
+
+  // renderiza a página toda vez que a categoria selecionada é atualizada no zustand
+
   useEffect(() => {
-    console.log("entrei no useEffect");
     getProducts();
   }, [selectedCategory]);
 

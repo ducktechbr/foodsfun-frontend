@@ -13,30 +13,6 @@ export function NavBar() {
   const current = navStore((state) => state.current);
   const changeCurrent = navStore((state) => state.changeCurrent);
 
-  // const dispatch = useDispatch();
-
-  // function handleCurrent() {
-  //   dispatch({
-  //     type: "SELECTED_ONE",
-  //   });
-  // }
-  // function handleCurrent2() {
-  //   dispatch({
-  //     type: "SELECTED_TWO",
-  //   });
-  // }
-  // function handleCurrent3() {
-  //   dispatch({
-  //     type: "SELECTED_THREE",
-  //   });
-  // }
-  // function handleCurrent4() {
-  //   dispatch({
-  //     type: "SELECTED_FOUR",
-  //   });
-  // }
-
-  // const estado = useSelector((state) => state.selected);
 
   return (
     <aside className="h-screen w-60 font-theme fixed">

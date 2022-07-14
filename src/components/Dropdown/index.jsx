@@ -25,7 +25,7 @@ export function DropDown() {
   useEffect(() => {
     getCategories();
     changeCategory(category.data[0].title);
-  }, [""]);
+  }, []);
 
   useEffect(() => {
     changeCategory(category.data[0].title);
