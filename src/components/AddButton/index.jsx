@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { api } from "../../api/index";
 import categoryStore from "../../store/categoryStore";
-import { format } from "path";
+import CurrencyInput from "react-currency-input-field";
 
 export default function AddButton(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,10 +18,6 @@ export default function AddButton(props) {
     image: "",
   });
 
-  // useEffect(() => {
-  //   setForm({ ...form, category: selectedCategoryId });
-  // }, [form]);
-
   function closeModal() {
     setIsOpen(false);
   }
@@ -30,11 +26,11 @@ export default function AddButton(props) {
     setIsOpen(true);
   }
 
-  function handleChange(event) {
-    event.target.name === "price"
+  function handleChange(event, value) {
+    event === "price"
       ? setForm({
           ...form,
-          [event.target.name]: Number(event.target.value),
+          [event]: value,
           category: selectedCategoryId,
         })
       : setForm({
@@ -126,7 +122,7 @@ export default function AddButton(props) {
                       onChange={handleChange}
                       name="title"
                     />
-                    <input
+                    {/* <input
                       className={styles.input}
                       type="number"
                       placeholder="25.89"
@@ -134,6 +130,16 @@ export default function AddButton(props) {
                       required={true}
                       onChange={handleChange}
                       name="price"
+                    /> */}
+                    <CurrencyInput
+                      prefix="R$:"
+                      className={styles.input}
+                      name="price"
+                      placeholder="R$:25,89"
+                      decimalsLimit={2}
+                      decimalSeparator=","
+                      disableGroupSeparators
+                      onValueChange={(value, name) => handleChange(name, value)}
                     />
                     <input
                       className={styles.input}
@@ -144,7 +150,6 @@ export default function AddButton(props) {
                       onChange={handleChange}
                       name="description"
                     />
-
                     <button
                       type="button"
                       disabled={loading}

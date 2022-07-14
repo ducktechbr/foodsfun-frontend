@@ -19,7 +19,6 @@ function Page() {
   // busca a categoria selecionada no store do zustand
 
   const selectedCategory = categoryStore((state) => state.selected);
-  
 
   // função pega o array de produtos ligados à categoria selecionada
 
@@ -33,7 +32,6 @@ function Page() {
 
   useEffect(() => {
     getProducts();
-
   }, [selectedCategory]);
 
   return (
@@ -65,6 +63,8 @@ function Page() {
                     title={cur.title}
                     category={selectedCategory}
                     key={key}
+                    price={cur.price}
+                    id={cur.id}
                   />
                 );
               })
