@@ -1,6 +1,10 @@
 import { NavBar } from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
-import  AddButton  from "../../components/AddButton";
+
+import { ToggleButton } from "../../components/ToggleButton";
+
+
+
 
 
 import styles from "./styles.module.css"
@@ -8,7 +12,7 @@ import styles from "./styles.module.css"
 
 export default function page() {
  return (
-   <div className="flex">
+   <div className="flex-col">
 
     <div className="w-60"></div>
     <NavBar/>
@@ -17,6 +21,13 @@ export default function page() {
       <BackgroundBanner/>
 
     </div>
+
+  
+      <div className="ml-80"><ToggleButton/></div>
+      <div className="ml-80"><ToggleButton/></div>
+      <div className="ml-80"><ToggleButton/></div>
+    
+
    </div>
  );
 }   
