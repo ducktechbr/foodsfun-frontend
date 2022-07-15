@@ -43,7 +43,7 @@ export default function AddButton(props) {
   }
 
   async function handleSubmit(event, closeModal) {
-    // event preventDefault prevente que o submit mande as informações do form para a url
+    // event preventDefault previne que o submit mande as informações do form para a url
 
     event.preventDefault();
 

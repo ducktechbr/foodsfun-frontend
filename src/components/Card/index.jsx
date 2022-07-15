@@ -2,22 +2,11 @@ import styles from "./styles.module.css";
 import categoryStore from "../../store/categoryStore";
 import { api } from "../../api";
 
+import { Fragment } from "react";
+import { Transition } from "@headlessui/react";
+
 export default function Card(props) {
   // retirando o id da categoria atual do estado do zustand
-
-  const selectedCategory = categoryStore((state) => state.selectedId);
-
-  // lógica para deletar o produto usando o id do produto que vem de props, e o id da categoria atual carregada do zustand
-
-  async function handleDelete(id, catId) {
-    const body = { prodId: id, catId };
-    console.log(body);
-    const response = await api.delete("/deleteProduct", {
-      data: body,
-    });
-    console.log(response);
-  }
-
   
 
   return (
@@ -49,6 +38,7 @@ export default function Card(props) {
             >
               <div className="bg-edit h-buttonBox w-buttonBox bg-center bg-cover bg-white bg-no-repeat" />
               <div className={`${styles.iconsText} bg-white`}>editar</div>
+              
             </button>
             <button
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}

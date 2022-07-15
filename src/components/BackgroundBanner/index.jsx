@@ -9,6 +9,8 @@ import { Menu, Transition } from "@headlessui/react";
 
 import { FiUpload } from "react-icons/fi";
 
+
+
 export function BackgroundBanner(props) {
   const [imgUrl, setImgUrl] = useState("");
   const [clientImg, setClientImg] = useState(null);
@@ -33,9 +35,8 @@ export function BackgroundBanner(props) {
   return (
     <div >
 
-      <div className={styles.uplaod}>
-        <div type>
-          <label>
+        
+          <label className={styles.uplaod}>
             <span>
               <FiUpload size={25}  />
             </span>
@@ -51,11 +52,9 @@ export function BackgroundBanner(props) {
                 alt="Banner do estabelicimento"
               />
             )}
-          </label>
-        </div>
-        <div >
-          <Menu as="div">
-            <Menu.Button className="  bg-themeWhite rounded-2xl px-11 flex justify-between items-center">
+
+          <Menu as="div" className={styles.menu}>
+            <Menu.Button className="bg-themeWhite rounded-2xl px-11 flex justify-between items-center">
               <div className="bg-themeWhite">
                 <h1
                   className={`${styles.textH1} flex items-center text-themeOrange bg-themeWhite`}
@@ -90,8 +89,13 @@ export function BackgroundBanner(props) {
               </Menu.Items>
             </Transition>
           </Menu>
-        </div>
-      </div>
+
+
+          </label>
+        
+        
+        
+      
 
     </div>
   );

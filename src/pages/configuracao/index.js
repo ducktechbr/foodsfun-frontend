@@ -12,12 +12,12 @@ import styles from "./styles.module.css"
 
 export default function page() {
  return (
-   <div className="flex-col">
+   <div>
 
     <div className="w-60"></div>
     <NavBar/>
 
-    <div className={styles.screen}>
+    <div>
       <BackgroundBanner/>
 
     </div>
