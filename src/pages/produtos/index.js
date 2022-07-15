@@ -7,6 +7,7 @@ import Card from "../../components/Card";
 import AddButton from "../../components/AddButton";
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
 import categoryStore from "../../store/categoryStore";
+import reloadStore from "../../store/reloadStore";
 import { api } from "../../api";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
@@ -19,6 +20,7 @@ function Page() {
   // busca a categoria selecionada no store do zustand
 
   const selectedCategory = categoryStore((state) => state.selected);
+  const reloadState = reloadStore((state) => state.reload);
 
   // função pega o array de produtos ligados à categoria selecionada
 
@@ -33,6 +35,10 @@ function Page() {
   useEffect(() => {
     getProducts();
   }, [selectedCategory]);
+
+  useEffect(() => {
+    getProducts();
+  }, [reloadState]);
 
   return (
     <div className="flex">

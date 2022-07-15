@@ -1,11 +1,23 @@
 import styles from "./styles.module.css";
 import categoryStore from "../../store/categoryStore";
+import reloadStore from "../../store/reloadStore";
+import { useEffect } from "react";
 import { api } from "../../api";
+import EditButton from "../editButton";
 
 export default function Card(props) {
   // retirando o id da categoria atual do estado do zustand
 
   const selectedCategoryId = categoryStore((state) => state.selectedId);
+
+  // lógica de refresh da página depois de editar ou deletar o card
+
+  const setReload = reloadStore((state) => state.setReload);
+  const reload = reloadStore((state) => state.reload);
+
+  useEffect(() => {
+    setReload(false);
+  }, [reload]);
 
   // lógica para deletar o produto usando o id do produto que vem de props, e o id da categoria atual carregada do zustand
 
@@ -15,7 +27,7 @@ export default function Card(props) {
     const response = await api.delete("/deleteProduct", {
       data: body,
     });
-    console.log(response);
+    setReload(true);
   }
 
   // lógica fazer toggle no active do produto usando o id do produto que vem de props, e o id da categoria atual carregada do zustand
@@ -53,12 +65,8 @@ export default function Card(props) {
               <div className="bg-eye h-buttonBox w-7 bg-center bg-no-repeat bg-cover bg-white" />
               <div className={`${styles.iconsText} bg-white `}>ver</div>
             </button>
-            <button
-              className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
-            >
-              <div className="bg-edit h-buttonBox w-buttonBox bg-center bg-cover bg-white bg-no-repeat" />
-              <div className={`${styles.iconsText} bg-white`}>editar</div>
-            </button>
+            <EditButton id={props.id}/>
+
             <button
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
               onClick={() => handleDelete(props.id, selectedCategoryId)}

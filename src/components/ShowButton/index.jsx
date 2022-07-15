@@ -6,25 +6,36 @@ import categoryStore from "../../store/categoryStore";
 import CurrencyInput from "react-currency-input-field";
 import reloadStore from "../../store/reloadStore";
 
-export default function AddButton(props) {
+export default function EditButton(props) {
+  // criação de states de loading para o input e de abrir e fechar o modal de edit
+
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // resgate do id da categoria selecionada e dos states de reload de página do zustand
+
   const selectedCategoryId = categoryStore((state) => state.selectedId);
+  const setReload = reloadStore((state) => state.setReload);
+  const reload = reloadStore((state) => state.reload);
+
+  // declaração do state de form dos inputs
 
   const [form, setForm] = useState({
     title: "",
     price: 0,
-    category: selectedCategoryId,
+    catId: selectedCategoryId,
     description: "",
     image: "",
+    prodId: props.id,
   });
 
-  const setReload = reloadStore((state) => state.setReload);
-  const reload = reloadStore((state) => state.reload);
+  // lógica de reload de página com os estados do zustand
 
   useEffect(() => {
     setReload(false);
   }, [reload]);
+
+  // funções de abertura e fechamento de modal
 
   function closeModal() {
     setIsOpen(false);
@@ -34,18 +45,23 @@ export default function AddButton(props) {
     setIsOpen(true);
   }
 
+  // função de atualização de form com a mudança de valores nos inputs
+
   function handleChange(event, value) {
     event === "price"
       ? setForm({
           ...form,
           [event]: value,
-          category: selectedCategoryId,
+          catId: selectedCategoryId,
+          prodId: props.id,
         })
       : setForm({
           ...form,
           [event.target.name]: event.target.value,
-          category: selectedCategoryId,
+          catId: selectedCategoryId,
+          prodId: props.id,
         });
+    console.log(form);
   }
 
   async function handleSubmit(event, closeModal) {
@@ -62,7 +78,7 @@ export default function AddButton(props) {
 
       //  faz o post do produto com o from preenchido
 
-      await api.post("/newProduct", form);
+      await api.patch("/editProduct", form);
 
       // caso a requisição de certo ele seta o loading pra falso novamente e fecha o modal
 
@@ -82,12 +98,13 @@ export default function AddButton(props) {
 
   return (
     <>
-      <button className="" type="button" onClick={openModal}>
-        <div className={styles.content}>
-          <div className={styles.contentText}>
-            <h1>Adicionar +</h1>
-          </div>
-        </div>
+      <button
+        className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
+        type="button"
+        onClick={openModal}
+      >
+        <div className="bg-edit h-buttonBox w-buttonBox bg-center bg-cover bg-white bg-no-repeat" />
+        <div className={`${styles.iconsText} bg-white`}>editar</div>
       </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -119,7 +136,7 @@ export default function AddButton(props) {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Cadastrar novo produto
+                    Editar produto
                   </Dialog.Title>
                   <form>
                     <input
@@ -131,15 +148,6 @@ export default function AddButton(props) {
                       onChange={handleChange}
                       name="title"
                     />
-                    {/* <input
-                      className={styles.input}
-                      type="number"
-                      placeholder="25.89"
-                      readOnly={loading}
-                      required={true}
-                      onChange={handleChange}
-                      name="price"
-                    /> */}
                     <CurrencyInput
                       prefix="R$:"
                       className={styles.input}
