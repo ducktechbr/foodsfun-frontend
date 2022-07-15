@@ -1,0 +1,22 @@
+.screen{
+    width: calc(100% - 240px);
+}
+
+.lista{
+    padding: 100px;
+
+    h1{
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 25px;
+        color: #FF7527;
+        margin-bottom: 50px;
+    }
+
+    ul li{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+}

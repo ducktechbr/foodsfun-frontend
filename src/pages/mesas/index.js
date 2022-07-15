@@ -1,17 +1,20 @@
+import Head from "next/head";
+
 import { NavBar } from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
-import AddButton from "../../components/AddButton"
-import CardMesas from "../../components/CardMesas"
+import AddButton from "../../components/AddButton";
+import CardMesas from "../../components/CardMesas";
 
-
-
-import styles from "./styles.module.css"
-import Card from "../../components/Card";
-
+import styles from "./styles.module.css";
 
 export default function page() {
  return (
    <div className="flex">
+
+      <Head>
+        <title>FoodsFun - Mesas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
 
     <div className="w-60"></div>
     <NavBar/>
