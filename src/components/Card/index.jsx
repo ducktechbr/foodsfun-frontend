@@ -3,10 +3,10 @@ import categoryStore from "../../store/categoryStore";
 import reloadStore from "../../store/reloadStore";
 import { useEffect } from "react";
 import { api } from "../../api";
-import EditButton from "../editButton";
+import EditButton from "../EditButton";
 
-import { Fragment } from "react";
-import { Transition } from "@headlessui/react";
+// import { Fragment } from "react";
+// import { Transition } from "@headlessui/react";
 
 export default function Card(props) {
   // retirando o id da categoria atual do estado do zustand
