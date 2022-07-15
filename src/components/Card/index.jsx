@@ -5,6 +5,9 @@ import { useEffect } from "react";
 import { api } from "../../api";
 import EditButton from "../editButton";
 
+import { Fragment } from "react";
+import { Transition } from "@headlessui/react";
+
 export default function Card(props) {
   // retirando o id da categoria atual do estado do zustand
 
