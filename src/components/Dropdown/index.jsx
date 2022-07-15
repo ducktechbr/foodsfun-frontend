@@ -31,7 +31,6 @@ export function DropDown() {
     changeCategory(target, targetId);
   }
 
-  
 
   useEffect(() => {
     getCategories();
