@@ -1,5 +1,7 @@
 import navStore from "../../store/navStore";
 
+import TablesNavbar from "../TablesNavbar";
+
 import Link from "next/link";
 
 import Image from "next/dist/client/image";
@@ -157,7 +159,10 @@ export function NavBar() {
           </button>
         </Link>
       </div>
+      <TablesNavbar/>
       <div className="h-3/8 bg-themeWhite rounded-br-navBar"></div>
+
+
     </aside>
   );
 }
