@@ -336,7 +336,7 @@ export default function EditButton(props) {
                       className={`${styles.button}`}
                       onClick={() => handleSubmit(event, closeModal)}
                     >
-                      Adicionar
+                     Editar produto
                     </button>
                   </form>
                 </Dialog.Panel>
