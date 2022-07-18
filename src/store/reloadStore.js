@@ -1,7 +1,7 @@
 import create from "zustand";
 
 const reloadStore = create((set) => ({
-  reload: true,
+  reload: false,
   setReload: (target) => {
     set((state) => ({ reload: target }));
   },

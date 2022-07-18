@@ -128,7 +128,7 @@ export default function AddButton(props) {
                       placeholder="Nome do produto"
                       readOnly={loading}
                       required={true}
-                      onChange={handleChange}
+                      onChange={handleChange} 
                       name="title"
                     />
                     {/* <input
