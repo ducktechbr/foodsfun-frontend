@@ -4,6 +4,7 @@ import reloadStore from "../../store/reloadStore";
 import { useEffect } from "react";
 import { api } from "../../api";
 import EditButton from "../EditButton";
+import ShowButton from "../ShowButton";
 
 // import { Fragment } from "react";
 // import { Transition } from "@headlessui/react";
@@ -40,8 +41,7 @@ export default function Card(props) {
     const response = await api.patch("/toggleProduct", {
       data: body,
     });
-
-    console.log(response);
+    setReload(true);
   }
 
   return (
@@ -62,13 +62,9 @@ export default function Card(props) {
           </div>
 
           <div className={styles.iconsArea}>
-            <button
-              className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
-            >
-              <div className="bg-eye h-buttonBox w-7 bg-center bg-no-repeat bg-cover bg-white" />
-              <div className={`${styles.iconsText} bg-white `}>ver</div>
-            </button>
-            <EditButton id={props.id}/>
+            <ShowButton product={props.product} />
+
+            <EditButton id={props.id} />
 
             <button
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
@@ -77,13 +73,20 @@ export default function Card(props) {
               <div className="bg-trash h-buttonBox w-buttonBox bg-center bg-no-repeat bg-cover bg-white" />
               <div className={`${styles.iconsText} bg-white`}>deletar</div>
             </button>
+
             <button
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
               onClick={() => handleToggle(props.id, selectedCategoryId)}
             >
-              <div className="bg-enabled h-buttonBox w-buttonBox bg-center bg-no-repeat bg-cover bg-white" />
+              <div
+                className={`${
+                  props.product.active ? "bg-enabled " : "bg-disabled"
+                } h-buttonBox w-buttonBox bg-center bg-no-repeat bg-cover bg-white`}
+              />
 
-              <div className={`${styles.iconsText} bg-white`}>ativar</div>
+              <div className={`${styles.iconsText} bg-white`}>
+                {props.product.active ? "desativar" : "ativar"}
+              </div>
             </button>
           </div>
         </div>
