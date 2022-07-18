@@ -15,10 +15,12 @@ import { useEffect, useState } from 'react';
 
 function Page() {
 	const [pedidos, setPedidos] = useState({ data: [{ title: '' }] });
+  
+  // const [filtroMesa , setFiltroMesa] = useState(2)
 
 	useEffect(() => {
 		getOrders();
-	}, ['']);
+	}, []);
 
 	async function getOrders() {
 		setPedidos(await api.get(`/getOrders`));

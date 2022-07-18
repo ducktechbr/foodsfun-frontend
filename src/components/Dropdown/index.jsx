@@ -8,13 +8,6 @@ import categoryStore from '../../store/categoryStore';
 
 import reloadStore from "../../store/reloadStore";
 
-
-
-
-
-
-
-
 export function DropDown() {
 
   const [isOpen, setIsOpen] = useState(false);
