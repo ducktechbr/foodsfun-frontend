@@ -48,7 +48,7 @@ export function DropDown() {
           <h1
             className={`${styles.textH1} flex items-center text-themeOrange bg-themeWhite`}
           >
-            {selectedCategory}
+            {selectedCategory ? selectedCategory : <div>Adicionar Catetegoria</div>}
           </h1>
         </div>
         <div className="bg-themeWhite flex items-center ml-5 mt-2">
