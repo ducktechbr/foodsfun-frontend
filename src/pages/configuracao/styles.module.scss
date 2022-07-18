@@ -7,16 +7,33 @@
 
     h1{
         text-transform: uppercase;
-        text-align: center;
+        
         font-size: 25px;
         color: #FF7527;
+        margin-left: 25px;
         margin-bottom: 50px;
     }
 
-    ul li{
-        display: flex;
-        justify-content: space-between;
+    ul{
         margin-top: 20px;
     }
 
+    li{
+        display: flex;
+        margin: 30px;
+    }
+
+
+}
+
+.buttonInit{
+    margin-left: 60px;
+}
+
+.buttonMid{
+    margin-left: 85px;
+}
+
+.buttonEnd{
+    margin-left: 50px;
 }

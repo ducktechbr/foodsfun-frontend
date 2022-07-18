@@ -27,15 +27,13 @@ export default function page() {
         <div className={styles.lista}>
           <h1>Habilitar/Desabilitar meios de pagamento</h1>
           <ul>
-            <li>Cartão    <ToggleButton/>  </li>
-            <li>PIX       <ToggleButton/>  </li>
-            <li>Dinheiro  <ToggleButton/>  </li>
+            <li>Cartão    <div className={styles.buttonInit}><ToggleButton/></div>  </li>
+            <li>PIX       <div className={styles.buttonMid}><ToggleButton/></div>  </li>
+            <li>Dinheiro  <div className={styles.buttonEnd}><ToggleButton/></div>  </li>
           </ul>
         </div>
 
       </div>
-
-
 
    </div>
  );

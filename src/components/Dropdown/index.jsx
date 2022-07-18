@@ -2,16 +2,115 @@ import styles from './styles.module.css';
 import Image from 'next/image';
 import dash from '../../assets/dash.svg';
 import { Fragment, useEffect, useState } from 'react';
-import { Menu, Transition } from '@headlessui/react';
+import { Menu, Transition, Dialog } from '@headlessui/react';
 import { api } from '../../api/index';
 import categoryStore from '../../store/categoryStore';
 
+import reloadStore from "../../store/reloadStore";
+
+
+
+
+
+
+
+
 export function DropDown() {
-	// cria novo estado de categoria
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+
+  // cria novo estado de categoria
 
 	const [category, setCategory] = useState({
 		data: [{ title: '' }],
 	});
+
+  const setReload = reloadStore((state) => state.setReload);
+  const reload = reloadStore((state) => state.reload);
+  const selectedCategoryId = categoryStore((state) => state.selectedId);
+
+
+
+  useEffect(() => {
+    setReload(false);
+    getCategories();
+		category.data[0]
+			? changeCategory(category.data[0].title, category.data[0].id)
+			: null;
+  }, [reload]);
+
+  useEffect(() => {
+		getCategories();
+		category.data[0]
+			? changeCategory(category.data[0].title, category.data[0].id)
+			: null;
+	}, []);
+
+	useEffect(() => {
+		category.data[0]
+			? changeCategory(category.data[0].title, category.data[0].id)
+			: null;
+	}, [category]);
+  
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+  });
+
+  //cria nova categoria
+
+  function handleChange(event, value) {
+      setForm({
+          ...form,
+          [event.target.name]: event.target.value,
+          
+        });
+  }
+
+  async function handleSubmitCategory(event, closeModal) {
+    // event preventDefault previne que o submit mande as informações do form para a url
+
+    event.preventDefault();
+
+    // try catch para tentar pegar erros na requisição
+
+    try {
+      // seta o loading para true, desabilitando o preenchimento do form
+
+      setLoading(true);
+
+      //  faz o post do produto com o from preenchido
+
+      await api.post("/newCategory", form);
+
+      // caso a requisição de certo ele seta o loading pra falso novamente e fecha o modal
+
+      closeModal();
+
+      // força o reload da página
+
+      setReload(true);
+      setLoading(false);
+    } catch (error) {
+      // caso tenha algum erro, mostra o erro no console e reabilita o preenchimento do form
+
+      console.log(error);
+      setLoading(false);
+    }
+  }
+
+   
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+  
+
 
 	// função de buscar as categorias do usuário com a requisição da api
 
@@ -30,18 +129,7 @@ export function DropDown() {
 		changeCategory(target, targetId);
 	}
 
-	useEffect(() => {
-		getCategories();
-		category.data[0]
-			? changeCategory(category.data[0].title, category.data[0].id)
-			: null;
-	}, []);
 
-	useEffect(() => {
-		category.data[0]
-			? changeCategory(category.data[0].title, category.data[0].id)
-			: null;
-	}, [category]);
 
 	return (
 		<Menu as="div" className="relative inline-block text-left rounded-2xl">
@@ -50,7 +138,7 @@ export function DropDown() {
 					<h1
 						className={`${styles.textH1} flex items-center text-themeOrange bg-themeWhite`}
 					>
-						{selectedCategory}
+						{selectedCategory ? selectedCategory : "Você ainda não possui cotegorias"}
 					</h1>
 				</div>
 				<div className="bg-themeWhite flex items-center ml-5 mt-2">
@@ -69,6 +157,9 @@ export function DropDown() {
 			>
 				<Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-2xl shadow-lg bg-themeWhite ring-1 ring-black ring-opacity-5 focus:outline-none p-3 z-20">
 					<div className="py-1 flex flex-col bg-themeWhite ">
+
+          
+
 						{category.data[0]
 							? category.data.map((current, key) => {
 									return (
@@ -86,12 +177,86 @@ export function DropDown() {
 												{current.title}
 											</Menu.Item>
 										</button>
+                    
 									);
-							  })
-							: null}
+                  
+							  })  
+							:  null }
+
+                  <Menu.Button><div onClick={openModal}>Crirar categoria</div></Menu.Button>
+
 					</div>
 				</Menu.Items>
 			</Transition>
+
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
+                  >
+                    Cadastrar novo produto
+                  </Dialog.Title>
+                  <form>
+                    <input
+                      className={styles.input}
+                      type="text"
+                      placeholder="Nome da categoria"
+                      readOnly={loading}
+                      required={true}
+                      onChange={handleChange} 
+                      name="title"
+                    />
+                  
+                    <input
+                      className={styles.input}
+                      type="text"
+                      placeholder="Descrição da categoria"
+                      readOnly={loading}
+                      required={true}
+                      onChange={handleChange}
+                      name="description"
+                    />
+                    <button
+                      type="button"
+                      disabled={loading}
+                      className={`${styles.button}`}
+                      onClick={() => handleSubmitCategory(event, closeModal)}
+                    >
+                      Adicionar
+                    </button>
+                  </form>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
 		</Menu>
 	);
 }
