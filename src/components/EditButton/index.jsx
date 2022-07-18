@@ -5,12 +5,16 @@ import { api } from "../../api/index";
 import categoryStore from "../../store/categoryStore";
 import CurrencyInput from "react-currency-input-field";
 import reloadStore from "../../store/reloadStore";
+import ImageNext from "next/image";
+import burg from "../../../public/hamburguer.svg";
 
 export default function EditButton(props) {
   // criação de states de loading para o input e de abrir e fechar o modal de edit
 
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [selectedFile, setSelectedFile] = useState("");
+  const [base64, setBase64] = useState("");
 
   // resgate do id da categoria selecionada e dos states de reload de página do zustand
 
@@ -28,6 +32,18 @@ export default function EditButton(props) {
     image: "",
     prodId: props.id,
   });
+
+  // adiciona a imagem em formato base64 ao form toda vez que o estado base64 for modificado
+
+  useEffect(() => {
+    setForm({ ...form, image: base64 });
+  }, [base64]);
+
+  // converte a imagem para base64 toda vez que um file for selecionado
+
+  useEffect(() => {
+    selectedFile[0] ? process_image(selectedFile[0]) : null;
+  }, [selectedFile]);
 
   // lógica de reload de página com os estados do zustand
 
@@ -61,8 +77,136 @@ export default function EditButton(props) {
           catId: selectedCategoryId,
           prodId: props.id,
         });
-    console.log(form);
   }
+
+  // função para receber a imagem e transformar em base64
+
+  async function convertBase64(file) {
+    // criação de promise para ler e transformar o file em dataURL
+
+    const file64 = await new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+
+      fileReader.readAsDataURL(file);
+
+      // onload resolve a promise e retorna o resultado
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      // onerror rejeita a promise e retorna erro
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+    return file64;
+  }
+
+  // função de reduzir o tamanho da imagem no base64 caso ela seja muito larga
+
+  async function reduce_image_file_size(
+    base64Str,
+    MAX_WIDTH = 400,
+    MAX_HEIGHT = 400
+  ) {
+    // cria uma variável para a imagem com novo size
+
+    let resized_base64 = await new Promise((resolve) => {
+      // cria um elemento de imagem, que o src é a string da imagem em base 64 que foi passada como parâmetro da função que reduz o tamanho da imagme
+
+      let img = new Image(250, 250);
+
+      img.src = base64Str;
+
+      // no load da imagem cria um elemento canvas com as informações da imagem recebida como parâmetro
+
+      img.onload = () => {
+        let canvas = document.createElement("canvas");
+        let width = img.width;
+        let height = img.height;
+
+        // caso o tamanho da imagem passada como parâmetro seja maior que o tamanho máximo o código reduz a imagem, caso contrário deixa ela igual
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        let ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // retorna a imagem base64 depois do resize
+
+        resolve(canvas.toDataURL());
+      };
+    });
+    return resized_base64;
+  }
+
+  // função de cálculo de tamanho de imagem
+
+  async function calc_image_size(image) {
+    let y = 1;
+
+    image.endsWith("==") ? (y = 2) : null;
+
+    const x_size = image.length * (3 / 4) - y;
+    return Math.round(x_size / 1024);
+  }
+
+  // código de processamento da imagem para verificação de se a imagem precisa de resize ou não, caso a imagem seja menor que um certo valor, ela não passa pelo resize
+
+  async function process_image(file, min_image_size = 300) {
+    // recebe a imagem como file e transforma em base64
+
+    const res = await convertBase64(file);
+
+    if (res) {
+      // calcula o tamanho da imagem
+
+      const old_size = await calc_image_size(res);
+
+      if (old_size > min_image_size) {
+        // caso o tamanho da imagem seja maior que o tamanho mínimo ele ajusta o tamanho da imagem para o tamanho padrão
+
+        const resized = await reduce_image_file_size(res);
+        // calcula o tamanho da imagem depois do resize
+
+        const new_size = calc_image_size(resized);
+
+        // mostra no console a diferença entre o tamanho da imagem antes e depois
+
+        console.log("new_size=> ", new_size, "KB");
+        console.log("old_size=> ", old_size, "KB");
+
+        // retorna a imagem com resize
+
+        setBase64(resized);
+      } else {
+        // caso a imagem ja seja pequena o suficiente ele ó retorna a imagem sem resize no formato base64
+
+        console.log("image already small enough");
+        setBase64(res);
+      }
+    } else {
+      console.log("return err");
+      return null;
+    }
+
+    // caso receba a resposta
+  }
+
+  // função de submit de form de edit
 
   async function handleSubmit(event, closeModal) {
     // event preventDefault prevente que o submit mande as informações do form para a url
@@ -138,7 +282,26 @@ export default function EditButton(props) {
                   >
                     Editar produto
                   </Dialog.Title>
+                  <div className="overflow-visible h-40 z-10">
+                    <div className={styles.img}>
+                      <ImageNext
+                        src={burg}
+                        alt="imagem da comida"
+                        width={"150px"}
+                        height={"150px"}
+                      />
+                    </div>
+                  </div>
+
                   <form>
+                    <input
+                      type="file"
+                      disabled={loading}
+                      accept="image/png, image/jpeg, image/svg, image/gif"
+                      className={styles.input_image}
+                      onChange={(e) => setSelectedFile(e.target.files)}
+                    />
+
                     <input
                       className={styles.input}
                       type="text"
