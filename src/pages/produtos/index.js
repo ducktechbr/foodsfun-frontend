@@ -66,6 +66,7 @@ function Page() {
             ? products.data.map((cur, key) => {
                 return (
                   <Card
+                    product = {cur}
                     title={cur.title}
                     category={selectedCategory}
                     key={key}
