@@ -65,7 +65,7 @@ function Page() {
 				</div>
 
 				<div className="grid md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5  w-full place-items-center mt-14">
-					{products.data[0].title !== ''
+					{products.data[0]
 						? products.data.map((cur, key) => {
 								return (
 									<Card
