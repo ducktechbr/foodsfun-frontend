@@ -1,40 +1,79 @@
-import Head from "next/head";
+import Head from 'next/head';
+import { useEffect, useState, useContext } from 'react';
 
-import styles from "./styles.module.scss"
+import styles from './styles.module.scss';
 
-import { NavBar } from "../../components/NavBar";
-import { BackgroundBanner } from "../../components/BackgroundBanner";
+import { NavBar } from '../../components/NavBar';
+import { BackgroundBanner } from '../../components/BackgroundBanner';
 
-import { ToggleButton } from "../../components/ToggleButton";
+import { ToggleButton } from '../../components/ToggleButton';
+import { AuthContext } from '../../contexts/authContext';
+import { api } from '../../api/index';
+import paymentStore from '../../store/paymentStore';
+import reloadStore from '../../store/reloadStore';
 
-export default function page() {
- return (
+export default function Page() {
+	const { loggedInUser } = useContext(AuthContext);
 
-   <div className="flex">
+	const changeMethods = paymentStore((state) => state.changeMethods);
+	const reload = reloadStore((state) => state.reload);
+	const setReload = reloadStore((state) => state.setReload);
 
-     <Head>
-        <title>FoodsFun - Configurações</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
+	async function getPaymentMethod() {
+		const user = await api.get('/user');
+		changeMethods(user.data.paymentMethod);
+	}
 
-      <div className="w-60">
-        <NavBar />
-      </div>
+	useEffect(() => {
+		getPaymentMethod();
+	}, []);
 
-      <div className={styles.screen}>
-        <BackgroundBanner/>
+	useEffect(() => {
+		setReload(false);
+		getPaymentMethod();
+	}, [reload]);
 
-        <div className={styles.lista}>
-          <h1>Habilitar/Desabilitar meios de pagamento</h1>
-          <ul>
-            <li>Cartão    <div className={styles.buttonInit}><ToggleButton/></div>  </li>
-            <li>PIX       <div className={styles.buttonMid}><ToggleButton/></div>  </li>
-            <li>Dinheiro  <div className={styles.buttonEnd}><ToggleButton/></div>  </li>
-          </ul>
-        </div>
+	return (
+		<div className="flex">
+			<Head>
+				<title>FoodsFun - Configurações</title>
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1.0"
+				/>
+			</Head>
 
-      </div>
+			<div className="w-60">
+				<NavBar />
+			</div>
 
-   </div>
- );
-}   
+			<div className={styles.screen}>
+				<BackgroundBanner />
+
+				<div className={styles.lista}>
+					<h1>Habilitar/Desabilitar meios de pagamento</h1>
+					<ul>
+						<li>
+							Cartão{' '}
+							<div className={styles.buttonInit}>
+								<ToggleButton id="cartao" />
+							</div>{' '}
+						</li>
+						<li>
+							PIX{' '}
+							<div className={styles.buttonMid}>
+								<ToggleButton id="pix" />
+							</div>{' '}
+						</li>
+						<li>
+							Dinheiro{' '}
+							<div className={styles.buttonEnd}>
+								<ToggleButton id="dinheiro" />
+							</div>{' '}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	);
+}
