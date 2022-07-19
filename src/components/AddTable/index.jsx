@@ -6,11 +6,15 @@ import { api } from '../../api';
 
 import styles from './styles.module.css';
 
+import reloadStore from "../../store/reloadStore";
+
 
 export default function AddTable() {
 
     const [isOpen, setIsOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const setReload = reloadStore((state) => state.setReload);
+	
 
     function closeModal() {
 		setIsOpen(false);
@@ -21,9 +25,20 @@ export default function AddTable() {
 	}
     
     async function handleAdd(){
-       const table = await api.post("/newTable");
-       console.log(table)
-       closeModal();
+
+		try {
+			setLoading(true)
+		   const table = await api.post("/newTable");
+		   
+		   closeModal();
+		   setLoading(false)
+			
+		} catch (error) {
+			console.log(error)
+		}
+
+		setReload(true)
+
     }
 
 	return (
@@ -70,7 +85,7 @@ export default function AddTable() {
 									</Dialog.Title>
 									<div>
 										<button onClick={closeModal}> Cancelar </button>
-										<button onClick={handleAdd}> Ok </button>
+										<button onClick={handleAdd} disabled={loading}> Ok </button>
 									</div>
 								</Dialog.Panel>
 							</Transition.Child>

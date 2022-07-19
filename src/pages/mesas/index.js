@@ -1,13 +1,39 @@
 import Head from "next/head";
 
-import { NavBar } from "../../components/NavBar";
+import NavBar from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
 import AddTable from "../../components/AddTable";
 import CardMesas from "../../components/CardMesas";
 
+import { api } from "../../api";
+
 import styles from "./styles.module.css";
+import { useEffect, useState } from "react";
+import reloadStore from "../../store/reloadStore";
 
 export default function page() {
+
+  const [lista, setLista] = useState([])
+  const setReload = reloadStore((state) => state.setReload);
+  const reload = reloadStore((state) => state.reload);
+ 
+
+  async function getTables(){
+    
+    setLista(await api.get("/getTables"))
+
+  }
+
+  useEffect(() => {
+    getTables()
+    setReload(false)
+  }, [reload])
+
+  useEffect(() => {
+    getTables();
+    
+  }, [])
+
  return (
    <div className="flex">
 
@@ -27,25 +53,9 @@ export default function page() {
       </div>
 
       <div className="grid  md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5  w-full place-items-center mt-14">
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
-        <CardMesas/>
+        
+        { lista.data ? lista.data.map((item, key) => {return( <CardMesas info={item} key={key} /> )}) : null }
+
       </div>
 
     </div>

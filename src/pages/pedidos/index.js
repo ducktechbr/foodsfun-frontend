@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { IoIosArrowDropright } from 'react-icons/io';
 import { BsFillChatLeftTextFill } from 'react-icons/bs';
 
-import { NavBar } from '../../components/NavBar';
+import NavBar from '../../components/NavBar';
 import { BackgroundBanner } from '../../components/BackgroundBanner';
 import AddButton from '../../components/AddButton';
 import { api } from '../../api';
