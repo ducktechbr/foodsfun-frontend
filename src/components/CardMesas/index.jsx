@@ -8,6 +8,8 @@ import { useState, Fragment } from "react";
 
 import { Dialog, Transition } from '@headlessui/react';
 
+import { toast } from "react-toastify"
+
 export default function CardMesas(props) {
 
   const setReload = reloadStore((state) => state.setReload);
@@ -16,19 +18,25 @@ export default function CardMesas(props) {
 
   async function toggle(){
 
+    
     setLoading(true)
-
+    
     try {
+      
       const body = {id: props.info.id}
       await api.patch("/toggleTable", body)
       setReload(true)
+      
       
     } catch (error) {
       console.log(error)
     }
 
     setLoading(false)
-
+    toast.success("Deletado com sucesso", {
+      position: toast.POSITION.TOP_CENTER
+    });
+    
   }
 
   async function deleteTable(){
@@ -45,7 +53,9 @@ export default function CardMesas(props) {
 
     setLoading(false)
     setReload(true)
-
+    toast.success("Deletado com sucesso", {
+      position: toast.POSITION.TOP_CENTER
+    });
   }
 
   
