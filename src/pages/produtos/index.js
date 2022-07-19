@@ -12,6 +12,8 @@ import { api } from '../../api';
 import styles from './styles.module.css';
 import { useEffect, useState } from 'react';
 
+
+
 function Page() {
 	// criação do estado da lista de produtos, é definida como estado inicial data[0].title = "" para não dar erro de primeiro render no return
 
@@ -61,6 +63,7 @@ function Page() {
 					<div className="h-24 mt-5 px-5 flex w-full justify-between items-center">
 						<DropDown />
 						<AddButton />
+						
 					</div>
 				</div>
 
