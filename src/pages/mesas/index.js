@@ -2,7 +2,7 @@ import Head from "next/head";
 
 import { NavBar } from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
-import AddButton from "../../components/AddButton";
+import AddTable from "../../components/AddTable";
 import CardMesas from "../../components/CardMesas";
 
 import styles from "./styles.module.css";
@@ -23,7 +23,7 @@ export default function page() {
       <BackgroundBanner/>
            
       <div className="h-24 mt-5 px-5 flex justify-end">
-        <AddButton/>
+        <AddTable/>
       </div>
 
       <div className="grid  md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5  w-full place-items-center mt-14">

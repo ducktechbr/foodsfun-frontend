@@ -1,6 +1,21 @@
+import { useState } from "react";
+
 import styles from "./styles.module.scss";
 
 export default function TablesNavbar(){
+
+
+    const colors = {
+        "blue" : "#00F0FF",
+        "green" : "#33FF00",
+        "yellow" : "#FAFF00",
+        "red" : "#FF0000",
+    }
+
+    const [red, setRed] = useState()
+
+
+
     return(
         <div className={styles.container}>
             <div className={styles.containerTable}>
