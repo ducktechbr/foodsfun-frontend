@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { NavBar } from '../../components/NavBar';
+import NavBar from '../../components/NavBar';
 import { DropDown } from '../../components/Dropdown';
 import { BackgroundBanner } from '../../components/BackgroundBanner';
 import Card from '../../components/Card';

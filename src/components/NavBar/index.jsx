@@ -11,7 +11,7 @@ import pedidos from "../../assets/pedidos.svg";
 import mesas from "../../assets/mesas.svg";
 import config from "../../assets/config.svg";
 
-export function NavBar() {
+export default function NavBar() {
   const current = navStore((state) => state.current);
   const changeCurrent = navStore((state) => state.changeCurrent);
 
@@ -159,7 +159,7 @@ export function NavBar() {
           </button>
         </Link>
       </div>
-      <TablesNavbar/>
+      {/* <TablesNavbar/> */}
       <div className="h-3/8 bg-themeWhite rounded-br-navBar"></div>
 
 

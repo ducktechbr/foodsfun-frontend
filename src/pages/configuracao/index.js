@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from 'react';
 
 import styles from './styles.module.scss';
 
-import { NavBar } from '../../components/NavBar';
+import NavBar from '../../components/NavBar';
 import { BackgroundBanner } from '../../components/BackgroundBanner';
 
 import { ToggleButton } from '../../components/ToggleButton';
