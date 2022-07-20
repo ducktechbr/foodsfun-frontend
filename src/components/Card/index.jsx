@@ -8,8 +8,6 @@ import ShowButton from "../ShowButton";
 import burg from "../../../public/hamburguer.svg";
 import ImageNext from "next/image";
 
-
-
 // import { Fragment } from "react";
 // import { Transition } from "@headlessui/react";
 
@@ -31,11 +29,10 @@ export default function Card(props) {
 
   async function handleDelete(id, catId) {
     const body = { prodId: id, catId };
-    
+
     const response = await api.delete("/deleteProduct", {
       data: body,
     });
-
 
     setReload(true);
   }
@@ -48,14 +45,14 @@ export default function Card(props) {
       data: body,
     });
     setReload(true);
-    
   }
 
   return (
     <>
       <div className={styles.container}>
         <div className="overflow-visible h-20 z-10">
-          <div className={styles.img}>{props.image === undefined ? (
+          <div className={styles.img}>
+            {props.image === ""  || props.image === undefined ? (
               <ImageNext
                 src={burg}
                 alt="imagem da comida"
@@ -69,7 +66,8 @@ export default function Card(props) {
                 width={"150px"}
                 height={"150px"}
               />
-            )}</div>
+            )}
+          </div>
         </div>
 
         <div className={styles.content}>

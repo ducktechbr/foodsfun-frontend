@@ -8,14 +8,16 @@ import { api } from "../../api";
 
 import { Dialog, Transition } from "@headlessui/react";
 
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
 
 import styles from "./styles.module.css";
+import ModalDelete from "../ModalDelete";
 
 export default function CardMesas(props) {
   const setReload = reloadStore((state) => state.setReload);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
   async function toggle() {
     setLoading(true);
@@ -28,11 +30,10 @@ export default function CardMesas(props) {
       console.log(error);
     }
 
-    setLoading(false)
+    setLoading(false);
     toast.success("Deletado com sucesso", {
-      position: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_CENTER,
     });
-    
   }
 
   async function deleteTable() {
@@ -45,11 +46,12 @@ export default function CardMesas(props) {
       console.log(error);
     }
 
-    setLoading(false)
-    setReload(true)
+    setLoading(false);
+    setReload(true);
     toast.success("Deletado com sucesso", {
-      position: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_CENTER,
     });
+    closeDeleteModal();
   }
 
   function closeModal() {
@@ -60,6 +62,13 @@ export default function CardMesas(props) {
     setIsOpen(true);
   }
 
+  function closeDeleteModal() {
+    setDeleteOpen(false);
+  }
+  function openDeleteModal() {
+    setDeleteOpen(true);
+  }
+
   const pageStyle = `
     @page{
       size: 80mm ;
@@ -67,7 +76,7 @@ export default function CardMesas(props) {
     }
 
     }
-  `
+  `;
 
   const componentRef = useRef();
 
@@ -78,11 +87,10 @@ export default function CardMesas(props) {
           <h1>MESA {props.info.number}</h1>
 
           <div ref={componentRef} className={styles.imgContainer}>
-            <QRCodeSVG value={props.info.id} size={180}  />
+            <QRCodeSVG value={props.info.id} size={180} />
           </div>
 
           <div className={styles.iconsArea}>
-
             <button
               onClick={openModal}
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
@@ -91,22 +99,21 @@ export default function CardMesas(props) {
               <div className={`${styles.iconsText} bg-white `}>ver</div>
             </button>
 
-            <ReactToPrint 
-            pageStyle={pageStyle}
-            trigger={() => 
-              <button
-                
-                className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
-              >
-                <div className="bg-printer h-buttonBox w-buttonBox bg-center bg-cover bg-white bg-no-repeat" />
-                <div className={`${styles.iconsText} bg-white`}>imprimir</div>
-              </button>} content={() => componentRef.current}
-
+            <ReactToPrint
+              pageStyle={pageStyle}
+              trigger={() => (
+                <button
+                  className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
+                >
+                  <div className="bg-printer h-buttonBox w-buttonBox bg-center bg-cover bg-white bg-no-repeat" />
+                  <div className={`${styles.iconsText} bg-white`}>imprimir</div>
+                </button>
+              )}
+              content={() => componentRef.current}
             />
-            
 
             <button
-              onClick={deleteTable}
+              onClick={openDeleteModal}
               disabled={loading}
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
             >
@@ -130,7 +137,6 @@ export default function CardMesas(props) {
                 {props.info.active ? "desativar" : "ativar"}
               </div>
             </button>
-            
           </div>
         </div>
       </div>
@@ -181,6 +187,13 @@ export default function CardMesas(props) {
           </div>
         </Dialog>
       </Transition>
+      <ModalDelete
+        isOpen={deleteOpen}
+        loading={loading}
+        closeModal={closeDeleteModal}
+        text="deletar essa mesa"
+        function={deleteTable}
+      />
     </>
   );
 }
