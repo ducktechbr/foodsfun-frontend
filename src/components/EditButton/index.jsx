@@ -30,14 +30,15 @@ export default function EditButton(props) {
     price: 0,
     catId: selectedCategoryId,
     description: "",
-    image: "",
     prodId: props.id,
   });
 
   // adiciona a imagem em formato base64 ao form toda vez que o estado base64 for modificado
 
   useEffect(() => {
-    setForm({ ...form, image: base64 });
+    if(base64!==""){
+      setForm({ ...form, image: base64 });
+    }
   }, [base64]);
 
   // converte a imagem para base64 toda vez que um file for selecionado

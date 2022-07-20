@@ -17,7 +17,7 @@ import { useEffect, useState } from 'react';
 function Page() {
 	// criação do estado da lista de produtos, é definida como estado inicial data[0].title = "" para não dar erro de primeiro render no return
 
-	const [products, setProducts] = useState({ data: [{ title: '' }] });
+	const [products, setProducts] = useState({  });
 
 	// busca a categoria selecionada no store do zustand
 
@@ -68,7 +68,7 @@ function Page() {
 				</div>
 
 				<div className="grid md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5  w-full place-items-center mt-14">
-					{products.data[0]
+					{products.data
 						? products.data.map((cur, key) => {
 								return (
 									<Card
