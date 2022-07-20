@@ -54,3 +54,10 @@
   font-size: 12px;
   line-height: 12px;
 }
+
+
+@media print{
+  .page-break{
+    margin-top: 20rem;
+  }
+}
