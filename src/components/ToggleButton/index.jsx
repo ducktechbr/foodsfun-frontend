@@ -25,8 +25,8 @@ export function ToggleButton(props) {
     }
   }
   async function onClick() {
+    setLoading(true);
     try {
-      setLoading(true);
       if (botao === "pix") {
         await api.patch(`/togglePaymentMethod`, { payment: "pix" });
       }
@@ -38,13 +38,13 @@ export function ToggleButton(props) {
       if (botao === "cartao") {
         await api.patch(`/togglePaymentMethod`, { payment: "cartao" });
       }
-	  
+
       setIsSelected(!isSelected);
       setReload(true);
-      setLoading(false);
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   }
 
   useEffect(() => {
