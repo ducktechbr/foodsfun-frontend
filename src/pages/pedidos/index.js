@@ -11,7 +11,7 @@ import { api } from "../../api";
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
 
 import styles from "./styles.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 function Page() {
   const [pedidos, setPedidos] = useState({ data: [{ title: "" }] });
@@ -21,6 +21,8 @@ function Page() {
   useEffect(() => {
     getOrders();
   }, []);
+
+ 
 
   async function getOrders() {
     setPedidos(await api.get(`/getOrders`));
@@ -78,7 +80,7 @@ function Page() {
             {/* as proximas divs serao geradas automaticamente */}
           </div>
           <div className="mt-5">
-            {pedidos.data[0].title !== ""
+            {pedidos.data[0]
               ? pedidos.data.map((current, key) => {
                   return (
                     <div className="flex px-2 h-14 bg-white" key={key}>
@@ -89,7 +91,7 @@ function Page() {
                       </div>
                       <div className="w-1/8 bg-white">
                         <span className="p-2 rounded-2xl bg-white border ">
-                          MESA TAL
+                          mesa tal
                         </span>
                       </div>
                       <div className="w-1/8 bg-white">

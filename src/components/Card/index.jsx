@@ -1,10 +1,12 @@
 import styles from "./styles.module.css";
 import categoryStore from "../../store/categoryStore";
 import reloadStore from "../../store/reloadStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../api";
 import EditButton from "../EditButton";
 import ShowButton from "../ShowButton";
+import burg from "../../../public/hamburguer.svg";
+import ImageNext from "next/image";
 
 // import { Fragment } from "react";
 // import { Transition } from "@headlessui/react";
@@ -48,7 +50,21 @@ export default function Card(props) {
     <>
       <div className={styles.container}>
         <div className="overflow-visible h-20 z-10">
-          <div className={styles.img}></div>
+          <div className={styles.img}>{props.image === undefined ? (
+              <ImageNext
+                src={burg}
+                alt="imagem da comida"
+                width={"150px"}
+                height={"150px"}
+              />
+            ) : (
+              <ImageNext
+                src={props.image}
+                alt="preview"
+                width={"150px"}
+                height={"150px"}
+              />
+            )}</div>
         </div>
 
         <div className={styles.content}>

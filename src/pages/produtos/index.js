@@ -78,6 +78,7 @@ function Page() {
 										key={key}
 										price={cur.price}
 										id={cur.id}
+										image={cur.image}
 									/>
 								);
 						  })

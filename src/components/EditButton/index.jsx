@@ -15,6 +15,7 @@ export default function EditButton(props) {
   const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState("");
   const [base64, setBase64] = useState("");
+  const [preview, setPreview] = useState("");
 
   // resgate do id da categoria selecionada e dos states de reload de página do zustand
 
@@ -55,6 +56,8 @@ export default function EditButton(props) {
 
   function closeModal() {
     setIsOpen(false);
+    setBase64("");
+    setPreview("");
   }
 
   function openModal() {
@@ -192,11 +195,13 @@ export default function EditButton(props) {
         // retorna a imagem com resize
 
         setBase64(resized);
+        setPreview(URL.createObjectURL(file));
       } else {
         // caso a imagem ja seja pequena o suficiente ele ó retorna a imagem sem resize no formato base64
 
         console.log("image already small enough");
         setBase64(res);
+        setPreview(res);
       }
     } else {
       console.log("return err");
@@ -284,12 +289,21 @@ export default function EditButton(props) {
                   </Dialog.Title>
                   <div className="overflow-visible h-40 z-10">
                     <div className={styles.img}>
-                      <ImageNext
-                        src={burg}
-                        alt="imagem da comida"
-                        width={"150px"}
-                        height={"150px"}
-                      />
+                      {preview === "" ? (
+                        <ImageNext
+                          src={burg}
+                          alt="imagem da comida"
+                          width={"150px"}
+                          height={"150px"}
+                        />
+                      ) : (
+                        <ImageNext
+                          src={preview}
+                          alt="preview"
+                          width={"150px"}
+                          height={"150px"}
+                        />
+                      )}
                     </div>
                   </div>
 
@@ -336,7 +350,7 @@ export default function EditButton(props) {
                       className={`${styles.button}`}
                       onClick={() => handleSubmit(event, closeModal)}
                     >
-                     Editar produto
+                      Editar produto
                     </button>
                   </form>
                 </Dialog.Panel>
