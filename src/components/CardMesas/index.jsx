@@ -1,14 +1,16 @@
-import styles from "./styles.module.css";
+import { useState, Fragment, useRef } from "react";
+import { QRCodeSVG } from "qrcode.react";
+import ReactToPrint, { useReactToPrint } from "react-to-print";
 
 import reloadStore from "../../store/reloadStore";
 
 import { api } from "../../api";
 
-import { useState, Fragment } from "react";
-
 import { Dialog, Transition } from "@headlessui/react";
 
-import { QRCodeSVG } from "qrcode.react";
+import { toast } from "react-toastify"
+
+import styles from "./styles.module.css";
 
 export default function CardMesas(props) {
   const setReload = reloadStore((state) => state.setReload);
@@ -26,7 +28,11 @@ export default function CardMesas(props) {
       console.log(error);
     }
 
-    setLoading(false);
+    setLoading(false)
+    toast.success("Deletado com sucesso", {
+      position: toast.POSITION.TOP_CENTER
+    });
+    
   }
 
   async function deleteTable() {
@@ -39,8 +45,11 @@ export default function CardMesas(props) {
       console.log(error);
     }
 
-    setLoading(false);
-    setReload(true);
+    setLoading(false)
+    setReload(true)
+    toast.success("Deletado com sucesso", {
+      position: toast.POSITION.TOP_CENTER
+    });
   }
 
   function closeModal() {
@@ -51,17 +60,29 @@ export default function CardMesas(props) {
     setIsOpen(true);
   }
 
+  const pageStyle = `
+    @page{
+      size: 80mm ;
+      
+    }
+
+    }
+  `
+
+  const componentRef = useRef();
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.content}>
           <h1>MESA {props.info.number}</h1>
 
-          <div className={styles.imgContainer}>
-            <QRCodeSVG value={props.info.id} size={180} />
+          <div ref={componentRef} className={styles.imgContainer}>
+            <QRCodeSVG value={props.info.id} size={180}  />
           </div>
 
           <div className={styles.iconsArea}>
+
             <button
               onClick={openModal}
               className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
@@ -69,12 +90,21 @@ export default function CardMesas(props) {
               <div className="bg-eye h-buttonBox w-7 bg-center bg-no-repeat bg-cover bg-white" />
               <div className={`${styles.iconsText} bg-white `}>ver</div>
             </button>
-            <button
-              className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
-            >
-              <div className="bg-printer h-buttonBox w-buttonBox bg-center bg-cover bg-white bg-no-repeat" />
-              <div className={`${styles.iconsText} bg-white`}>imprimir</div>
-            </button>
+
+            <ReactToPrint 
+            pageStyle={pageStyle}
+            trigger={() => 
+              <button
+                
+                className={`${styles.icons} flex flex-col justify-center items-center space-y-1`}
+              >
+                <div className="bg-printer h-buttonBox w-buttonBox bg-center bg-cover bg-white bg-no-repeat" />
+                <div className={`${styles.iconsText} bg-white`}>imprimir</div>
+              </button>} content={() => componentRef.current}
+
+            />
+            
+
             <button
               onClick={deleteTable}
               disabled={loading}
@@ -84,6 +114,7 @@ export default function CardMesas(props) {
 
               <div className={`${styles.iconsText} bg-white`}>deletar</div>
             </button>
+
             <button
               onClick={toggle}
               disabled={loading}
@@ -99,6 +130,7 @@ export default function CardMesas(props) {
                 {props.info.active ? "desativar" : "ativar"}
               </div>
             </button>
+            
           </div>
         </div>
       </div>

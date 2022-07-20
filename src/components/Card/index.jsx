@@ -8,6 +8,8 @@ import ShowButton from "../ShowButton";
 import burg from "../../../public/hamburguer.svg";
 import ImageNext from "next/image";
 
+
+
 // import { Fragment } from "react";
 // import { Transition } from "@headlessui/react";
 
@@ -29,10 +31,12 @@ export default function Card(props) {
 
   async function handleDelete(id, catId) {
     const body = { prodId: id, catId };
-
+    
     const response = await api.delete("/deleteProduct", {
       data: body,
     });
+
+
     setReload(true);
   }
 
@@ -44,6 +48,7 @@ export default function Card(props) {
       data: body,
     });
     setReload(true);
+    
   }
 
   return (
