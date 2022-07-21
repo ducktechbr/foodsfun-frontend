@@ -32,6 +32,9 @@ export default function CardMesas(props) {
 
         toast.success("Mesa ativada com sucesso!", {
           position: toast.POSITION.TOP_CENTER,
+          bodyStyle:{
+            color: "#000"
+          }
         });
 
       }else{
