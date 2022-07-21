@@ -5,7 +5,7 @@ import { BsFillChatLeftTextFill } from "react-icons/bs";
 
 import NavBar from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
-import AddButton from "../../components/AddButton";
+import AddOrder from "../../components/AddOrder";
 import { api } from "../../api";
 
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
@@ -41,7 +41,7 @@ function Page() {
         <BackgroundBanner />
 
         <div className="mt-5 px-5 flex justify-end">
-          <AddButton />
+          <AddOrder />
         </div>
         <div className="mt-14 mx-4 h-48 border-2 rounded-2xl bg-white ">
           <div className="space-y-0  h-16 bg-themeOrange text-white text-[1.3rem] py-2 px-2 rounded-t-lg">
