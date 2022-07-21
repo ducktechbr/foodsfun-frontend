@@ -1,3 +1,5 @@
+import styles from "./style.module.css";
+
 import navStore from "../../store/navStore";
 
 import TablesNavbar from "../TablesNavbar";
@@ -19,7 +21,9 @@ export default function NavBar() {
   return (
     <aside className="h-screen w-60 font-theme fixed">
       <div className="h-2/8 bg-themeWhite rounded-tr-navBar flex justify-center items-center">
-        <Image src={logo} alt="logo" className="bg-themeWhite h-11" />
+        <div className={styles.logo}>
+          
+        </div>
       </div>
       <div className="h-3/8 bg-themeWhite flex flex-col items-center pt-8">
         <Link href="/pedidos">

@@ -8,6 +8,8 @@ import categoryStore from '../../store/categoryStore';
 
 import reloadStore from "../../store/reloadStore";
 
+import { toast } from 'react-toastify';
+
 export function DropDown() {
 
   const [isOpen, setIsOpen] = useState(false);
@@ -77,6 +79,9 @@ export function DropDown() {
       //  faz o post do produto com o from preenchido
 
       await api.post("/newCategory", form);
+      toast.success("Categoria criada com sucesso!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
 
       // caso a requisição de certo ele seta o loading pra falso novamente e fecha o modal
 
@@ -91,6 +96,7 @@ export function DropDown() {
 
       console.log(error);
       setLoading(false);
+      
     }
   }
 

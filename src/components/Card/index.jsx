@@ -8,6 +8,8 @@ import ShowButton from "../ShowButton";
 import burg from "../../../public/hamburguer.svg";
 import ImageNext from "next/image";
 
+import { toast } from "react-toastify";
+
 // import { Fragment } from "react";
 // import { Transition } from "@headlessui/react";
 
@@ -35,6 +37,9 @@ export default function Card(props) {
     });
 
     setReload(true);
+    toast.success("Produto deletado com sucesso!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
 
   // lógica fazer toggle no active do produto usando o id do produto que vem de props, e o id da categoria atual carregada do zustand
@@ -44,7 +49,19 @@ export default function Card(props) {
     const response = await api.patch("/toggleProduct", {
       data: body,
     });
+    
     setReload(true);
+
+    if(response.data.active === true){
+      toast.success("Produto ativado com sucesso!", {
+      position: toast.POSITION.TOP_CENTER,
+      });
+    }else{
+      toast.warn("Produto desativado!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+
   }
 
   return (

@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import { Dialog, Transition } from '@headlessui/react';
+
 import { IoIosArrowDropright } from "react-icons/io";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
 
@@ -11,10 +13,23 @@ import { api } from "../../api";
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
 
 import styles from "./styles.module.css";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 
 function Page() {
   const [pedidos, setPedidos] = useState({ data: [{ title: "" }] });
+
+  const [isOpen, setIsOpen] = useState(false);
+	const [loading, setLoading] = useState(false);
+	
+
+  function closeModal() {
+		setIsOpen(false);
+	}
+
+	function openModal() {
+    
+		setIsOpen(true);
+	}
 
   // const [filtroMesa , setFiltroMesa] = useState(2)
 
@@ -27,6 +42,8 @@ function Page() {
   async function getOrders() {
     setPedidos(await api.get(`/getOrders`));
   }
+
+
 
   return (
     <div className="flex">
@@ -49,7 +66,7 @@ function Page() {
               <div className="w-1/8 bg-transparent">Pedido</div>
               <div className="w-1/8 bg-transparent flex">
                 Mesa
-                <button>
+                <button onClick={openModal}>
                   <IoIosArrowDropright
                     size={25}
                     color="#fff"
@@ -65,7 +82,7 @@ function Page() {
               <div className="w-4/8 bg-transparent">Produto</div>
               <div className="w-1/8 bg-transparent flex">
                 Status
-                <button type="button">
+                <button type="button" onClick={openModal}>
                   <IoIosArrowDropright
                     size={25}
                     color="#fff"
@@ -127,6 +144,50 @@ function Page() {
           </div>
         </div>
       </div>
+
+      <Transition appear show={isOpen} as={Fragment}>
+				<Dialog as="div" className="relative z-10" onClose={closeModal}>
+					<Transition.Child
+						as={Fragment}
+						enter="ease-out duration-300"
+						enterFrom="opacity-0"
+						enterTo="opacity-100"
+						leave="ease-in duration-200"
+						leaveFrom="opacity-100"
+						leaveTo="opacity-0"
+					>
+						<div className="fixed inset-0 bg-black bg-opacity-25" />
+					</Transition.Child>
+
+					<div className="fixed inset-0 overflow-y-auto">
+						<div className="flex min-h-full items-center justify-center p-4 text-center">
+							<Transition.Child
+								as={Fragment}
+								enter="ease-out duration-300"
+								enterFrom="opacity-0 scale-95"
+								enterTo="opacity-100 scale-100"
+								leave="ease-in duration-200"
+								leaveFrom="opacity-100 scale-100"
+								leaveTo="opacity-0 scale-95"
+							>
+								<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+									<Dialog.Title
+										as="h3"
+										className="text-lg font-medium leading-6 text-gray-900"
+									>
+										Status do pedido
+									</Dialog.Title>
+									<div>
+										
+									</div>
+								</Dialog.Panel>
+							</Transition.Child>
+						</div>
+					</div>
+				</Dialog>
+			</Transition>        
+
+
     </div>
   );
 }

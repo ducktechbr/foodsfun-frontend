@@ -8,6 +8,8 @@ import reloadStore from "../../store/reloadStore";
 import ImageNext from "next/image";
 import burg from "../../../public/hamburguer.svg";
 
+import { toast } from "react-toastify";
+
 export default function EditButton(props) {
   // criação de states de loading para o input e de abrir e fechar o modal de edit
 
@@ -229,6 +231,9 @@ export default function EditButton(props) {
       //  faz o post do produto com o from preenchido
 
       await api.patch("/editProduct", form);
+      toast.success("Edição concluída com sucesso!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
 
       // caso a requisição de certo ele seta o loading pra falso novamente e fecha o modal
 

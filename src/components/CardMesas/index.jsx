@@ -1,6 +1,6 @@
 import { useState, Fragment, useRef } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import ReactToPrint, { useReactToPrint } from "react-to-print";
+import ReactToPrint from "react-to-print";
 
 import reloadStore from "../../store/reloadStore";
 
@@ -24,16 +24,30 @@ export default function CardMesas(props) {
 
     try {
       const body = { id: props.info.id };
-      await api.patch("/toggleTable", body);
+      const response = await api.patch("/toggleTable", body);
+        
       setReload(true);
+
+      if(response.data.active){
+
+        toast.success("Mesa ativada com sucesso!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+
+      }else{
+        toast.warn("Mesa desativada!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+
     } catch (error) {
       console.log(error);
     }
 
     setLoading(false);
-    toast.success("Deletado com sucesso", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+
+    
+    
   }
 
   async function deleteTable() {
@@ -48,7 +62,7 @@ export default function CardMesas(props) {
 
     setLoading(false);
     setReload(true);
-    toast.success("Deletado com sucesso", {
+    toast.success("Deletado com sucesso!", {
       position: toast.POSITION.TOP_CENTER,
     });
     closeDeleteModal();

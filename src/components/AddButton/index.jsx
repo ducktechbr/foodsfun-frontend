@@ -8,6 +8,8 @@ import reloadStore from "../../store/reloadStore";
 import ImageNext from "next/image";
 import burg from "../../../public/hamburguer.svg";
 
+import { toast } from "react-toastify";
+
 export default function AddButton(props) {
   // criação de states de loading para o input, de abrir e fechar o modal de add ,o base64, com as informações da imagem a ser adicionada e o selected file que carrega as informaçoes da imagem no input
 
@@ -225,6 +227,9 @@ export default function AddButton(props) {
       //  faz o post do produto com o from preenchido
 
       await api.post("/newProduct", form);
+      toast.success("Produto adicionado com sucesso!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
 
       // caso a requisição de certo ele seta o loading pra falso novamente e fecha o modal
 

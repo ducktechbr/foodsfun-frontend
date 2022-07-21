@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 
 import reloadStore from "../../store/reloadStore";
 
+import { toast } from 'react-toastify';
 
 export default function AddTable() {
 
@@ -38,6 +39,9 @@ export default function AddTable() {
 		}
 
 		setReload(true)
+		toast.success("Mesa adicionada com sucesso!", {
+			position: toast.POSITION.TOP_CENTER,
+		  });
 
     }
 

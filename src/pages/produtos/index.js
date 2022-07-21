@@ -3,6 +3,8 @@ import styles from './styles.module.css';
 import Head from 'next/head';
 
 import { useEffect, useState } from 'react';
+import { toast } from "react-toastify"
+
 import { FaRegTrashAlt } from "react-icons/fa"
 
 import { ProtectedRoute } from '../../middlewares/protectedRoute';
@@ -64,6 +66,9 @@ function Page() {
 		}
 		setLoading(false)
 		setReload(true)
+		toast.success("Categoria deletada com sucesso!", {
+			position: toast.POSITION.TOP_CENTER,
+		  });
 	}
 	
 
