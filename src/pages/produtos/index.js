@@ -2,15 +2,10 @@ import styles from "./styles.module.css";
 
 import Head from "next/head";
 
-<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import { toast } from "react-toastify"
 
 import { FaRegTrashAlt } from "react-icons/fa"
-=======
-import { useEffect, useState } from "react";
-import { FaRegTrashAlt } from "react-icons/fa";
->>>>>>> b767bbe424f121a0924caa6cd932d76fe90810a5
 
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
 
@@ -69,23 +64,6 @@ function Page() {
     setReload(false);
   }, [reloadState]);
 
-<<<<<<< HEAD
-	async function handleDelete(){
-		setLoading(true)
-		try {
-			const body = {categoryId}
-			await api.delete("/deleteCategory", {data: body});
-		} catch (error) {
-			console.log(error)
-		}
-		setLoading(false)
-		setReload(true)
-		toast.success("Categoria deletada com sucesso!", {
-			position: toast.POSITION.TOP_CENTER,
-		  });
-	}
-	
-=======
   async function handleDelete() {
     category.length === 1 ? setCategory(null) : null;
     setLoading(true);
@@ -98,8 +76,10 @@ function Page() {
     setLoading(false);
     setReload(true);
     closeDeleteModal();
+    toast.success("Categoria deletada com sucesso!", {
+			position: toast.POSITION.TOP_CENTER,
+		  });
   }
->>>>>>> b767bbe424f121a0924caa6cd932d76fe90810a5
 
   return (
     <div className="flex">
