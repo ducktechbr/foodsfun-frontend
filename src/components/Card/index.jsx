@@ -41,13 +41,10 @@ export default function Card(props) {
     });
     setLoading(false);
     setReload(true);
-<<<<<<< HEAD
     toast.success("Produto deletado com sucesso!", {
       position: toast.POSITION.TOP_CENTER,
     });
-=======
     closeDeleteModal();
->>>>>>> b767bbe424f121a0924caa6cd932d76fe90810a5
   }
 
   // lógica fazer toggle no active do produto usando o id do produto que vem de props, e o id da categoria atual carregada do zustand
