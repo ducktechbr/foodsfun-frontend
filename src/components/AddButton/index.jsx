@@ -200,7 +200,7 @@ export default function AddButton(props) {
 
         console.log("image already small enough");
         setBase64(res);
-		setPreview(res)
+        setPreview(res);
       }
     } else {
       console.log("return err");
@@ -252,7 +252,7 @@ export default function AddButton(props) {
       <button className="" type="button" onClick={openModal}>
         <div className={styles.content}>
           <div className={styles.contentText}>
-            <h1>Adicionar +</h1>
+            <h1>Adicionar novo produto</h1>
           </div>
         </div>
       </button>

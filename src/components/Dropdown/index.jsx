@@ -1,67 +1,68 @@
-import styles from './styles.module.css';
-import Image from 'next/image';
-import dash from '../../assets/dash.svg';
-import { Fragment, useEffect, useState } from 'react';
-import { Menu, Transition, Dialog } from '@headlessui/react';
-import { api } from '../../api/index';
-import categoryStore from '../../store/categoryStore';
+import styles from "./styles.module.css";
+import Image from "next/image";
+import dash from "../../assets/dash.svg";
+import { Fragment, useEffect, useState, useMemo } from "react";
+import { Menu, Transition, Dialog } from "@headlessui/react";
+import { api } from "../../api/index";
+import categoryStore from "../../store/categoryStore";
 
 import reloadStore from "../../store/reloadStore";
 
 import { toast } from 'react-toastify';
 
 export function DropDown() {
-
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  
 
   // cria novo estado de categoria
 
-	const [category, setCategory] = useState({
-		data: [{ title: '' }],
-	});
-
-  const setReload = reloadStore((state) => state.setReload);
-  const reload = reloadStore((state) => state.reload);
-  const selectedCategoryId = categoryStore((state) => state.selectedId);
-
-
-
-  useEffect(() => {
-    setReload(false);
-    getCategories();
-		category.data[0]
-			? changeCategory(category.data[0].title, category.data[0].id)
-			: null;
-  }, [reload]);
-
-  useEffect(() => {
-		getCategories();
-		category.data[0]
-			? changeCategory(category.data[0].title, category.data[0].id)
-			: null;
-	}, []);
-
-	useEffect(() => {
-		category.data[0]
-			? changeCategory(category.data[0].title, category.data[0].id)
-			: null;
-	}, [category]);
-  
   const [form, setForm] = useState({
     title: "",
     description: "",
   });
 
+  const setReload = reloadStore((state) => state.setReload);
+  const reload = reloadStore((state) => state.reload);
+  // const selectedCategoryId = categoryStore((state) => state.selectedId);
+
+  // declaração dos estados do zustand de categoria selecionada e de set de categoria selecionada
+
+  const setCategory = categoryStore((state) => state.changeList);
+  const category = categoryStore((state) => state.list);
+  const selectedCategory = categoryStore((state) => state.selectedCategory);
+  const changeCategory = categoryStore((state) => state.changeCategory);
+
+  useEffect(() => {
+    setReload(false);
+    getCategories();
+    if (category.data.length !== 0) {
+      handleSelectedCategory(category.data[0].title, category.data[0].id);
+      console.log(selectedCategory);
+    } else {
+      handleSelectedCategory(null);
+    }
+  }, [reload]);
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  useEffect(() => {
+    if (category.data.length !== 0) {
+      handleSelectedCategory(category.data[0].title, category.data[0].id);
+      console.log(selectedCategory);
+    } else {
+      handleSelectedCategory(null);
+    }
+  }, [category]);
+
   //cria nova categoria
 
-  function handleChange(event, value) {
-      setForm({
-          ...form,
-          [event.target.name]: event.target.value,
-          
-        });
+  function handleChange(event) {
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
   }
 
   async function handleSubmitCategory(event, closeModal) {
@@ -77,7 +78,6 @@ export function DropDown() {
       setLoading(true);
 
       //  faz o post do produto com o from preenchido
-
       await api.post("/newCategory", form);
       toast.success("Categoria criada com sucesso!", {
         position: toast.POSITION.TOP_CENTER,
@@ -100,7 +100,6 @@ export function DropDown() {
     }
   }
 
-   
   function closeModal() {
     setIsOpen(false);
   }
@@ -108,85 +107,71 @@ export function DropDown() {
   function openModal() {
     setIsOpen(true);
   }
-  
 
+  // função de buscar as categorias do usuário com a requisição da api
 
-	// função de buscar as categorias do usuário com a requisição da api
+  async function getCategories() {
+    setCategory(await api.get("/getCategory"));
+  }
 
-	async function getCategories() {
-		setCategory(await api.get('/getCategory'));
-	}
+  // função que muda no store do zustand o nome da categoria e seu ID
 
-	// declaração dos estados do zustand de categoria selecionada e de set de categoria selecionada
+  function handleSelectedCategory(target, targetId) {
+    changeCategory(target, targetId);
+  }
 
-	const selectedCategory = categoryStore((state) => state.selected);
-	const changeCategory = categoryStore((state) => state.changeCategory);
+  return (
+    <Menu as="div" className="relative inline-block text-left rounded-2xl">
+      <Menu.Button className="  bg-themeWhite rounded-2xl p-3 flex">
+        <div className="bg-themeWhite">
+          <h1
+            className={`${styles.textH1} flex items-center text-themeOrange bg-themeWhite`}
+          >
+            {category
+              ? selectedCategory
+                ? selectedCategory
+                : "Você ainda não possui cotegorias"
+              : "Você ainda não possui cotegorias"}
+          </h1>
+        </div>
+        <div className="bg-themeWhite flex items-center ml-5 mt-2">
+          <Image src={dash} alt="dash" className="bg-themeWhite" />
+        </div>
+      </Menu.Button>
 
-	// função que muda no store do zustand o nome da categoria e seu ID
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-2xl shadow-lg bg-themeWhite ring-1 ring-black ring-opacity-5 focus:outline-none p-3 z-20">
+          <div className="py-1 flex flex-col bg-themeWhite ">
+            {category
+              ? category.data.map((current, key) => {
+                  return (
+                    <button
+                      key={key}
+                      onClick={() =>
+                        handleSelectedCategory(current.title, current.id)
+                      }
+                      className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
+                    >
+                      <Menu.Item as="div">{current.title}</Menu.Item>
+                    </button>
+                  );
+                })
+              : null}
 
-	function handleSelectedCategory(target, targetId) {
-		changeCategory(target, targetId);
-	}
-
-
-
-	return (
-		<Menu as="div" className="relative inline-block text-left rounded-2xl">
-			<Menu.Button className="  bg-themeWhite rounded-2xl p-3 flex">
-				<div className="bg-themeWhite">
-					<h1
-						className={`${styles.textH1} flex items-center text-themeOrange bg-themeWhite`}
-					>
-						{selectedCategory ? selectedCategory : "Você ainda não possui cotegorias"}
-					</h1>
-				</div>
-				<div className="bg-themeWhite flex items-center ml-5 mt-2">
-					<Image src={dash} alt="dash" className="bg-themeWhite" />
-				</div>
-			</Menu.Button>
-
-			<Transition
-				as={Fragment}
-				enter="transition ease-out duration-100"
-				enterFrom="transform opacity-0 scale-95"
-				enterTo="transform opacity-100 scale-100"
-				leave="transition ease-in duration-75"
-				leaveFrom="transform opacity-100 scale-100"
-				leaveTo="transform opacity-0 scale-95"
-			>
-				<Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-2xl shadow-lg bg-themeWhite ring-1 ring-black ring-opacity-5 focus:outline-none p-3 z-20">
-					<div className="py-1 flex flex-col bg-themeWhite ">
-
-          
-
-						{category.data[0]
-							? category.data.map((current, key) => {
-									return (
-										<button
-											key={key}
-											onClick={() =>
-												handleSelectedCategory(
-													current.title,
-													current.id
-												)
-											}
-											className="bg-themeWhite hover:text-themeGray transition-all duration-500 ease-in-out"
-										>
-											<Menu.Item as="div">
-												{current.title}
-											</Menu.Item>
-										</button>
-                    
-									);
-                  
-							  })  
-							:  null }
-
-                  <Menu.Button><div onClick={openModal}>Crirar categoria</div></Menu.Button>
-
-					</div>
-				</Menu.Items>
-			</Transition>
+            <Menu.Button>
+              <div onClick={openModal}>Crirar categoria</div>
+            </Menu.Button>
+          </div>
+        </Menu.Items>
+      </Transition>
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -227,10 +212,10 @@ export function DropDown() {
                       placeholder="Nome da categoria"
                       readOnly={loading}
                       required={true}
-                      onChange={handleChange} 
+                      onChange={handleChange}
                       name="title"
                     />
-                  
+
                     <input
                       className={styles.input}
                       type="text"
@@ -244,7 +229,9 @@ export function DropDown() {
                       type="button"
                       disabled={loading}
                       className={`${styles.button}`}
-                      onClick={() => handleSubmitCategory(event, closeModal)}
+                      onClick={(event) =>
+                        handleSubmitCategory(event, closeModal)
+                      }
                     >
                       Adicionar
                     </button>
@@ -255,7 +242,6 @@ export function DropDown() {
           </div>
         </Dialog>
       </Transition>
-
-		</Menu>
-	);
+    </Menu>
+  );
 }

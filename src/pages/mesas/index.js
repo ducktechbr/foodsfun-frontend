@@ -11,7 +11,9 @@ import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import reloadStore from "../../store/reloadStore";
 
-export default function Page() {
+import { ProtectedRoute } from "../../middlewares/protectedRoute";
+
+function Page() {
   const [lista, setLista] = useState([]);
   const setReload = reloadStore((state) => state.setReload);
   const reload = reloadStore((state) => state.reload);
@@ -56,4 +58,8 @@ export default function Page() {
       </div>
     </div>
   );
+}
+
+export default function Mesas() {
+  return <ProtectedRoute component={Page} />;
 }

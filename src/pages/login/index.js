@@ -52,10 +52,9 @@ export default function Login() {
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
 
       // Seta o loading para false novamente para reabilitar o preenchimento do form
-      
+
       setLoading(false);
     } catch (error) {
-
       // caso tenha algum erro, mostra o erro no console e reabilita o preenchimento do form
 
       console.log(error);
@@ -102,7 +101,7 @@ export default function Login() {
         <Link href="#">
           <a className={styles.text}>Esqueceu a senha?</a>
         </Link>
-        <Link href="/signup">
+        <Link href="https://docs.google.com/forms/d/e/1FAIpQLSc4J60MJMLd9Kpdkfx-Utc9gdaElVdDekIbENY8oJAZeKo5Bg/viewform">
           <a className={styles.text}>Não possui uma conta? Cadastre-se!</a>
         </Link>
       </div>

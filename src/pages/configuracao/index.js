@@ -7,15 +7,15 @@ import NavBar from "../../components/NavBar";
 import { BackgroundBanner } from "../../components/BackgroundBanner";
 
 import { ToggleButton } from "../../components/ToggleButton";
-import { AuthContext } from "../../contexts/authContext";
+// import { AuthContext } from "../../contexts/authContext";
 import { api } from "../../api/index";
 import paymentStore from "../../store/paymentStore";
 import reloadStore from "../../store/reloadStore";
 
+import { ProtectedRoute } from "../../middlewares/protectedRoute";
 
-
-export default function Page() {
-  const { loggedInUser } = useContext(AuthContext);
+function Page() {
+  // const { loggedInUser } = useContext(AuthContext);
 
   const changeMethods = paymentStore((state) => state.changeMethods);
   const reload = reloadStore((state) => state.reload);
@@ -75,4 +75,8 @@ export default function Page() {
       </div>
     </div>
   );
+}
+
+export default function configuracao() {
+  return <ProtectedRoute component={Page} />;
 }
