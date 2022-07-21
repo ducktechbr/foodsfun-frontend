@@ -1,16 +1,22 @@
+import styles from './styles.module.css';
+
 import Head from 'next/head';
+
+import { useEffect, useState } from 'react';
+import { FaRegTrashAlt } from "react-icons/fa"
+
+import { ProtectedRoute } from '../../middlewares/protectedRoute';
+
+import categoryStore from '../../store/categoryStore';
+import reloadStore from '../../store/reloadStore';
+
+import { api } from '../../api';
 
 import NavBar from '../../components/NavBar';
 import { DropDown } from '../../components/Dropdown';
 import { BackgroundBanner } from '../../components/BackgroundBanner';
 import Card from '../../components/Card';
 import AddButton from '../../components/AddButton';
-import { ProtectedRoute } from '../../middlewares/protectedRoute';
-import categoryStore from '../../store/categoryStore';
-import reloadStore from '../../store/reloadStore';
-import { api } from '../../api';
-import styles from './styles.module.css';
-import { useEffect, useState } from 'react';
 
 
 
@@ -22,7 +28,12 @@ function Page() {
 	// busca a categoria selecionada no store do zustand
 
 	const selectedCategory = categoryStore((state) => state.selected);
+	const categoryId = categoryStore((state) => state.selectedId);
 	const reloadState = reloadStore((state) => state.reload);
+	const setReload = reloadStore((state) => state.setReload);
+
+
+	const [loading, setLoading] = useState(false);
 
 	// função pega o array de produtos ligados à categoria selecionada
 
@@ -40,7 +51,21 @@ function Page() {
 
 	useEffect(() => {
 		getProducts();
+		setReload(false)
 	}, [reloadState]);
+
+	async function handleDelete(){
+		setLoading(true)
+		try {
+			const body = {categoryId}
+			await api.delete("/deleteCategory", {data: body});
+		} catch (error) {
+			console.log(error)
+		}
+		setLoading(false)
+		setReload(true)
+	}
+	
 
 	return (
 		<div className="flex">
@@ -61,7 +86,15 @@ function Page() {
 
 				<div className="w-full rounded-2xl flex justify-between items-center">
 					<div className="h-24 mt-5 px-5 flex w-full justify-between items-center">
-						<DropDown />
+						<div className='flex items-center space-x-2'>
+							<DropDown /> 
+							<button onClick={handleDelete} disabled={loading}>
+								<FaRegTrashAlt
+								size={25} 
+								color="#ff0000"
+								/>
+							</button>
+						</div>
 						<AddButton />
 						
 					</div>
