@@ -35,11 +35,15 @@ export function DropDown() {
   useEffect(() => {
     setReload(false);
     getCategories();
-    if (category.data.length !== 0) {
-      handleSelectedCategory(category.data[0].title, category.data[0].id);
-      console.log(selectedCategory);
-    } else {
+    if (category === null) {
       handleSelectedCategory(null);
+    } else {
+      if (category.data.length !== 0) {
+        handleSelectedCategory(category.data[0].title, category.data[0].id);
+        console.log(selectedCategory);
+      } else {
+        handleSelectedCategory(null);
+      }
     }
   }, [reload]);
 
@@ -48,11 +52,15 @@ export function DropDown() {
   }, []);
 
   useEffect(() => {
-    if (category.data.length !== 0) {
-      handleSelectedCategory(category.data[0].title, category.data[0].id);
-      console.log(selectedCategory);
-    } else {
+    if (category === null) {
       handleSelectedCategory(null);
+    } else {
+      if (category.data.length !== 0) {
+        handleSelectedCategory(category.data[0].title, category.data[0].id);
+        console.log(selectedCategory);
+      } else {
+        handleSelectedCategory(null);
+      }
     }
   }, [category]);
 
