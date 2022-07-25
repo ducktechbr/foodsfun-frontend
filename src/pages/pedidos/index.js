@@ -97,11 +97,11 @@ function Page() {
 					</div>
 					<div className="mt-5">
 						{pedidos.data[0]
-							? pedidos.data.map((current, key) => {
+							? pedidos.data.map((current, index) => {
 									return (
 										<DivPedidos
 											current={current}
-											key={key}
+											index={index}
 										/>
 									);
 							  })

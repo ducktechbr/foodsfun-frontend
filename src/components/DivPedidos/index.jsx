@@ -40,7 +40,7 @@ export default function DivPedidos(props) {
 	}
 
 	return (
-		<div className="flex px-2 h-14 bg-white" key={props.key}>
+		<div className="flex px-2 h-14 bg-white" key={props.index}>
 			<div className="w-1/8 bg-white">
 				<span className="p-2 rounded-2xl bg-white border ">
 					{number}
