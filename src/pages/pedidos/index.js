@@ -13,7 +13,7 @@ import { api } from "../../api";
 import { ProtectedRoute } from "../../middlewares/protectedRoute";
 
 import styles from "./styles.module.css";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Fragment } from "react";
 import ModalInfo from "../../components/ModalInfo";
 import DivPedidos from "../../components/DivPedidos";
 

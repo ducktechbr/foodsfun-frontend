@@ -39,8 +39,6 @@ module.exports = {
       disabled: "url('/disabled.png')",
       burguer: "url('/hamburguer.svg')",
       qrcode: "url('/qrcode.png')",
-      
-      
     },
   },
   plugins: [],

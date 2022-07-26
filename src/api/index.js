@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiURL = {
-  development: "https://foods-fan.herokuapp.comgi",
+  development: "https://foods-fan.herokuapp.com",
   production: "https://foods-fan.herokuapp.com",
 };
 

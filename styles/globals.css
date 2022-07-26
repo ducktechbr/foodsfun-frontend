@@ -7,21 +7,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: #eee;
+  background: #222;
   box-sizing: border-box;
   outline: none;
 }
 
 ::-webkit-scrollbar{
   width: 10px;
-  
-}
+  }
 
 ::-webkit-scrollbar-thumb{
   background-color: #FF7527;
   border-radius: 8px;
 }
-
 
 
 /* Dropdown Button */

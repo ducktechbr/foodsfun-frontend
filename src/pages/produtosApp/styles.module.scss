@@ -1,0 +1,49 @@
+.banner{
+    width: 100%;
+    height: 120px;
+    background: url(../../assets/background.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.header{
+    
+    align-items: center;
+    max-width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+    
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.text1{
+    color: #FF8E02;
+    text-decoration: underline;
+}
+
+.text{
+    color: #fff;
+}
+
+.input{
+    width: 100%;
+    height: 20px;
+    font-size: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 3px ;
+    background: #fff;
+    border-radius: 1rem;
+    
+}
+
+.span{
+    position: absolute;
+    right: 30px;
+    margin-top: 19px;
+    background: transparent;
+}
