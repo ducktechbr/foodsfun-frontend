@@ -102,10 +102,13 @@ function Page() {
 						{pedidos.data[0]
 							? pedidos.data.map((current, index) => {
 									return (
+										<div key={index}>
+
 										<DivPedidos
 											current={current}
-											index={index}
+										
 										/>
+										<div/>
 									);
 							  })
 							: null}

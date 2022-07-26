@@ -9,7 +9,7 @@ export default function DivPedidos(props) {
   const [table, setTable] = useState([]);
   const [number, setNumber] = useState("");
 
-  const key = Math.random();
+
 
   function closeModal() {
     setIsOpen(false);
@@ -42,7 +42,7 @@ export default function DivPedidos(props) {
   }
 
   return (
-    <div className="flex px-2 h-14 bg-white" key={key}>
+    <div className="flex px-2 h-14 bg-white" >
       <div className="w-1/8 bg-white">
         <span className="p-2 rounded-2xl bg-white border ">{number}</span>
       </div>
