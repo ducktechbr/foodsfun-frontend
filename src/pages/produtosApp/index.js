@@ -1,6 +1,7 @@
 import styles from "./styles.module.scss";
 
 import CardProdutos from "../../components/CardProdutosApp";
+import FooterBar from "../../components/FooterBar";
 
 import { BiSearchAlt2 } from "react-icons/bi";
 
@@ -23,7 +24,25 @@ export default function produtos() {
         </div>
       </div>
 
-      <CardProdutos />
+      <div className={styles.card}>
+        <CardProdutos />
+        <CardProdutos />
+        <CardProdutos />
+        <CardProdutos />
+        <CardProdutos />
+        <CardProdutos />
+        <CardProdutos />
+        <CardProdutos />
+        <CardProdutos />
+      </div>
+
+      <footer className={styles.footer}>
+        <FooterBar/>
+      </footer>
+
     </div>
   );
 }
+
+
+
