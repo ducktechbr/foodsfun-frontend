@@ -67,25 +67,28 @@
   align-items: center;
 }
 
-.buttonFilter{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    background-color: #FF8E02;
-    border-radius: 6.6px;
-    padding: 0 6px 0 6px;
-    font-size: 8px;
-    height: 16px;
+.buttonFilter {
+  background-color: #ff8e02;
+  border-radius: 6.6px;
+  padding: 0 6px 0 6px;
+  font-size: 8px;
+  height: 16px;
 }
-
-.menu{
+.footerTotal {
+  position: fixed;
+  background-color: #2a2c36;
+  height: 50px;
+  bottom: 50px;
+  right: 0;
+  left: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 30px;
-  padding: 5px;
-  font-size: 10px;
-  background: #FF8E02;
-  border-radius: 8px;
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
+}
+.footerTotal span {
+  background: transparent;
+  font-family: "Ebrima";
+  color: #fff;
+  font-weight: 300;
 }

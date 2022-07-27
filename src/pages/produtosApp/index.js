@@ -1,7 +1,5 @@
 import styles from "./styles.module.scss";
 
-
-
 import { Menu, Transition, Fragment } from "@headlessui/react";
 
 import CardProdutos from "../../components/CardProdutosApp";
@@ -11,7 +9,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function produtos() {
@@ -31,87 +29,54 @@ export default function produtos() {
           </button>
         </div>
 
-        <div className={styles.div_categoria}>
+        <div className={styles.divCategoria}>
           <h1>Cardápio</h1>
 
-          <Menu as="div" className="relative inline-block text-left">
-      <div>
-        <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-          Options
-          <RiArrowDropDownLine className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" style={{ background: "transparent" }} />
-        </Menu.Button>
-      </div>
+          <Menu as="div" className="flex justify-center items-center">
+            <div>
+              <Menu.Button className="flex justify-center items-center h-5 rounded-2xl pl-2 bg-themeOrange text-sm text-white ">
+                Categorias
+                <RiArrowDropDownLine
+                  className=" h-5 w-5"
+                  aria-hidden="true"
+                  style={{ background: "transparent" }}
+                />
+              </Menu.Button>
+            </div>
 
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  Account settings
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  Support
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  License
-                </a>
-              )}
-            </Menu.Item>
-            <form method="POST" action="#">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block w-full text-left px-4 py-2 text-sm'
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-white"
+                            : "text-white",
+                          "block px-4 py-2 text-sm"
+                        )}
+                      >
+                        Pinga
+                      </a>
                     )}
-                  >
-                    Sign out
-                  </button>
-                )}
-              </Menu.Item>
-            </form>
-          </div>
-        </Menu.Items>
-      </Transition>
-    </Menu>
-
+                  </Menu.Item>
+                  
+                  
+                  
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
         </div>
       </div>
 
