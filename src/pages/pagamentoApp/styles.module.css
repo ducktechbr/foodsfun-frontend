@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  color: #fff;
+  font-size: 20px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.divFormas {
+  margin: 42px;
+  border-radius: 10px;
+  background-color: #d9dde1;
+  padding: 27px 27px 15px 27px;
+}
+.divFormas h1 {
+  padding: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "MuseoModerno";
+  text-align: center;
+  line-height: 24.38px;
+}
+
+.divPags {
+  background: transparent;
+  display: flex;
+  justify-content: space-around;
+}
