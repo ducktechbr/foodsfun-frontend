@@ -53,7 +53,7 @@ export default function pedidos() {
           </button>
         </div>
       </div>
-      <div>
+      <div className={styles.divHistorico}>
         <h1>
           <strong className={styles.segundoHeader}>Histórico</strong>
         </h1>

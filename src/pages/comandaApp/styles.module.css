@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  color: #fff;
+  font-size: 20px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.divPedido {
+  margin: 20px;
+}
+.divPedidos {
+  margin-bottom: 60px;
+}
+.divFooterPedidos {
+  font-family: "Ebrima";
+  font-size: 10px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+.divFooterPedidos span {
+  margin-right: 5px;
+}
+.footerTotal {
+  position: fixed;
+  background-color: #2a2c36;
+  height: 50px;
+  bottom: 50px;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
+}
+.footerTotal span {
+  background: transparent;
+  font-family: "Ebrima";
+  color: #fff;
+  font-weight: 300;
+}
