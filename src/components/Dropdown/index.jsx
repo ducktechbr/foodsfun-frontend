@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import Image from "next/image";
 import dash from "../../assets/dash.svg";
-import { Fragment, useEffect, useState, useMemo } from "react";
+import { Fragment, useEffect, useState, } from "react";
 import { Menu, Transition, Dialog } from "@headlessui/react";
 import { api } from "../../api/index";
 import categoryStore from "../../store/categoryStore";

@@ -21,15 +21,15 @@
 }
 
 .numero {
-  font-size: 8px;
+  font-size: 10px;
   background-color: #ffff;
   border-radius: 50%;
-  min-width: 12px;
   text-align: center;
   margin-right: 5px;
+  min-width: 15px;
 }
 .text {
-  font-size: 8px;
+  font-size: 13px;
   background: transparent;
   opacity: 80%;
 }
