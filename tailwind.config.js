@@ -26,6 +26,7 @@ module.exports = {
       dropShadow: { buttonIcon: "0 4px 4px rgba(0, 0, 0, 0.40)" },
       fontFamily: {
         theme: ["MuseoModerno"],
+        ebrima: ["Ebrima"],
       },
       screens: { "3xl": "1700px", "4xl": "1900px" },
     },

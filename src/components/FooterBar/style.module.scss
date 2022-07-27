@@ -1,5 +1,23 @@
-.iconsArea{
-    display: flex;
-    justify-content: space-around;
-    background: #FF8E02;
+.iconsArea {
+  display: flex;
+  justify-content: space-around;
+  background: #ff8e02;
+  padding: 6px 0 6px 0;
+}
+.button {
+  font-family: "Ebrima";
+  font-size: 8px;
+  color: #fff;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.div_image {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  height: 20px;
 }

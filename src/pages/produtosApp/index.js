@@ -13,7 +13,7 @@ export default function produtos() {
       <div className={styles.header}>
         <div className={styles.container}>
           <h1 className={styles.text1}> Produtos </h1>
-          <h1 className={styles.text}> Recomendados </h1>
+        
         </div>
 
         <div>
@@ -22,6 +22,7 @@ export default function produtos() {
             <BiSearchAlt2 size={15} style={{ background: "transparent" }} />
           </button>
         </div>
+        <div className={styles.div_categoria}><h1>Cardápio</h1> <button className={styles.button_filter}>categoria</button></div>
       </div>
 
       <div className={styles.card}>
