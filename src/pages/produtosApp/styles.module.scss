@@ -46,6 +46,7 @@
 .card {
   max-width: 90%;
   margin: auto;
+  margin-bottom: 60px;
 }
 
 .footer {
@@ -67,10 +68,10 @@
   align-items: center;
 }
 
-.buttonFilter{
-    background-color: #FF8E02;
-    border-radius: 6.6px;
-    padding: 0 6px 0 6px;
-    font-size: 8px;
-    height: 16px;
+.buttonFilter {
+  background-color: #ff8e02;
+  border-radius: 6.6px;
+  padding: 0 6px 0 6px;
+  font-size: 8px;
+  height: 16px;
 }
