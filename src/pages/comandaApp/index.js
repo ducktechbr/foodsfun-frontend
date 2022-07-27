@@ -17,16 +17,74 @@ export default function comanda() {
         <Link href="/produtosApp">
           <Image src={back} alt="back button" />
         </Link>
-        <h1>Conta</h1>
+        <h1>Comanda</h1>
         <div>
-          
+          <Image src={botaoAdd} alt="back button" />
+        </div>
+      </div>
+      <div className={styles.divPedidos}>
+        <div className={styles.divPedido}>
+          <Image src={hamburgui} alt="hamburgui" />
+          <div className={styles.divFooterPedidos}>
+            <span>Quantidade : 1</span>
+            <div className="flex items-center">
+              <span>Status : </span>
+              <Image src={load} alt="load" />
+            </div>
+          </div>
+        </div>
+        <div className={styles.divPedido}>
+          <Image src={hamburgui} alt="hamburgui" />
+          <div className={styles.divFooterPedidos}>
+            <span>Quantidade : 1</span>
+            <div className="flex items-center">
+              <span>Status : </span>
+              <Image src={load} alt="load" />
+            </div>
+          </div>
+        </div>
+        <div className={styles.divPedido}>
+          <Image src={hamburgui} alt="hamburgui" />
+          <div className={styles.divFooterPedidos}>
+            <span>Quantidade : 2</span>
+            <div className="flex items-center">
+              <span>Status : </span>
+              <Image src={load} alt="load" />
+            </div>
+          </div>
+        </div>
+        <div className={styles.divPedido}>
+          <Image src={hamburgui} alt="hamburgui" />
+          <div className={styles.divFooterPedidos}>
+            <span>Quantidade : 4</span>
+            <div className="flex items-center">
+              <span>Status : </span>
+              <Image src={load} alt="load" />
+            </div>
+          </div>
+        </div>
+        <div className={styles.divPedido}>
+          <Image src={hamburgui} alt="hamburgui" />
+          <div className={styles.divFooterPedidos}>
+            <span>Quantidade : 1</span>
+            <div className="flex items-center">
+              <span>Status : </span>
+              <Image src={load} alt="load" />
+            </div>
+          </div>
+        </div>
+        <div className={styles.divPedido}>
+          <Image src={hamburgui} alt="hamburgui" />
+          <div className={styles.divFooterPedidos}>
+            <span>Quantidade : 1</span>
+            <div className="flex items-center">
+              <span>Status : </span>
+              <Image src={load} alt="load" />
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className={styles.footerTotal}>
-        <span>Total</span>
-        <span>R$80,00</span>
-      </div>
       <div className={styles.footer}>
         <FooterBar />
       </div>
