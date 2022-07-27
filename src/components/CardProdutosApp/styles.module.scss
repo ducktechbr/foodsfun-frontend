@@ -1,0 +1,21 @@
+.background{
+    max-width: 100%;
+    height: 120px;
+    margin: auto;
+    background: url(../../assets/cardburg.png) center center no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.namePrice{
+    max-width: 100%;
+    display: flex;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.text{
+    color: #fff;
+}
