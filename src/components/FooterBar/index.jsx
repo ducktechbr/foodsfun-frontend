@@ -46,7 +46,7 @@ export default function FooterBar() {
               className="bg-transparent"
             />
           </div>
-          <span className="bg-transparent">Início</span>
+          <span className="bg-transparent">Comanda</span>
         </button>
       </div>
     </div>
