@@ -75,3 +75,19 @@
   font-size: 8px;
   height: 16px;
 }
+.button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 45px;
+  font-family: "Ebrima";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #ff8e02;
+  font-size: 17px;
+  letter-spacing: 1.19px;
+  color: #fff;
+}

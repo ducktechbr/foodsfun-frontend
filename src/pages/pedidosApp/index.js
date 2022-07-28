@@ -13,7 +13,9 @@ export default function pedidos() {
     <div>
       <div className={styles.header}>
         <Link href="/produtosApp">
-          <Image src={back} alt="back button" />
+          <div>
+            <Image src={back} alt="back button" />
+          </div>
         </Link>
         <h1>Meus Pedidos</h1>
         <div></div>

@@ -13,7 +13,9 @@ export default function conta() {
     <div>
       <div className={styles.header}>
         <Link href="/produtosApp">
-          <Image src={back} alt="back button" />
+          <div>
+            <Image src={back} alt="back button" />
+          </div>
         </Link>
         <h1>Conta</h1>
         <div>
