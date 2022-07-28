@@ -19,7 +19,7 @@ export default function dinheiro() {
         <Link href="/produtosApp">
           <Image src={back} alt="back button" />
         </Link>
-        <h1>Comanda</h1>
+        <h1>Dinheiro</h1>
         <div></div>
       </div>
       <div className={styles.divFormas}>
