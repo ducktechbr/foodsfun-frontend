@@ -49,15 +49,41 @@ export default function produtos() {
         >
           <CardProdutos />
         </button>
-
-        <CardProdutos />
-        <CardProdutos />
-        <CardProdutos />
-        <CardProdutos />
-        <CardProdutos />
-        <CardProdutos />
-        <CardProdutos />
-        <CardProdutos />
+        <button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          <CardProdutos />
+        </button>
+        <button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          <CardProdutos />
+        </button>
+        <button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          <CardProdutos />
+        </button>
+        <button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          <CardProdutos />
+        </button>
+        <button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          <CardProdutos />
+        </button>
       </div>
 
       <footer className={styles.footer}>
@@ -74,11 +100,11 @@ export default function produtos() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0" />
+            <div className="fixed inset-0 bg-black bg-opacity-80" />
           </Transition.Child>
 
-          <div className="fixed bottom-0 right-0 left-0 overflow-hidden bg-transparent h-[410px]">
-            <div className="flex h-full items-center justify-center bg-transparent text-center px-[1rem]">
+          <div className="fixed  bottom-0 right-0 left-0 bg-transparent h-[410px] ">
+            <div className="flex h-full items-center justify-center bg-transparent text-center px-[1rem] ">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-[300ms]"
@@ -88,7 +114,7 @@ export default function produtos() {
                 leaveFrom="opacity-100 translate-y-[0px]"
                 leaveTo="opacity-0 translate-y-[120px]"
               >
-                <div className="w-full h-full max-w-md transform align-middle shadow-xl transition-all bg-transparent text-[#1A1A1A] flex flex-col items-center absolute">
+                <div className="w-full h-full max-w-md align-middle shadow-xl transition-all bg-transparent text-[#1A1A1A] flex flex-col items-center overflow-visible">
                   <Image
                     src={burg}
                     className="h-[160px] absolute z-50 -top-20 rounded-[47px]"
@@ -101,7 +127,7 @@ export default function produtos() {
                       Hamburgui
                     </Dialog.Title>
 
-                    <strong className="flex bg-transparent justify-around font-ebrima mb-2 text-2xl">
+                    <strong className="flex bg-transparent justify-center space-x-16 font-ebrima mb-2 text-2xl">
                       <span className="flex bg-transparent">$8,90</span>
                       <span className="flex bg-transparent text-[#FF0000] line-through">
                         $14,90
