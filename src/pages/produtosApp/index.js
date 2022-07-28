@@ -5,16 +5,32 @@ import CardProdutos from "../../components/CardProdutosApp";
 import FooterBar from "../../components/FooterBar";
 
 import { BiSearchAlt2 } from "react-icons/bi";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
-import { useState, Fragment } from "react";
-import { Transition, Dialog } from "@headlessui/react";
+import { useState, useEffect, Fragment } from "react";
+import { Transition, Dialog, Menu } from "@headlessui/react";
+
+import categoryStore from "../../store/categoryStore";
+import { api } from "../../api";
 
 import burg from "../../assets/hamburguiModal.png";
 import minus from "../../assets/minusButton.svg";
 import plus from "../../assets/plusButton.svg";
 
 export default function produtos() {
+
+  const setCategory = categoryStore((state) => state.changeList);
+  const category = categoryStore((state) => state.list);
+  
   const [isOpen, setIsOpen] = useState(false);
+  
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  async function getCategories() {
+    setCategory(await api.get("/getCategory"));
+  }
 
   function closeModal() {
     setIsOpen(false);
@@ -36,8 +52,41 @@ export default function produtos() {
           </button>
         </div>
         <div className={styles.divCategoria}>
-          <h1>Cardápio</h1>{" "}
-          <button className={styles.buttonFilter}>categoria</button>
+          <h1>Cardápio</h1>
+
+          <Menu as="div" className="flex justify-center items-center relative">
+            <div>
+              <Menu.Button className="flex justify-center items-center h-5 rounded-2xl pl-2 bg-[#FF8E02] text-xs text-white ">
+                Categorias
+                <RiArrowDropDownLine
+                  className=" h-5 w-5"
+                  aria-hidden="true"
+                  style={{ background: "transparent" }}
+                />
+              </Menu.Button>
+            </div>
+
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="origin-top-right absolute right-0 top-5 mt-2 w-56 rounded-xl shadow-lg bg-transparent ring-1 ring-black ring-opacity-5 focus:outline-none ">
+                <div>
+                  <Menu.Item as="div" className="p-3 rounded-xl  bg-[#333]">
+                                       
+
+                    {category ? category.data.map((current, key) => { return( <p className="bg-[#333]" key={key} >{current.title}</p> )  }) : null }
+                   
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
         </div>
       </div>
 
