@@ -1,6 +1,8 @@
 import styles from "./styles.module.scss";
 import Image from "next/image";
 
+import { Menu, Transition, Fragment } from "@headlessui/react";
+
 import CardProdutos from "../../components/CardProdutosApp";
 import FooterBar from "../../components/FooterBar";
 
@@ -51,6 +53,7 @@ export default function produtos() {
             <BiSearchAlt2 size={15} style={{ background: "transparent" }} />
           </button>
         </div>
+
         <div className={styles.divCategoria}>
           <h1>Cardápio</h1>
 
