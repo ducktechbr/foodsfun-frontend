@@ -62,14 +62,30 @@
   font-family: "MuseoModerno";
   color: #fff;
   align-items: center;
+  font-size: 12px;
 }
 
-.buttonFilter {
-  background-color: #ff8e02;
-  border-radius: 6.6px;
-  padding: 0 6px 0 6px;
-  font-size: 8px;
-  height: 16px;
+.buttonFilter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: #FF8E02;
+    border-radius: 6.6px;
+    padding: 0 6px 0 6px;
+    font-size: 8px;
+    height: 16px;
+}
+
+.menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  padding: 5px;
+  font-size: 10px;
+  background: #FF8E02;
+  border-radius: 8px;
 }
 .button {
   position: absolute;

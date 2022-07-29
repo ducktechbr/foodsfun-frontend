@@ -5,6 +5,7 @@
   color: #fff;
   font-size: 20px;
 }
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -14,12 +15,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .divPedido {
   margin: 20px;
 }
+
 .divPedidos {
   margin-bottom: 60px;
 }
+
 .divFooterPedidos {
   font-family: "Ebrima";
   font-size: 10px;
@@ -27,9 +31,11 @@
   display: flex;
   justify-content: space-between;
 }
+
 .divFooterPedidos span {
   margin-right: 5px;
 }
+
 .footerTotal {
   position: fixed;
   background-color: #2a2c36;
@@ -42,9 +48,84 @@
   justify-content: space-between;
   padding: 0 20px 0 20px;
 }
+
 .footerTotal span {
   background: transparent;
   font-family: "Ebrima";
   color: #fff;
   font-weight: 300;
+}
+
+.table{
+  margin: auto;
+  width: 90%;
+  font-family: Ebrima;
+  color: #fff;
+  ul li{
+    display: flex;
+  }
+}
+
+.items{
+  color: #fff;
+}
+
+.descricao{
+  width: 55%;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 10px;
+}
+
+.quantidade{
+  width: 22.5%;
+  text-align: center;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 10px;
+}
+.preco{
+  width: 22.5%;
+  text-align: center;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 10px;
+}
+
+.thead{
+  display: flex;
+  width: 100%; 
+}
+
+.item1{
+  width: 55%;
+  padding: 5px;
+  border-bottom: 1px solid #fff;
+}
+
+.item{
+  width: 22.5%;
+  text-align: center;
+  color: #222;
+  border-bottom: 1px solid #fff;
+  div{
+    margin-left: 8px;
+    text-align: center;
+    border-radius: 8px;
+    background: #fff;
+  }
+}
+
+.button{
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 250px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 8px;
+  font-family: Ebrima;
+  color: #fff;
+  background: #FF8E02;
+  border: 1px solid #FF8E02;
 }
