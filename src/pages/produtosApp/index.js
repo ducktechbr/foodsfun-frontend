@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import Image from "next/image";
 
-import { Menu, Transition, Fragment } from "@headlessui/react";
+import { Menu, Transition, Dialog } from "@headlessui/react";
 
 import CardProdutos from "../../components/CardProdutosApp";
 import FooterBar from "../../components/FooterBar";
@@ -10,7 +10,6 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 import { useState, useEffect, Fragment } from "react";
-import { Transition, Dialog, Menu } from "@headlessui/react";
 
 import categoryStore from "../../store/categoryStore";
 import { api } from "../../api";
