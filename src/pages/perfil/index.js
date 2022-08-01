@@ -46,7 +46,7 @@ export default function perfil() {
                   </div>
                   <span className={styles.span}>Central de notificaçãoes</span>
                 </div>
-                <div className="flex justify-center items-center mr-10"> <Image src={arrowLeft} /> </div>
+                <div className="flex justify-center items-center mr-10"> <Image src={arrowLeft} /></div>
               </div>
             </li>
           </ul>
