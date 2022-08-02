@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from './styles.module.css';
 
 import setinhaBranca from '../../assets/setinhaBranca.svg';
-import setinha from '../../assets/setinha.svg';
+import setinha from '../../assets/setinha.svg';	
 
 import FooterBar from '../../components/FooterBar';
 
