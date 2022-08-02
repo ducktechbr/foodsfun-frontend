@@ -1,118 +1,131 @@
-import Head from "next/head";
+import styles from './pedidos.module.scss';
 
-import { IoIosArrowDropright } from "react-icons/io";
-
-import NavBar from "../../components/NavBar";
-import { BackgroundBanner } from "../../components/BackgroundBanner";
-import AddOrder from "../../components/AddOrder";
-import { api } from "../../api";
-
-import { ProtectedRoute } from "../../middlewares/protectedRoute";
-
-import styles from "./styles.module.css";
-import { useEffect, useMemo, useState } from "react";
-import DivPedidos from "../../components/DivPedidos";
-
-function Page() {
-  const [pedidos, setPedidos] = useState({ data: [{ title: "" }] });
-  const [pedidosSemOrdem, setPedidosSemOrdem] = useState({
-    data: [{ title: "" }],
-  });
-
-  useEffect(() => {
-    getOrders();
-  }, []);
-
-  useEffect(() => {
-    var arrayPedidos = [];
-    if (typeof pedidosSemOrdem.data === Array) {
-      arrayPedidos = pedidosSemOrdem.data;
-    }
-
-    setPedidos({
-      data: arrayPedidos.sort((a, b) =>
-        a.number < b.number ? 1 : b.number < a.number ? -1 : 0
-      ),
-    });
-  }, [pedidosSemOrdem]);
-
-  async function getOrders() {
-    setPedidosSemOrdem(await api.get(`/getOrders`));
-  }
-
-  return (
-    <div className="flex">
-      <Head>
-        <title>FoodsFun - Pedidos</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <div className="w-60"></div>
-      <NavBar />
-
-      <div className={styles.screen}>
-        <BackgroundBanner />
-
-        <div className="mt-5 px-5 flex justify-end">
-          <AddOrder />
-        </div>
-        <div className="mt-14 mx-4 h-48 border-2 rounded-2xl bg-white ">
-          <div className="space-y-0  h-16 bg-themeOrange text-white text-[1.3rem] py-2 px-2 rounded-t-lg">
-            <div className="flex justify-around mt-2 bg-transparent">
-              <div className="w-1/8 bg-transparent">Pedido</div>
-              <div className="w-1/8 bg-transparent flex">
-                Mesa
-                <button>
-                  <IoIosArrowDropright
-                    size={25}
-                    color="#fff"
-                    style={{
-                      backgroundColor: "transparent",
-                      marginLeft: "2px",
-                    }}
-                  />
-                </button>
-              </div>
-
-              <div className="w-1/8 bg-transparent">Quantidade</div>
-              <div className="w-4/8 bg-transparent">Produto</div>
-              <div className="w-1/8 bg-transparent flex">
-                Status
-                <button type="button">
-                  <IoIosArrowDropright
-                    size={25}
-                    color="#fff"
-                    style={{
-                      backgroundColor: "transparent",
-                      marginLeft: "2px",
-                    }}
-                  />
-                </button>
-              </div>
-            </div>
-            {/* as proximas divs serao geradas automaticamente */}
-          </div>
-          <div className="mt-5">
-            {/* {pedidos.data.map((current, index) => {return(<div key={index}>
-
-<DivPedidos
-	current={current}
-
-/>
-<div/>)
-							  
-							})} */}
-            {pedidos.data
-              ? pedidos.data.map((current, key) => {
-                  return <DivPedidos current={current} key={key} />;
-                })
-              : null}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
+/**
+ * =================
+ * Página de pedidos
+ * =================
+ */
 export default function Pedidos() {
-  return <ProtectedRoute component={Page} />;
+
+   // Pedidos da mesa
+   const pedidos = [
+      {
+         id: 1,
+         produtos: [
+            {
+               id: '#1',
+               nome: 'Hamburger',
+               observacao: 'Com maionese',
+               preco: 10.0,
+               quantidade: 2
+            },
+            {
+               id: '#2',
+               nome: 'Batata frita',
+               observacao: 'Sem sal',
+               preco: 5.0,
+               quantidade: 2
+            },
+            {
+               id: '#3',
+               nome: 'Refrigerante',
+               observacao: 'Coca-Cola',
+               preco: 4.0,
+               quantidade: 2
+            }
+         ]
+      }
+   ];
+
+   // Mesas do estabelecimento
+   const mesas = [
+      {
+         idMesa: 1,
+         pedidos: pedidos
+      },
+   ];
+
+   /**
+    * ------------------------
+    * Renderiza todas as mesas
+    * ------------------------
+    */
+   const renderMesas = () => {
+      return mesas.map((mesa, index) => { 
+         return (
+            <div key={index} className={styles.mesa}>
+               <div>
+                  <div className={styles.header}>Mesa #{mesa.idMesa}</div>
+                  <div className={styles.pedidosContainer}>
+                     {renderPedidosByMesaId(1)}
+                  </div>
+               </div>
+            </div>
+         )
+      })
+   }
+
+   /**
+    * --------------------------------------------
+    * Renderiza todos os pedidos da mesa informada
+    * --------------------------------------------
+    */
+   const renderPedidosByMesaId = (mesaId) => {
+      return pedidos.map((pedido, index) => {
+         return (
+            <div key={index} className={styles.produtosContainer}>
+               {renderProdutosByPedidoId(pedido.id)}
+            </div>
+         )
+      })
+   }
+
+   /**
+    * ----------------------------------------------------
+    * Renderiza todos os produtos de um determinado pedido
+    * ----------------------------------------------------
+    */
+   const renderProdutosByPedidoId = (pedidoId) => {
+      const pedido = pedidos.find(pedido => pedido.id === pedidoId);
+      const produtos = pedido.produtos;
+      if (produtos) {
+         return produtos.map((produto, index) => {
+            return (
+               <div className={styles.list} key={index}>
+                  <div className={styles.item}>
+                     <div>ID</div>
+                     <div>{produto.id}</div>
+                  </div>
+                  <div className={styles.item}>
+                     <div>Produto</div>
+                     <div>{produto.nome}</div>
+                  </div>
+                  <div className={styles.item}>
+                     <div>Observação</div>
+                     <div>{produto.observacao}</div>
+                  </div>
+                  <div className={styles.item}>
+                     <div>Quantidade</div>
+                     <div>{produto.quantidade}</div>
+                  </div>
+                  <div className={styles.item}>
+                     <div>Valor</div>
+                     <div>R$ {produto.preco.toFixed(2)}</div>
+                  </div>
+                  <div className={styles.separator}></div>
+               </div>
+            )
+         })
+      } else {
+         return <div>Nenhum pedido realizado</div>
+      }
+   }
+
+   return (
+      <div className={styles.pedidosWrapper}>
+         <div className={styles.pedidosContainer}>
+            { renderMesas() }         
+         </div>
+      </div>
+   )
 }

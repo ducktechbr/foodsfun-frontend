@@ -1,0 +1,44 @@
+
+.pedidosWrapper {
+
+   .pedidosContainer {
+      padding: 15px;
+   }
+
+   .mesa {      
+      * {
+         background: #fff;
+      }
+
+      >div {
+         border-radius: 4px;
+      }
+
+      .header {
+         background: orange;
+         padding: 5px;
+      }
+
+      .pedidosContainer, .produtosContainer {
+         padding: 5px;
+      }
+
+      .produtosContainer {         
+         .item {
+            display: flex;
+
+            & > div {
+               width: 100%;
+            }
+         }
+
+         .separator {
+            height: 1px;
+            width: 100%;
+            background: #aaa;
+            margin: 5px 0;
+         }
+      }
+   }
+}
+

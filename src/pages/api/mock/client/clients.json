@@ -1,0 +1,17 @@
+[
+   {
+      "id": 1,
+      "name": "Cliente 1",
+      "number": 1
+   },
+   {
+      "id": 2,
+      "name": "Cliente 2",
+      "number": 2
+   },
+   {
+      "id": 3,
+      "name": "Cliente 3",
+      "number": 3
+   }
+]

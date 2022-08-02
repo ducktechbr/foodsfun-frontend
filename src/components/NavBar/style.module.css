@@ -1,10 +1,33 @@
-.sidebar {
-    display: none;
-}
-
 .logo{
     height: 60px;
     width: 160px;
     background: url(../../../public/logo.png) center center;
     background-size: cover;
+}
+
+.navbar {
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.brand {
+    padding: 25px 0;
+}
+
+.navlinks {
+    background: lime;
+}
+
+.navlinks ul {
+    background: lime;
+}
+
+.navlinks li {
+    color: lime;
 }
