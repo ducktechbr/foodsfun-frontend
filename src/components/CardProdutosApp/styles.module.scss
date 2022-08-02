@@ -1,24 +1,23 @@
-.background{
-    max-width: 100%;
-    height: 120px;
-    margin: auto;
-    background: url(../../assets/cardburg.png) center center no-repeat;
-    background-size: cover;
-    border-radius: 5px;
+.background {
+  max-width: 100%;
+  height: 120px;
+  margin: auto;
+  background: transparent;
+  border-radius: 5px;
 }
 
-.namePrice{
-    max-width: 100%;
-    display: flex;
-    margin-top: 8px;
-    margin-bottom: 2px;
-    justify-content: space-between;
-    color: #fff;
+.namePrice {
+  max-width: 100%;
+  display: flex;
+  margin-top: 8px;
+  margin-bottom: 2px;
+  justify-content: space-between;
+  color: #fff;
 }
 
-.text{
-    color: #fff;
-    font-family: "Ebrima";
-    font-size: 13px;
-    opacity: 80%;
+.text {
+  color: #fff;
+  font-family: "Ebrima";
+  font-size: 13px;
+  opacity: 80%;
 }
