@@ -11,6 +11,7 @@ import { useState, useEffect, Fragment } from "react";
 import { Transition, Dialog, Menu } from "@headlessui/react";
 
 import categoryStore from "../../store/categoryStore";
+import modalStore from "../../store/modalStore";
 import { api } from "../../api";
 
 import burg from "../../assets/hamburguiModal.png";
@@ -22,9 +23,16 @@ export default function Produtos() {
   const setCategory = categoryStore((state) => state.changeList);
   const categoryApp = categoryStore((state) => state.selectedCategory);
   const setCategoryApp = categoryStore((state) => state.changeCategory);
+  const card = modalStore((state) => state.selectedCard);
+  const setCard = modalStore((state) => state.changeCard);
   const [products, setProducts] = useState(null);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1)
+
+  const [loading, setLoading] = useState(false)
+
+  
 
   useEffect(() => {
     getCategories();
@@ -49,6 +57,7 @@ export default function Produtos() {
 
   function closeModal() {
     setIsOpen(false);
+    setQuantity(1)
   }
 
   function handleCategory(title) {
@@ -62,6 +71,26 @@ export default function Produtos() {
       setProducts(await api.patch(`/getProductsClient/${categoryApp}`, { id }));
     }
 
+  }
+
+  function handleOpen(cur){
+    setCard(cur)
+    setIsOpen(true)
+    console.log(card)
+  }
+
+  async function handleQuantity(text){
+    setLoading(true)
+    if(text === "sub" ){
+      if( quantity > 1 )
+        setQuantity(quantity - 1)
+    }
+    if(text === "add"){
+      if(quantity < 99){
+        setQuantity(quantity + 1)
+      }
+    }
+    setLoading(false)
   }
 
   return (
@@ -132,9 +161,8 @@ export default function Produtos() {
             return (
               <button
                 key={key}
-                onClick={() => {
-                  setIsOpen(true);
-                }}
+                onClick={ () => handleOpen(cur)}
+              
               >
                 <CardProdutos card={cur} />
               </button>
@@ -150,7 +178,8 @@ export default function Produtos() {
       <footer className={styles.footer}>
         <FooterBar />
       </footer>
-      <Transition appear show={isOpen} as={Fragment}>
+      
+      { card ? <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
@@ -176,35 +205,38 @@ export default function Produtos() {
                 leaveTo="opacity-0 translate-y-[120px]"
               >
                 <div className="w-full h-full max-w-md align-middle shadow-xl transition-all bg-transparent text-[#1A1A1A] flex flex-col items-center overflow-visible">
-                  <Image
-                    src={burg}
-                    className="h-[160px] absolute z-50 -top-20 rounded-[47px]"
-                  />
+                  <div className="relative">
+                    <Image
+                      src={card.image}
+                      width="300px" height="160px" alt="Imagem do produto"
+                    
+                      className="h-[160px] absolute z-50 -top-20 rounded-[47px]" objectFit="cover" 
+                    />
+                  </div>
                   <Dialog.Panel className="bg-[#D9DDE1] w-full h-[430px] absolute bottom-0 rounded-t-3xl">
                     <Dialog.Title
                       as="h3"
                       className="mt-24 text-lg font-medium leading-6  bg-[#D9DDE1] font-theme mb-2 "
                     >
-                      Hamburgui
+                      {card.title}
                     </Dialog.Title>
 
                     <strong className="flex bg-transparent justify-center space-x-16 font-ebrima mb-2 text-2xl">
-                      <span className="flex bg-transparent">$8,90</span>
-                      <span className="flex bg-transparent text-[#FF0000] line-through">
-                        $14,90
-                      </span>
+                      <span className="flex bg-transparent">R$ {card.price}</span>
+                      {/* <span className="flex bg-transparent text-[#FF0000] line-through">
+                        {card.price}
+                      </span> */}
                     </strong>
                     <p className="opacity-80 text-[#1A1A1A] bg-transparent mb-2">
-                      Burguer Angus (160g), queijo prato, molho Fanis, maionese,
-                      no pão brioche
+                      {card.description}
                     </p>
                     <textarea className="h-16 w-[300px] bg-[#fefefe] mt-6 mb-2 resize-none rounded-lg px-3 py-1 font-ebrima text-sm"></textarea>
                     <div className="bg-transparent flex items-center justify-center space-x-4">
-                      <button className="bg-transparent">
+                      <button className="bg-transparent" onClick={ () => handleQuantity("sub")}>
                         <Image src={minus} className="bg-transparent" />
                       </button>
-                      <span className="bg-transparent">NUM</span>
-                      <button className="bg-transparent">
+                      <span className="bg-transparent font-ebrima text-xl text-center">{quantity}</span>
+                      <button className="bg-transparent" onClick={ () => handleQuantity("add")}>
                         <Image src={plus} className="bg-transparent" />
                       </button>
                     </div>
@@ -221,7 +253,7 @@ export default function Produtos() {
             </div>
           </div>
         </Dialog>
-      </Transition>
+      </Transition> : null  }
     </div>
   );
 }
