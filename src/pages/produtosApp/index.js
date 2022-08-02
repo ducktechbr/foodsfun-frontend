@@ -68,61 +68,60 @@ export default function Produtos() {
     <div>
       <div className={styles.banner}></div>
 
-      <div>
-        <input type="search" className={styles.input} />
-        <button className={styles.span}>
-          <BiSearchAlt2 size={15} style={{ background: "transparent" }} />
-        </button>
-      </div>
-
-      <div className={styles.divCategoria}>
-        <h1>Cardápio</h1>
-
-        <Menu as="div" className="flex justify-center items-center relative">
-          <div>
-            <Menu.Button className="flex justify-center items-center h-5 rounded-2xl pl-2 bg-[#FF8E02] text-xs text-white ">
-              {categoryApp}
-              <RiArrowDropDownLine
-                className=" h-5 w-5"
-                aria-hidden="true"
-                style={{ background: "transparent" }}
-              />
-            </Menu.Button>
-          </div>
-
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-            <Menu.Items className="origin-top-right absolute right-0 top-5 mt-2 w-56 rounded-xl shadow-lg bg-transparent ring-1 ring-black ring-opacity-5 focus:outline-none ">
-              <div>
-                <Menu.Item
-                  as="div"
-                  className="flex flex-col p-3 rounded-xl  bg-[#333]"
-                >
-                  {category
-                    ? category.data.map((current, key) => {
-                      return (
-                        <button
-                          onClick={() => handleCategory(current.title)}
-                          className="bg-[#333]"
-                          key={key}
-                        >
-                          {current.title}
-                        </button>
-                      );
-                    })
-                    : null}
-                </Menu.Item>
-              </div>
-            </Menu.Items>
-          </Transition>
-        </Menu>
+      <div className={styles.header}>
+        <div>
+          <input type="search" className={styles.input} />
+          <button className={styles.span}>
+            <BiSearchAlt2 size={15} style={{ background: "transparent" }} />
+          </button>
+        </div>
+        <div className={styles.divCategoria}>
+          <h1>Cardápio</h1>
+          <Menu as="div" className="flex justify-center items-center relative">
+            <div>
+              <Menu.Button className="flex justify-center items-center h-5 rounded-2xl pl-2 bg-[#FF8E02] text-xs text-white ">
+                {categoryApp}
+                <RiArrowDropDownLine
+                  className=" h-5 w-5"
+                  aria-hidden="true"
+                  style={{ background: "transparent" }}
+                />
+              </Menu.Button>
+            </div>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="origin-top-right absolute right-0 top-5 mt-2 w-56 rounded-xl shadow-lg bg-transparent ring-1 ring-black ring-opacity-5 focus:outline-none ">
+                <div>
+                  <Menu.Item
+                    as="div"
+                    className="flex flex-col p-3 rounded-xl  bg-[#333]"
+                  >
+                    {category
+                      ? category.data.map((current, key) => {
+                        return (
+                          <button
+                            onClick={() => handleCategory(current.title)}
+                            className="bg-[#333]"
+                            key={key}
+                          >
+                            {current.title}
+                          </button>
+                        );
+                      })
+                      : null}
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
+        </div>
       </div>
 
       <div className={styles.card}>
