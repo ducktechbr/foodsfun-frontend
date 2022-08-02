@@ -22,6 +22,7 @@ export default function Produtos() {
   const setCategory = categoryStore((state) => state.changeList);
   const categoryApp = categoryStore((state) => state.selectedCategory);
   const setCategoryApp = categoryStore((state) => state.changeCategory);
+  const [products, setProducts] = useState(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -42,12 +43,25 @@ export default function Produtos() {
     }
   }, [category]);
 
+  useEffect(() => {
+    getProducts();
+  }, [categoryApp]);
+
   function closeModal() {
     setIsOpen(false);
   }
 
   function handleCategory(title) {
     setCategoryApp(title);
+  }
+
+  async function getProducts() {
+    const localStore = localStorage.getItem("loggedInClient");
+    if (categoryApp !== null) {
+      const id = JSON.parse(localStore).tableId;
+      setProducts(await api.patch(`/getProductsClient/${categoryApp}`, { id }));
+    }
+
   }
 
   return (
@@ -63,18 +77,7 @@ export default function Produtos() {
 
       <div className={styles.divCategoria}>
         <h1>Cardápio</h1>
-        {/* 
-        <Menu as="div" className="flex justify-center items-center relative">
-          <div>
-            <Menu.Button className="flex justify-center items-center h-5 rounded-2xl pl-2 bg-[#FF8E02] text-xs text-white ">
-              <RiArrowDropDownLine
-                className=" h-5 w-5"
-                aria-hidden="true"
-                style={{ background: "transparent" }}
-              />
-            </Menu.Button>
-          </div>
-        </Menu> */}
+
         <Menu as="div" className="flex justify-center items-center relative">
           <div>
             <Menu.Button className="flex justify-center items-center h-5 rounded-2xl pl-2 bg-[#FF8E02] text-xs text-white ">
@@ -104,22 +107,45 @@ export default function Produtos() {
                 >
                   {category
                     ? category.data.map((current, key) => {
-                        return (
-                          <button
-                            onClick={() => handleCategory(current.title)}
-                            className="bg-[#333]"
-                            key={key}
-                          >
-                            {current.title}
-                          </button>
-                        );
-                      })
+                      return (
+                        <button
+                          onClick={() => handleCategory(current.title)}
+                          className="bg-[#333]"
+                          key={key}
+                        >
+                          {current.title}
+                        </button>
+                      );
+                    })
                     : null}
                 </Menu.Item>
               </div>
             </Menu.Items>
           </Transition>
         </Menu>
+      </div>
+
+      <div className={styles.card}>
+        {products ? console.log(products) : null}
+        {products ?
+
+          products.data.map((cur, key) => {
+            return (
+              <button
+                key={key}
+                onClick={() => {
+                  setIsOpen(true);
+                }}
+              >
+                <CardProdutos card={cur} />
+              </button>
+            )
+          })
+
+
+          : null}
+
+
       </div>
 
       <footer className={styles.footer}>
