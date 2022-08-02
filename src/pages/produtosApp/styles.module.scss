@@ -40,6 +40,8 @@
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   max-width: 90%;
   margin: auto;
   margin-bottom: 60px;
