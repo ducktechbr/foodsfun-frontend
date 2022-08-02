@@ -106,7 +106,7 @@ export default function Produtos() {
         </div>
         <div className={styles.divCategoria}>
           <h1>Cardápio</h1>
-          <Menu as="div" className="flex justify-center items-center relative">
+          <Menu as="div" className="flex justify-center items-center relative z-50">
             <div>
               <Menu.Button className="flex justify-center items-center h-5 rounded-2xl pl-2 bg-[#FF8E02] text-xs text-white ">
                 {categoryApp}
@@ -125,6 +125,7 @@ export default function Produtos() {
               leave="transition ease-in duration-75"
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
+              
             >
               <Menu.Items className="origin-top-right absolute right-0 top-5 mt-2 w-56 rounded-xl shadow-lg bg-transparent ring-1 ring-black ring-opacity-5 focus:outline-none ">
                 <div>
