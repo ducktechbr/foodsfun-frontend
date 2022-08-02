@@ -69,41 +69,44 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={styles.body}>
-        <div className={styles.logo}></div>
-      </div>
+      <div className={styles.formWrapper}>
+        <div className={styles.body}>
+          <div className={styles.logo}></div>
+        </div>
+        <div>
+          <form className={styles.inputContainer} onSubmit={handleSubmit}>
+            <input
+              className={styles.input}
+              type="email"
+              placeholder="Email"
+              readOnly={loading}
+              required={true}
+              onChange={handleChange}
+              name="email"
+            />
+            <input
+              className={styles.input}
+              type="password"
+              placeholder="Senha"
+              readOnly={loading}
+              required={true}
+              onChange={handleChange}
+              name="password"
+            />
+            <button type="submit" disabled={loading} className={styles.button}>
+              Acessar
+            </button>
+          </form>
+        </div>
 
-      <form className={styles.inputContainer} onSubmit={handleSubmit}>
-        <input
-          className={styles.input}
-          type="email"
-          placeholder="Email"
-          readOnly={loading}
-          required={true}
-          onChange={handleChange}
-          name="email"
-        />
-        <input
-          className={styles.input}
-          type="password"
-          placeholder="Senha"
-          readOnly={loading}
-          required={true}
-          onChange={handleChange}
-          name="password"
-        />
-        <button type="submit" disabled={loading} className={styles.button}>
-          Acessar
-        </button>
-      </form>
-
-      <div className={styles.textArea}>
-        <Link href="#">
-          <a className={styles.text}>Esqueceu a senha?</a>
-        </Link>
-        <Link href="https://docs.google.com/forms/d/e/1FAIpQLSc4J60MJMLd9Kpdkfx-Utc9gdaElVdDekIbENY8oJAZeKo5Bg/viewform">
-          <a className={styles.text}>Não possui uma conta? Cadastre-se!</a>
-        </Link>
+        <div className={styles.textArea}>
+          <Link href="https://docs.google.com/forms/d/e/1FAIpQLSc4J60MJMLd9Kpdkfx-Utc9gdaElVdDekIbENY8oJAZeKo5Bg/viewform">
+            <a>Cadastre-se</a>
+          </Link>
+          <Link href="#">
+            <a>Esqueci a senha</a>
+          </Link>
+        </div>
       </div>
     </div>
   );
