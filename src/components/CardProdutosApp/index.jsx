@@ -1,19 +1,27 @@
 import styles from "./styles.module.scss";
+import Image from "next/image";
 
-export default function CardProdutos() {
+
+
+export default function CardProdutos(props) {
+
+  const {image, title, price, description} = props.card
+  // const decoded = image.content.toString().replace("data:image/png;base64, " || "image/jpeg;base64" || "image/svg;base64" || "image/gif;base64" , "");
+
   return (
-    <div className="mb-3">
-      <div className={styles.background}></div>
+    <div className="mb-3 border flex flex-col justify-between">
+      
+        <Image src={image} width="120px" height="120px" alt="Imagem do produto" />
+      
 
       <div className={styles.container}>
         <div className={styles.namePrice}>
-          <h1>Hamburguer simples</h1>
-          <h1>R$ 16</h1>
+          <h1>{title}</h1>
+          <h1>{price}</h1>
         </div>
 
         <p className={styles.text}>
-          Burguer Angus (160g), queijo prato, molho Fanis, maionese e no pão
-          brioche.
+          {description}
         </p>
       </div>
     </div>
