@@ -17,7 +17,7 @@ import burg from "../../assets/hamburguiModal.png";
 import minus from "../../assets/minusButton.svg";
 import plus from "../../assets/plusButton.svg";
 
-export default function produtos() {
+export default function Produtos() {
   const category = categoryStore((state) => state.list);
   const setCategory = categoryStore((state) => state.changeList);
   const categoryApp = categoryStore((state) => state.selectedCategory);
@@ -63,7 +63,7 @@ export default function produtos() {
 
       <div className={styles.divCategoria}>
         <h1>Cardápio</h1>
-{/* 
+        {/* 
         <Menu as="div" className="flex justify-center items-center relative">
           <div>
             <Menu.Button className="flex justify-center items-center h-5 rounded-2xl pl-2 bg-[#FF8E02] text-xs text-white ">
