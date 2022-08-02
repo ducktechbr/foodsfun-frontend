@@ -1,6 +1,10 @@
+.sidebar {
+    display: none;
+}
+
 .logo{
-    width: 200px;
-    height: 200px;
+    height: 60px;
+    width: 160px;
     background: url(../../../public/logo.png) center center;
     background-size: cover;
 }
