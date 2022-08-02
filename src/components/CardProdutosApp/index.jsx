@@ -7,24 +7,25 @@ export default function CardProdutos(props) {
 
   return (
     <div className="mb-3">
-      
-        <div className={styles.background}>
-          <Image src={image} width="300px" height="100" alt="Imagem do produto" objectFit="cover" layout="fill" className="rounded-md" />
-        </div>
-      
+      <div className={styles.background}>
+        <Image
+          src={image}
+          alt="Imagem do produto"
+          objectFit="cover"
+          layout="fill"
+          className="rounded-md"
+        />
+      </div>
 
       <div className={styles.container}>
         <div>
-        <div className={styles.namePrice}>
-          <h1>{title}</h1>
-          
+          <div className={styles.namePrice}>
+            <h1>{title}</h1>
+          </div>
+
+          <p className={styles.text}>{description}</p>
         </div>
 
-        <p className={styles.text}>
-          {description}
-        </p>
-        </div>
-       
         <h1 className={styles.priceText}>R${price}</h1>
       </div>
     </div>
