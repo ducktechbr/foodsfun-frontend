@@ -3,7 +3,7 @@
       "id": 5,
       "userName": "Estabelecimento 1",
       "email": "estabelecimento1@foodsfun.com",
-      "passwordHash": "123!@##$%",
+      "passwordHash": "<secret>",
       "paymentMethods": {
          "dinheiro": true,
          "cartao": true,
@@ -11,7 +11,116 @@
       },
       "bannerImage": "",
       "categories": [],
-      "tables": [],
+      "tables": [
+         {
+            "id": 1,
+            "client": {
+               "id": 1,
+               "name": "Bruno Carneiro"
+            },
+            "number": 1,
+            "active": true,
+            "orders": [
+               {
+                  "id": 1,
+                  "number": 1,
+                  "title": "order 1",
+                  "quantity": 1,
+                  "info": "pedido do Bruno",
+                  "date": "14:15 - 03/08/2022",
+                  "active": true,
+                  "products": [
+                     {
+                        "id": 1,
+                        "title": "Hamburger",
+                        "price": 10.0,
+                        "image": "https://swiftbr.vteximg.com.br/arquivos/subcategoria-hamburguer-snacks.png?v=637837316253030000",
+                        "description": "Carne, tomate, alface, queijo, maionese e ketchup",
+                        "active": true,
+                        "category": {
+                           "id": 1
+                        }
+                     },
+                     {
+                        "id": 2,
+                        "title": "Refrigerante",
+                        "price": 5.0,
+                        "image": "https://midias.gazetaonline.com.br/_midias/jpg/2017/06/20/refrigerante-5158046.jpg",
+                        "description": "Coca-Cola",
+                        "active": true,
+                        "category": {
+                           "id": 2
+                        }
+                     },
+                     {
+                        "id": 3,
+                        "title": "Batata frita",
+                        "price": 5.0,
+                        "image": "https://conteudo.imguol.com.br/c/entretenimento/a0/2018/02/26/batata-frita-1519671488107_v2_4x3.jpg",
+                        "description": "Sem sal",
+                        "active": true,
+                        "category": {
+                           "id": 3
+                        }
+                     }
+                  ],
+                  "table": {
+                     "id": 1
+                  },
+                  "client": {
+                     "id": 1
+                  }
+               }
+            ],
+            "user": {
+               "id": 5
+            },
+            "qrCode": "fsdfsdfaJKLKJfjekwljkjklJKLSljk2jl1k312l=="
+         },
+         {
+            "id": 2,
+            "client": {
+               "id": 1,
+               "name": "Yuri Royer"
+            },
+            "number": 2,
+            "active": false,
+            "orders": [
+               {
+                  "id": 2,
+                  "number": 2,
+                  "title": "order 2",
+                  "quantity": 1,
+                  "info": "pedido do Yuri",
+                  "date": "14:30 - 03/08/2022",
+                  "active": true,
+                  "products": [
+                     {
+                        "id": 4,
+                        "title": "Milkshake",
+                        "price": 15.0,
+                        "image": "https://www.schaer.com/sites/default/files/styles/landscape_xxl/public/2931_Milkshake%20ChocolateO%C2%B4s_%20Cropped.jpg",
+                        "description": "Milkshake de baunilha e chocolate",
+                        "active": true,
+                        "category": {
+                           "id": 2
+                        }
+                     }
+                  ],
+                  "table": {
+                     "id": 2
+                  },
+                  "client": {
+                     "id": 2
+                  }
+               }
+            ],
+            "user": {
+               "id": 5
+            },
+            "qrCode": "fsdfsdfaJKLKJfjekwljkjklJKLSljk2jl1k312l=="
+         }
+      ],
       "isDisabled": false,
       "disabledWhen": null
    }

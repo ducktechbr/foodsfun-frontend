@@ -1,4 +1,31 @@
+import { useEffect, useState } from 'react';
 import styles from './pedidos.module.scss';
+
+import {
+   listOrders,
+   findOrderById,
+   insertOrder,
+   updateOrder,
+   removeOrder
+} from '../../services/order.service';
+
+import {
+   listTables,
+   findTableById,
+   insertTable,
+   updateTable,
+   removeTable
+} from '../../services/table.service';
+
+import {
+   listUsers,
+   findUserById,
+   insertUser,
+   updateUser,
+   removeUser
+} from '../../services/user.service';
+
+
 
 /**
  * =================
@@ -6,125 +33,141 @@ import styles from './pedidos.module.scss';
  * =================
  */
 export default function Pedidos() {
+   const [user, setUser] = useState(null);
 
-   // Pedidos da mesa
-   const pedidos = [
-      {
-         id: 1,
-         produtos: [
-            {
-               id: '#1',
-               nome: 'Hamburger',
-               observacao: 'Com maionese',
-               preco: 10.0,
-               quantidade: 2
-            },
-            {
-               id: '#2',
-               nome: 'Batata frita',
-               observacao: 'Sem sal',
-               preco: 5.0,
-               quantidade: 2
-            },
-            {
-               id: '#3',
-               nome: 'Refrigerante',
-               observacao: 'Coca-Cola',
-               preco: 4.0,
-               quantidade: 2
-            }
-         ]
+   useEffect(() => {
+      
+      // Busca estabelecimento pelo id
+      // TODO: receber id do estabelecimento via props
+      const fetchUser = async () => {
+         const userFetched = await findUserById(5);
+         setUser(userFetched);
       }
-   ];
+      fetchUser();
 
-   // Mesas do estabelecimento
-   const mesas = [
-      {
-         idMesa: 1,
-         pedidos: pedidos
-      },
-   ];
+   }, []);
 
    /**
-    * ------------------------
-    * Renderiza todas as mesas
-    * ------------------------
+    * 
+    * Renderiza produtos
+    * 
     */
-   const renderMesas = () => {
-      return mesas.map((mesa, index) => { 
-         return (
-            <div key={index} className={styles.mesa}>
-               <div>
-                  <div className={styles.header}>Mesa #{mesa.idMesa}</div>
-                  <div className={styles.pedidosContainer}>
-                     {renderPedidosByMesaId(1)}
-                  </div>
-               </div>
-            </div>
-         )
-      })
-   }
-
-   /**
-    * --------------------------------------------
-    * Renderiza todos os pedidos da mesa informada
-    * --------------------------------------------
-    */
-   const renderPedidosByMesaId = (mesaId) => {
-      return pedidos.map((pedido, index) => {
-         return (
-            <div key={index} className={styles.produtosContainer}>
-               {renderProdutosByPedidoId(pedido.id)}
-            </div>
-         )
-      })
-   }
-
-   /**
-    * ----------------------------------------------------
-    * Renderiza todos os produtos de um determinado pedido
-    * ----------------------------------------------------
-    */
-   const renderProdutosByPedidoId = (pedidoId) => {
-      const pedido = pedidos.find(pedido => pedido.id === pedidoId);
-      const produtos = pedido.produtos;
-      if (produtos) {
-         return produtos.map((produto, index) => {
+   const renderProducts = (products) => {
+      return (
+         products.map((product, index) => {
             return (
-               <div className={styles.list} key={index}>
-                  <div className={styles.item}>
-                     <div>ID</div>
-                     <div>{produto.id}</div>
+               <div key={index} className={styles.product}>
+                  <div className={styles.productTitle}>{product.title}</div>
+                  <div className={styles.productImage}>
+                     <img width={200} src={product.image} alt='hamburger' />
                   </div>
-                  <div className={styles.item}>
-                     <div>Produto</div>
-                     <div>{produto.nome}</div>
-                  </div>
-                  <div className={styles.item}>
-                     <div>Observação</div>
-                     <div>{produto.observacao}</div>
-                  </div>
-                  <div className={styles.item}>
-                     <div>Quantidade</div>
-                     <div>{produto.quantidade}</div>
-                  </div>
-                  <div className={styles.item}>
-                     <div>Valor</div>
-                     <div>R$ {produto.preco.toFixed(2)}</div>
-                  </div>
-                  <div className={styles.separator}></div>
+                  <div className={styles.productPrice}>R$ {(product.price).toFixed(2)}</div>
+                  <div className={styles.productDescription}>{product.description}</div>
+                  
                </div>
             )
          })
-      } else {
-         return <div>Nenhum pedido realizado</div>
-      }
+      )
+   }
+
+   /**
+    * 
+    * Renderiza pedidos
+    * 
+    */
+   const renderOrders = (orders) => {
+      return (
+         orders.map((order, index) => {
+            return (
+               <div key={index} className={styles.orders}>
+                  <div className={styles.flexRowCenter}>
+                     <div>Pedido</div>
+                     <div>#{order.number}</div>
+                  </div>
+                  <div className={styles.flexRowCenter}>
+                     <div>Quantidade</div>
+                     <div>{order.quantity}</div>
+                  </div>
+                  <div className={styles.flexRowCenter}>
+                     <div>Hora</div>
+                     <div>{order.date}</div>
+                  </div>
+                  <div className={styles.flexRowCenter}>
+                     <div>Descrição</div>
+                     <div>{order.info}</div>
+                  </div>               
+                  <div className={styles.flexRowStart}>
+                     <div className={styles.productContainer}>
+                        <div className={styles.products}>
+                           {renderProducts(order.products)}
+                        </div>
+                     </div>
+                  </div>
+                  <div className={styles.total}>
+                     <div>TOTAL</div>
+                     <div>R$ {(order.products.map(product => product.price).reduce((total, price) => total + price)).toFixed(2)}</div>
+                  </div>
+               </div>
+            )
+         })
+      )
+   }
+
+   /**
+    * 
+    * Renderiza mesas
+    * 
+    */
+   const renderTables = (tables) => {
+      return (
+         <div className={styles.tables}>
+            <div className={styles.label}>Mesas</div>
+            {
+               tables.map((table, index) => {
+                  return (
+                     <div key={index} className={styles.tableCard}>
+                        <div className={styles.header}>
+                           <div>{table.active? 'Liberada' : 'Ocupada'}</div>
+                           <div>#{table.number}</div>
+                        </div>                        
+                        <div className={styles.qrCodeContainer}>
+                           { table.active 
+                              ? <img width={200} src='https://miro.medium.com/max/960/0*zPG9dqz508rmRR70.' />
+                              : table?.client.name
+                           }                           
+                        </div>
+                        <div className={styles.ordersContainer}>
+                           {!table.active && renderOrders(table.orders)}
+                        </div>
+                     </div>
+                  )
+               })
+            }
+         </div>
+      )
    }
 
    return (
       <div className={styles.pedidosWrapper}>
          <div className={styles.pedidosContainer}>
-            { renderMesas() }         
+            <div className={styles.userInfo}>
+               <div className={styles.headerInfo}>
+                  <div className={styles.userName}>{user?.userName}</div>
+                  <div className={styles.userId}>#{user?.id}</div>
+               </div>
+               <div className={styles.email}>{user?.email}</div>
+               <div className={styles.paymentMethods}>
+                  <span>Aceitamos</span>
+                  <ul>
+                     {user?.paymentMethods?.dinheiro && <li><div>Dinheiro</div></li>}
+                     {user?.paymentMethods?.cartao && <li><div>Cartão</div></li>}
+                     {user?.paymentMethods?.pix && <li><div>PIX</div></li>}
+                  </ul>
+               </div>
+            </div>
+            {/* { user && renderProducts(user.tables[0].orders[0].products) }   */}
+            {/* { user && renderOrders(user.tables[0].orders) }   */}
+            { user && renderTables(user.tables) }  
          </div>
       </div>
    )

@@ -1,14 +1,68 @@
 [
    {
       "id": 1,
+      "client": {
+         "id": 1
+      },
       "number": 1,
       "active": false,
       "orders": [
-
+         [
+            {
+               "id": 1,
+               "number": 1,
+               "title": "order 1",
+               "quantity": 1,
+               "info": "Observação do pedido 1",
+               "date": "",
+               "active": true,
+               "products": [
+                  {
+                     "id": 1,
+                     "title": "Hamburger",
+                     "price": 10.0,
+                     "image": "",
+                     "description": "Carne, tomate, alface, queijo, maionese e ketchup",
+                     "active": true,
+                     "category": {
+                        "id": 1
+                     }
+                  },
+                  {
+                     "id": 2,
+                     "title": "Refrigerante",
+                     "price": 5.0,
+                     "image": "",
+                     "description": "Coca-Cola",
+                     "active": true,
+                     "category": {
+                        "id": 2
+                     }
+                  },
+                  {
+                     "id": 3,
+                     "title": "Batata frita",
+                     "price": 5.0,
+                     "image": "",
+                     "description": "Sem sal",
+                     "active": true,
+                     "category": {
+                        "id": 3
+                     }
+                  }
+               ],
+               "table": {
+                  "id": 1
+               },
+               "client": {
+                  "id": 1
+               }
+            }
+         ]
       ],
       "user": {
-         "id": 1
+         "id": 5
       },
-      "qrCode": "fsdfsdfa"
+      "qrCode": "fsdfsdfaJKLKJfjekwljkjklJKLSljk2jl1k312l=="
    }
 ]

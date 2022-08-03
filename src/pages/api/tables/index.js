@@ -29,7 +29,6 @@ export default async function handler(req, res) {
  * --------------------------------
  */
 const listTables = async () => {
-   console.log('Listando mesas');
    return tables;
 }
 
