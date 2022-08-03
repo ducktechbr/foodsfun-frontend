@@ -14,7 +14,6 @@ import categoryStore from "../../store/categoryStore";
 import modalStore from "../../store/modalStore";
 import { api } from "../../api";
 
-import burg from "../../assets/hamburguiModal.png";
 import minus from "../../assets/minusButton.svg";
 import plus from "../../assets/plusButton.svg";
 
