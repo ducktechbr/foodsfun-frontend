@@ -9,11 +9,11 @@ export default async function handler(req, res) {
    try {
       switch (method) {
          case 'GET':
-            const recoveredClient = await getClientById(id);
+            const recoveredClient = await getclientById(id);
             if (recoveredClient) {
                res.status(200).json(recoveredClient);
             } else {
-               res.status(200).json({message: 'Client not found'});
+               res.status(200).json({message: 'client not found'});
             }
             break;
          case 'DELETE':
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
             if (deletedClient) {
                res.status(200).json(deletedClient);
             } else {
-               res.status(200).json({message: 'Client not found'});
+               res.status(200).json({message: 'client not found'});
             }
             break;
          default: res.status(400).json({message: 'Method not allowed'});
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
  * Busca cliente pelo id
  * ---------------------
  */
-const getClientById = async (clientId) => {
+const getclientById = async (clientId) => {
    return clients.find(user => user.id == clientId);
 }
 

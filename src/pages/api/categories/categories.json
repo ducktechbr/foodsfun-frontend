@@ -1,0 +1,15 @@
+[
+   {
+      "id": 1,
+      "title": "Categoria 1",
+      "description": "Descrição categoria 1",
+      "products": [
+         {
+            "id": 1
+         }
+      ],
+      "user": {
+         "userId": 5
+      }
+   }
+]

@@ -1,0 +1,18 @@
+[
+   {
+      "id": 5,
+      "userName": "Estabelecimento 1",
+      "email": "estabelecimento1@foodsfun.com",
+      "passwordHash": "123!@##$%",
+      "paymentMethods": {
+         "dinheiro": true,
+         "cartao": true,
+         "pix": true
+      },
+      "bannerImage": "",
+      "categories": [],
+      "tables": [],
+      "isDisabled": false,
+      "disabledWhen": null
+   }
+]

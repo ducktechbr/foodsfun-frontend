@@ -1,0 +1,13 @@
+[
+   {
+      "id": 1,
+      "title": "Hamburger",
+      "price": 10.0,
+      "image": "",
+      "description": "Carne, tomate, alface, queijo, maionese e ketchup",
+      "active": true,
+      "category": {
+         "id": 1
+      }
+   }
+]
