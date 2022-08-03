@@ -131,7 +131,7 @@ export default function Produtos() {
                 <div>
                   <Menu.Item
                     as="div"
-                    className="flex flex-col p-3 rounded-xl  bg-[#333]"
+                    className="flex flex-col p-3 rounded-xl bg-[#333]"
                   >
                     {category
                       ? category.data.map((current, key) => {
@@ -204,14 +204,15 @@ export default function Produtos() {
                 leave="ease-in duration-200"
                 leaveFrom="opacity-100 translate-y-[0px]"
                 leaveTo="opacity-0 translate-y-[120px]"
+                
               >
                 <div className="w-full h-full max-w-md align-middle shadow-xl transition-all bg-transparent text-[#1A1A1A] flex flex-col items-center overflow-visible">
                   <div className="relative">
                     <Image
                       src={card.image}
-                      width="300px" height="160px" alt="Imagem do produto"
+                      width="200px" height="200px" alt="Imagem do produto"  objectFit="cover"
                     
-                      className="h-[160px] absolute z-50 -top-20 rounded-[47px]" objectFit="cover" 
+                      className="h-[160px] absolute z-50 -top-20 rounded-[47px]" 
                     />
                   </div>
                   <Dialog.Panel className="bg-[#D9DDE1] w-full h-[430px] absolute bottom-0 rounded-t-3xl">
