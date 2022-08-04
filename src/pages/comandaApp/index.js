@@ -14,18 +14,18 @@ import FooterBar from '../../components/FooterBar';
 
 export default function comanda() {
 
-	async function getChecksId(){
+	// async function getChecksId(){
 		
-		const localStore = localStorage.getItem("loggedInClient");
-		const clientId = JSON.parse(localStore).clientId
-		const response = await api.patch("/getChecksByClientId", {clientId})
-		// if(  ){
+	// 	const localStore = localStorage.getItem("loggedInClient");
+	// 	const clientId = JSON.parse(localStore).clientId
+	// 	const response = await api.patch("/getChecksByClientId", {clientId})
+	// 	// if(  ){
 
-		// }
-		console.log(response)
-	}
+	// 	// }
+	// 	console.log(response)
+	// }
 	
-	getChecksId();
+	// getChecksId();
 
 
 
