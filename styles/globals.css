@@ -1,7 +1,7 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700&family=MuseoModerno:wght@300;500;600;700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700&family=MuseoModerno:wght@300;500;600;700&display=swap");
 
 * {
   margin: 0;
@@ -12,14 +12,18 @@
   outline: none;
 }
 
-::-webkit-scrollbar{
+body {
+  background: #222;
+}
+
+/* ::-webkit-scrollbar{
   width: 10px;
   }
 
 ::-webkit-scrollbar-thumb{
   background-color: #FF7527;
   border-radius: 8px;
-}
+} */
 
 
 /* Dropdown Button */
