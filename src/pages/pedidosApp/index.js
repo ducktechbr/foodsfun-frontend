@@ -12,7 +12,7 @@ import botaoFinalizar from "../../assets/botaoFinalizar.svg";
 import FooterBar from "../../components/FooterBar";
 import { api } from "../../api";
 
-export default function pedidos() {
+export default function Pedidos() {
 
   const router = useRouter();
 
