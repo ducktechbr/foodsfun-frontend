@@ -114,7 +114,6 @@ export default function Produtos() {
 
   function handleOpen(cur){
     setCard(cur)
-    console.log(cur)
     setIsOpen(true)
     const storedClient = localStorage.getItem("loggedInClient");
     const id = JSON.parse(storedClient).tableId;
@@ -123,8 +122,6 @@ export default function Produtos() {
 
   async function handleChange(event){
     setForm({ ...form, [event.target.name]: event.target.value });
-    console.log(form)
-
   }
 
   async function handleQuantity(text){
