@@ -28,7 +28,7 @@ export default function Login() {
     if (response.status === 200) {
       localStorage.setItem(
         "loggedInClient",
-        JSON.stringify({ ...form, tableId: pid })
+        JSON.stringify({ ...form, tableId: pid, clientId : response.data.id })
       );
       router.push("/produtosApp");
     }

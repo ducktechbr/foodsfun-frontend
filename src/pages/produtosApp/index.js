@@ -1,5 +1,6 @@
 import styles from "./styles.module.scss";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import CardProdutos from "../../components/CardProdutosApp";
 import FooterBar from "../../components/FooterBar";
@@ -14,11 +15,14 @@ import categoryStore from "../../store/categoryStore";
 import modalStore from "../../store/modalStore";
 import { api } from "../../api";
 
-import burg from "../../assets/hamburguiModal.png";
 import minus from "../../assets/minusButton.svg";
 import plus from "../../assets/plusButton.svg";
 
+
 export default function Produtos() {
+
+  const router = useRouter();
+
   const category = categoryStore((state) => state.list);
   const setCategory = categoryStore((state) => state.changeList);
   const categoryApp = categoryStore((state) => state.selectedCategory);
@@ -31,6 +35,13 @@ export default function Produtos() {
   const [quantity, setQuantity] = useState(1)
 
   const [loading, setLoading] = useState(false)
+
+  const [form, setForm] = useState({
+      title: "",
+      info: "",
+      quantity: 1,
+      tableId: "" 
+  })
 
   
 
@@ -55,9 +66,37 @@ export default function Produtos() {
     getProducts();
   }, [categoryApp]);
 
-  function closeModal() {
+  async function closeModal() {
     setIsOpen(false);
+
+    const localStore = localStorage.getItem("loggedInClient");
+    const loggedInClient = JSON.parse(localStore)
+
+    if( loggedInClient.checkId === undefined ){
+
+    const response =  await api.post("/newOrder", {data: {...form, clientId : loggedInClient.clientId}})
+    console.log(response)
+    if( response.status === 200 ){
+      
+      localStorage.setItem(
+        "loggedInClient",
+        JSON.stringify({ ...loggedInClient, checkId : response.data.id })
+      );
+    }
+    }
+    if( loggedInClient.checkId !== undefined ){
+      const response =  await api.post("/newOrderOnExistingCheck", {data: {...form, checkId : loggedInClient.checkId, clientId : loggedInClient.clientId }})
+      // const data = {...form, checkId : loggedInClient.checkId}
+      console.log(response)
+    }
     setQuantity(1)
+    setForm({
+      title: "",
+      info: "",
+      quantity: 1,
+      tableId: "" 
+    })
+    router.push("/pedidosApp");
   }
 
   function handleCategory(title) {
@@ -75,8 +114,17 @@ export default function Produtos() {
 
   function handleOpen(cur){
     setCard(cur)
+    console.log(cur)
     setIsOpen(true)
-    console.log(card)
+    const storedClient = localStorage.getItem("loggedInClient");
+    const id = JSON.parse(storedClient).tableId;
+    setForm({...form, title : cur.title, tableId : id, productId: cur.id})
+  }
+
+  async function handleChange(event){
+    setForm({ ...form, [event.target.name]: event.target.value });
+    console.log(form)
+
   }
 
   async function handleQuantity(text){
@@ -84,10 +132,12 @@ export default function Produtos() {
     if(text === "sub" ){
       if( quantity > 1 )
         setQuantity(quantity - 1)
+        setForm({...form, quantity : quantity -1})
     }
     if(text === "add"){
       if(quantity < 99){
         setQuantity(quantity + 1)
+        setForm({...form, quantity : quantity +1})
       }
     }
     setLoading(false)
@@ -155,7 +205,7 @@ export default function Produtos() {
       </div>
 
       <div className={styles.card}>
-        {products ? console.log(products) : null}
+        
         {products ?
 
           products.data.map((cur, key) => {
@@ -232,13 +282,13 @@ export default function Produtos() {
                     <p className="opacity-80 text-[#1A1A1A] bg-transparent mb-2">
                       {card.description}
                     </p>
-                    <textarea className="h-16 w-[300px] bg-[#fefefe] mt-6 mb-2 resize-none rounded-lg px-3 py-1 font-ebrima text-sm"></textarea>
+                    <textarea className="h-16 w-[300px] bg-[#fefefe] mt-6 mb-2 resize-none rounded-lg px-3 py-1 font-ebrima text-sm"  onChange={handleChange} name="info" ></textarea>
                     <div className="bg-transparent flex items-center justify-center space-x-4">
-                      <button className="bg-transparent" onClick={ () => handleQuantity("sub")}>
+                      <button className="bg-transparent" onClick={ () => handleQuantity("sub")} disabled={loading}>
                         <Image src={minus} className="bg-transparent" />
                       </button>
                       <span className="bg-transparent font-ebrima text-xl text-center">{quantity}</span>
-                      <button className="bg-transparent" onClick={ () => handleQuantity("add")}>
+                      <button className="bg-transparent" onClick={ () => handleQuantity("add")} disabled={loading} >
                         <Image src={plus} className="bg-transparent" />
                       </button>
                     </div>
