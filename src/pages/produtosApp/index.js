@@ -75,7 +75,6 @@ export default function Produtos() {
     if( loggedInClient.checkId === undefined ){
 
     const response =  await api.post("/newOrder", {data: {...form, clientId : loggedInClient.clientId}})
-    console.log(response)
     if( response.status === 200 ){
       
       localStorage.setItem(
@@ -87,7 +86,7 @@ export default function Produtos() {
     if( loggedInClient.checkId !== undefined ){
       const response =  await api.post("/newOrderOnExistingCheck", {data: {...form, checkId : loggedInClient.checkId, clientId : loggedInClient.clientId }})
       // const data = {...form, checkId : loggedInClient.checkId}
-      console.log(response)
+
     }
     setQuantity(1)
     setForm({

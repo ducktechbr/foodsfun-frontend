@@ -8,9 +8,27 @@ import botaoAdd from '../../assets/+.svg';
 import hamburgui from '../../assets/hamburgui.svg';
 import load from '../../assets/load.svg';
 
+import { api } from '../../api';
+
 import FooterBar from '../../components/FooterBar';
 
 export default function comanda() {
+
+	// async function getChecksId(){
+		
+	// 	const localStore = localStorage.getItem("loggedInClient");
+	// 	const clientId = JSON.parse(localStore).clientId
+	// 	const response = await api.patch("/getChecksByClientId", {clientId})
+	// 	// if(  ){
+
+	// 	// }
+	// 	console.log(response)
+	// }
+	
+	// getChecksId();
+
+
+
 	return (
 		<div>
 			<div className={styles.header}>
