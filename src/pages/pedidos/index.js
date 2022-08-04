@@ -15,24 +15,27 @@ import DivPedidos from "../../components/DivPedidos";
 
 function Page() {
   const [pedidos, setPedidos] = useState({ data: [{ title: "" }] });
-  const [pedidosSemOrdem, setPedidosSemOrdem] = useState({
-    data: [{ title: "" }],
-  });
+  const [pedidosSemOrdem, setPedidosSemOrdem] = useState(null)
 
   useEffect(() => {
     getOrders();
   }, []);
 
   useEffect(() => {
-    var arrayPedidos = [];
-    arrayPedidos = pedidosSemOrdem.data;
 
-    setPedidos({
-      data: arrayPedidos.sort((a, b) =>
-        a.number < b.number ? 1 : b.number < a.number ? -1 : 0
-      ),
-    });
+
+    if (pedidosSemOrdem !== null) {
+      if (pedidosSemOrdem.data) {
+
+        setPedidos({
+          data: pedidosSemOrdem.data.sort((a, b) =>
+            a.number < b.number ? 1 : b.number < a.number ? -1 : 0
+          ),
+        });
+      }
+    }
   }, [pedidosSemOrdem]);
+
 
   async function getOrders() {
     setPedidosSemOrdem(await api.get(`/getOrders`));
@@ -101,8 +104,8 @@ function Page() {
 							})} */}
             {pedidos.data
               ? pedidos.data.map((current, key) => {
-                  return <DivPedidos current={current} key={key} />;
-                })
+                return <DivPedidos current={current} key={key} />;
+              })
               : null}
           </div>
         </div>

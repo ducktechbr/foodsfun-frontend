@@ -138,5 +138,5 @@ function Page() {
   );
 }
 export default function Produtos() {
-  return <ProtectedRoute component={Page} />;
+  return <Page />;
 }
