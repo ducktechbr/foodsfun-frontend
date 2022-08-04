@@ -25,9 +25,7 @@ function Page() {
 
   useEffect(() => {
     var arrayPedidos = [];
-    if (typeof pedidosSemOrdem.data === Array) {
-      arrayPedidos = pedidosSemOrdem.data;
-    }
+    arrayPedidos = pedidosSemOrdem.data;
 
     setPedidos({
       data: arrayPedidos.sort((a, b) =>
