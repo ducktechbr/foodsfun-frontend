@@ -187,8 +187,73 @@ function Page() {
             </div>
           </div>
         </div>
+<<<<<<< HEAD
       </div>            
     </div>    
+=======
+      </div>
+    </div>
+    // <div className="flex">
+    //   <Head>
+    //     <title>FoodsFun - Pedidos</title>
+    //     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    //   </Head>
+    //   <div className="w-60"></div>
+    //   <NavBar />
+
+    //   <div className={styles.screen}>
+    //     <BackgroundBanner />
+
+    //     <div className="mt-5 px-5 flex justify-end">
+    //       <AddOrder />
+    //     </div>
+    //     <div className="mt-14 mx-4 h-48 border-2 rounded-2xl bg-white ">
+    //       <div className="space-y-0  h-16 bg-themeOrange text-white text-[1.3rem] py-2 px-2 rounded-t-lg">
+    //         <div className="flex justify-around mt-2 bg-transparent">
+    //           <div className="w-1/8 bg-transparent">Pedido</div>
+    //           <div className="w-1/8 bg-transparent flex">
+    //             Mesa
+    //             <button>
+    //               <IoIosArrowDropright
+    //                 size={25}
+    //                 color="#fff"
+    //                 style={{
+    //                   backgroundColor: "transparent",
+    //                   marginLeft: "2px",
+    //                 }}
+    //               />
+    //             </button>
+    //           </div>
+
+    //           <div className="w-1/8 bg-transparent">Quantidade</div>
+    //           <div className="w-4/8 bg-transparent">Produto</div>
+    //           <div className="w-1/8 bg-transparent flex">
+    //             Status
+    //             <button type="button">
+    //               <IoIosArrowDropright
+    //                 size={25}
+    //                 color="#fff"
+    //                 style={{
+    //                   backgroundColor: "transparent",
+    //                   marginLeft: "2px",
+    //                 }}
+    //               />
+    //             </button>
+    //           </div>
+    //         </div>
+    //         {/* as proximas divs serao geradas automaticamente */}
+    //       </div>
+    //       <div className="mt-5">
+    //         {pedidos.data
+    //           ? pedidos.data.map((current, key) => {
+    //               return <DivPedidos current={current} key={key} />;
+    //             })
+    //           : null}
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+>>>>>>> b5f90117ce65cc18e825f7f35d686c5369b86683
   );
 }
 
