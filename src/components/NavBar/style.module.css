@@ -31,3 +31,13 @@
 .navlinks li {
     color: lime;
 }
+
+.index9 aside {
+    border-radius: 20px;
+    box-shadow: 3px 0 20px #333;
+}
+
+.index9 * {   
+    z-index: 9 !important;
+}
+    

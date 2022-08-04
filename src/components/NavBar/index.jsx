@@ -19,6 +19,7 @@ export default function NavBar() {
 
 
   return (
+    <div className={styles.index9}>
     <aside className="h-screen w-60 font-theme fixed">
       <div className="h-2/8 bg-themeWhite rounded-tr-navBar flex justify-center items-center">
         <div className={styles.logo}>
@@ -165,8 +166,7 @@ export default function NavBar() {
       </div>
       {/* <TablesNavbar/> */}
       <div className="h-3/8 bg-themeWhite rounded-br-navBar"></div>
-
-
     </aside>
+    </div>
   );
 }
