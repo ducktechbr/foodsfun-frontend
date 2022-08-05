@@ -48,3 +48,17 @@
   color: #fff;
   font-weight: 300;
 }
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 250px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 8px;
+  font-family: Ebrima;
+  color: #fff;
+  background: #ff8e02;
+  border: 1px solid #ff8e02;
+}

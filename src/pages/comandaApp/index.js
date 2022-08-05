@@ -1,106 +1,97 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
-import back from '../../assets/backbutton.svg';
-import botaoAdd from '../../assets/+.svg';
-import hamburgui from '../../assets/hamburgui.svg';
-import load from '../../assets/load.svg';
+import back from "../../assets/backbutton.svg";
+import botaoAdd from "../../assets/+.svg";
+import hamburgui from "../../assets/hamburgui.svg";
+import load from "../../assets/load.svg";
 
-import { api } from '../../api';
+import { api } from "../../api";
 
-import FooterBar from '../../components/FooterBar';
-import { useEffect, useState } from 'react';
+import FooterBar from "../../components/FooterBar";
+import TotalBar from "../../components/TotalBar";
 
-export default function comanda() {
+import { useEffect, useState } from "react";
 
-	const [comanda, setComanda] = useState(null)
-	const [product, setProduct] = useState(null)
+export default function Comanda() {
+  const [comanda, setComanda] = useState(null);
+  const [total, setTotal] = useState(0);
 
-	useEffect( () => {
-		getChecksId();
-	}, [] )
+  useEffect(() => {
+    getChecksId();
+  }, []);
 
-	async function getChecksId() {
+  async function getChecksId() {
+    const localStore = localStorage.getItem("loggedInClient");
+    const clientId = JSON.parse(localStore).clientId;
+    const response = await api.get(`/comanda/${clientId}`);
+    comanda !== [] ? setComanda(response.data) : null;
+  }
 
-		const localStore = localStorage.getItem("loggedInClient");
-		const clientId = JSON.parse(localStore).clientId
-		const response = await api.patch("/getChecksByClientId", { clientId })
-		// console.log(response)
-		setComanda(response.data);
-		
-		
+  useEffect(
+    () =>
+      async function () {
+        var sumTotal = 0;
+        comanda
+          ? comanda.map((cur) => {
+              let price = Number(cur.price.replace(",", "."));
+              let quantity = cur.quantity;
+              let sum = price * quantity;
+              sumTotal += sum;
+            })
+          : null;
+        setTotal(sumTotal);
+      },
+    [comanda]
+  );
 
+  return (
+    <div>
+      <div className={styles.header}>
+        <Link href="/produtosApp">
+          <div>
+            <Image src={back} alt="back button" />
+          </div>
+        </Link>
+        <h1>Comanda</h1>
+        <div>
+          <Image src={botaoAdd} alt="back button" />
+        </div>
+      </div>
 
-		
-
-	}
-	async function getProductsById(){
-
-		if(comanda !== null){
-		 setProduct(await api.get(`/getProductsById/${comanda[0].orders[0].productId}` ))
-		}
-	}
-	
-	useEffect (() => {
-		getProductsById();
-	}, [comanda])
-
-	useEffect(() => {
-		// console.log(product)
-	}, [product])
-
-
-	return (
-		<div>
-			<div className={styles.header}>
-				<Link href="/produtosApp">
-					<div>
-						<Image src={back} alt="back button" />
-					</div>
-				</Link>
-				<h1>Comanda</h1>
-				<div>
-					<Image src={botaoAdd} alt="back button" />
-				</div>
-			</div>
-
-			<div className={styles.divPedidos}>
-
-
-				{ comanda !== null ? comanda.map((cur, key) => {
-					return (
-						
-							  cur.orders.map(( cur, key ) => {
-								console.log(cur)
-								return(
-
-									<div className={styles.divPedido} key={key} >
-										<Image src={hamburgui} alt="hamburgui" />
-										<div className={styles.divFooterPedidos}>
-											<span>Quantidade : {cur.quantity}</span>
-											<div className="flex items-center">
-												<span>Status : </span>
-												<Image src={load} alt="load" />
-											</div>
-										</div>
-										
-									</div>
-								)
-							})
-							
-								 
-
-					)
-				}): null}
-
-
-			</div>
-
-			<div className={styles.footer}>
-				<FooterBar />
-			</div>
-		</div>
-	);
+      <div className={styles.divPedidos}>
+        {comanda !== null
+          ? comanda.map((cur, key) => {
+              return (
+                <div className={styles.divPedido} key={key}>
+                  <Image
+                    src={cur.image}
+                    alt="hamburgui"
+                    objectFit="cover"
+                    width={"200px"}
+                    height={"80px"}
+                  />
+                  <div className={styles.divFooterPedidos}>
+                    <span>Quantidade : {cur.quantity}</span>
+                    <div className="flex items-center">
+                      <span>Status : </span>
+                      <Image src={load} alt="load" />
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          : null}
+      </div>
+      <div className={styles.button}>
+        <button>PAGAR</button>
+      </div>
+      <div className={styles.footer}>
+        <TotalBar total={total.toFixed(2)} />
+        <FooterBar />
+      </div>
+    </div>
+  );
 }
