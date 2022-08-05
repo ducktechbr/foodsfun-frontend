@@ -11,22 +11,45 @@ import load from '../../assets/load.svg';
 import { api } from '../../api';
 
 import FooterBar from '../../components/FooterBar';
+import { useEffect, useState } from 'react';
 
 export default function comanda() {
 
-	// async function getChecksId(){
+	const [comanda, setComanda] = useState(null)
+	const [product, setProduct] = useState(null)
+
+	useEffect( () => {
+		getChecksId();
+	}, [] )
+
+	async function getChecksId() {
+
+		const localStore = localStorage.getItem("loggedInClient");
+		const clientId = JSON.parse(localStore).clientId
+		const response = await api.patch("/getChecksByClientId", { clientId })
+		// console.log(response)
+		setComanda(response.data);
 		
-	// 	const localStore = localStorage.getItem("loggedInClient");
-	// 	const clientId = JSON.parse(localStore).clientId
-	// 	const response = await api.patch("/getChecksByClientId", {clientId})
-	// 	// if(  ){
+		
 
-	// 	// }
-	// 	console.log(response)
-	// }
+
+		
+
+	}
+	async function getProductsById(){
+
+		if(comanda !== null){
+		 setProduct(await api.get(`/getProductsById/${comanda[0].orders[0].productId}` ))
+		}
+	}
 	
-	// getChecksId();
+	useEffect (() => {
+		getProductsById();
+	}, [comanda])
 
+	useEffect(() => {
+		// console.log(product)
+	}, [product])
 
 
 	return (
@@ -42,22 +65,37 @@ export default function comanda() {
 					<Image src={botaoAdd} alt="back button" />
 				</div>
 			</div>
+
 			<div className={styles.divPedidos}>
 
 
+				{ comanda !== null ? comanda.map((cur, key) => {
+					return (
+						
+							  cur.orders.map(( cur, key ) => {
+								console.log(cur)
+								return(
+
+									<div className={styles.divPedido} key={key} >
+										<Image src={hamburgui} alt="hamburgui" />
+										<div className={styles.divFooterPedidos}>
+											<span>Quantidade : {cur.quantity}</span>
+											<div className="flex items-center">
+												<span>Status : </span>
+												<Image src={load} alt="load" />
+											</div>
+										</div>
+										
+									</div>
+								)
+							})
+							
+								 
+
+					)
+				}): null}
 
 
-				<div className={styles.divPedido}>
-					<Image src={hamburgui} alt="hamburgui" />
-					<div className={styles.divFooterPedidos}>
-						<span>Quantidade : 1</span>
-						<div className="flex items-center">
-							<span>Status : </span>
-							<Image src={load} alt="load" />
-						</div>
-					</div>
-				</div>
-				
 			</div>
 
 			<div className={styles.footer}>
