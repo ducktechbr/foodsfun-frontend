@@ -12,7 +12,7 @@ import CurrencyInput from "react-currency-input-field";
 import totalStore from "../../store/totalStore";
 
 
-export default function dinheiro() {
+export default function Dinheiro() {
 
   const router = useRouter()
 

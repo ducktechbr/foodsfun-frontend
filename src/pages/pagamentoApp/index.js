@@ -12,7 +12,7 @@ import pagPix from "../../assets/pagPix.svg";
 
 import FooterBar from "../../components/FooterBar";
 
-export default function pagamento() {
+export default function Pagamento() {
 
   const router = useRouter();
 
