@@ -19,6 +19,7 @@ import minus from "../../assets/minusButton.svg";
 import plus from "../../assets/plusButton.svg";
 
 
+
 export default function Produtos() {
 
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function Produtos() {
   const setCategory = categoryStore((state) => state.changeList);
   const categoryApp = categoryStore((state) => state.selectedCategory);
   const setCategoryApp = categoryStore((state) => state.changeCategory);
+
   const card = modalStore((state) => state.selectedCard);
   const setCard = modalStore((state) => state.changeCard);
   const [products, setProducts] = useState(null);
@@ -278,7 +280,16 @@ export default function Produtos() {
                     <p className="opacity-80 text-[#1A1A1A] bg-transparent mb-2">
                       {card.description}
                     </p>
-                    <textarea className="h-16 w-[300px] bg-[#fefefe] mt-6 mb-2 resize-none rounded-lg px-3 py-1 font-ebrima text-sm"  onChange={handleChange} name="info" ></textarea>
+
+                    <textarea 
+                    className="h-16 w-[300px] bg-[#fefefe] mt-6 mb-2 resize-none rounded-lg px-3 py-1 font-ebrima text-sm"  
+                    onChange={handleChange} 
+                    name="info"
+                    placeholder="Caso queira remover ou adicionar algo, digite aqui..."
+                    >
+
+                    </textarea>
+
                     <div className="bg-transparent flex items-center justify-center space-x-4">
                       <button className="bg-transparent" onClick={ () => handleQuantity("sub")} disabled={loading}>
                         <Image src={minus} className="bg-transparent" />

@@ -5,9 +5,7 @@ export default function TotalBar(props) {
     <div>
       <div className={styles.iconsArea}>
         <div className={styles.divTotal}>
-          <h1>Total</h1>
-
-          <h1>R$ {props.total}</h1>
+          <h1>Total R$: {props.total}</h1>
         </div>
       </div>
     </div>

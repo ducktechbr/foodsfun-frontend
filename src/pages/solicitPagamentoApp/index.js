@@ -9,12 +9,19 @@ import loading from "../../assets/miniLoading.svg";
 
 import FooterBar from "../../components/FooterBar";
 
+import totalStore from "../../store/totalStore";
+
 export default function dinheiro() {
+
+  const total = totalStore((state) => state.total);
+
   return (
     <div>
       <div className={styles.header}>
-        <Link href="/produtosApp">
-          <Image src={back} alt="back button" />
+        <Link href="/comandaApp">
+          <div>
+            <Image src={back} alt="back button" />
+          </div>
         </Link>
         <h1>Pagamento</h1>
         <div></div>
@@ -42,7 +49,7 @@ export default function dinheiro() {
         </div>
         <div className="w-full flex justify-center mt-3 mb-2">
           <button className={styles.button2}>
-            Valor total da comanda: R$80,00
+            Valor total da comanda: R$ {total !== null ? total.toString().replace("." , ",") : null}
           </button>
         </div>
       </div>

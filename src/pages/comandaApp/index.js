@@ -1,7 +1,8 @@
+import styles from "./styles.module.css";
+
 import Image from "next/image";
 import Link from "next/link";
-
-import styles from "./styles.module.css";
+import { useRouter } from 'next/router'
 
 import back from "../../assets/backbutton.svg";
 import botaoAdd from "../../assets/+.svg";
@@ -15,9 +16,17 @@ import TotalBar from "../../components/TotalBar";
 
 import { useEffect, useState } from "react";
 
+import totalStore from "../../store/totalStore";
+
 export default function Comanda() {
+
+  const router = useRouter()
+
+  const total = totalStore((state) => state.total);
+  const setTotal = totalStore((state) => state.changeTotal);
+
   const [comanda, setComanda] = useState(null);
-  const [total, setTotal] = useState(0);
+  
 
   useEffect(() => {
     getChecksId();
@@ -42,10 +51,14 @@ export default function Comanda() {
               sumTotal += sum;
             })
           : null;
-        setTotal(sumTotal);
+        setTotal(sumTotal.toFixed(2));
       },
     [comanda]
   );
+
+  function handleChekout(){
+    router.push("/pagamentoApp")
+  }
 
   return (
     <div>
@@ -70,15 +83,20 @@ export default function Comanda() {
                     src={cur.image}
                     alt="hamburgui"
                     objectFit="cover"
-                    width={"200px"}
-                    height={"80px"}
+                    width={"800px"}
+                    height={"260px"}
+					          className="rounded-lg "
                   />
                   <div className={styles.divFooterPedidos}>
                     <span>Quantidade : {cur.quantity}</span>
-                    <div className="flex items-center">
+
+					          {/* div com status do pedido
+					
+                    {/* <div className="flex items-center">
                       <span>Status : </span>
                       <Image src={load} alt="load" />
-                    </div>
+                    </div> */}
+
                   </div>
                 </div>
               );
@@ -86,10 +104,14 @@ export default function Comanda() {
           : null}
       </div>
       <div className={styles.button}>
-        <button>PAGAR</button>
+        <button onClick={handleChekout} >FECHAR COMANDA</button>
+        
+      </div>
+      <div className="w-full h-32">
+        
       </div>
       <div className={styles.footer}>
-        <TotalBar total={total.toFixed(2)} />
+        <TotalBar total={ total !== null ? total.toString().replace("." , ",") : null} />
         <FooterBar />
       </div>
     </div>
