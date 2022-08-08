@@ -38,7 +38,7 @@ export default function dinheiro() {
         </div>
         <div className="w-full flex justify-center mt-3 mb-2">
           <button className={styles.button}>
-            Pagamento solicitado. Aguarde o garçom em breve chegará até você.
+            Pagamento solicitado. Aguarde o garçom, em breve chegará até você.
           </button>
         </div>
         <div className={`${styles.contentDiv}`}>

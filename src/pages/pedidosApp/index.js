@@ -65,22 +65,22 @@ export default function Pedidos() {
 					{check
 						? !check.isDisabeled
 							? check.orders.map((cur, key) => {
-									return (
-										<div
-											className="bg-transparent flex items-center"
-											key={key}
-										>
-											<span className={styles.numero}>
-												{' '}
-												{cur.quantity}{' '}
-											</span>
-											<span className={styles.text}>
-												{' '}
-												{cur.title}{' '}
-											</span>
-										</div>
-									);
-							  })
+								return (
+									<div
+										className="bg-transparent flex items-center"
+										key={key}
+									>
+										<span className={styles.numero}>
+											{' '}
+											{cur.quantity}{' '}
+										</span>
+										<span className={styles.text}>
+											{' '}
+											{cur.title}{' '}
+										</span>
+									</div>
+								);
+							})
 							: null
 						: null}
 				</div>
@@ -103,6 +103,37 @@ export default function Pedidos() {
 					</button>
 				</div>
 			</div>
+
+			<div className={styles.divHistorico}>
+
+				{check
+					? check.isDisabeled 
+						? check.orders.map((cur, key) => {
+							return(
+								<><h1>
+									<strong className={styles.segundoHeader}>Histórico</strong>
+								</h1><div className={styles.grupoPedidos}>
+										<div className="bg-transparent my-2" key={key}>
+											<div className="bg-transparent flex items-center">
+												<span className={styles.numero}>{cur.quantity}</span>
+												<span className={styles.text}>{cur.title}</span>
+											</div>
+											<div className="bg-transparent flex items-center">
+												<span className={styles.numero}>{cur.quantity}</span>
+												<span className={styles.text}>{cur.title}</span>
+											</div>
+											<div className="bg-transparent flex items-center">
+												<span className={styles.numero}>{cur.quantity}</span>
+												<span className={styles.text}>{cur.title}</span>
+											</div>
+										</div>
+									</div></>
+							)
+						})
+						:null 
+						:null}
+			</div>
+				
 
 			<div className={styles.footer}>
 				<FooterBar />

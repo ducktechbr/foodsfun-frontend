@@ -8,7 +8,7 @@ import FooterBar from "../../components/FooterBar";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment, useMemo } from "react";
 import { Transition, Dialog, Menu } from "@headlessui/react";
 
 import categoryStore from "../../store/categoryStore";
@@ -17,8 +17,6 @@ import { api } from "../../api";
 
 import minus from "../../assets/minusButton.svg";
 import plus from "../../assets/plusButton.svg";
-
-
 
 export default function Produtos() {
 
@@ -45,10 +43,9 @@ export default function Produtos() {
       tableId: "" 
   })
 
-  
-
   useEffect(() => {
     getCategories();
+    
   }, []);
 
   async function getCategories() {
@@ -141,13 +138,26 @@ export default function Produtos() {
     setLoading(false)
   }
 
+  const [search, setSearch] = useState("");
+    
+  // const ProductFiltred = useMemo(() => {
+  //   const LowerSearch = search.toLowerCase()
+  //   return productTitle.filter((productTitle) => productTitle.toLowerCase().includes(LowerSearch))
+  // }, [search]);
+
+  
   return (
     <div>
       <div className={styles.banner}></div>
 
       <div className={styles.header}>
         <div>
-          <input type="search" className={styles.input} />
+
+          <input
+          type="text" className={styles.input} 
+          onChange={ e => setSearch(e.target.value)}
+          />
+
           <button className={styles.span}>
             <BiSearchAlt2 size={15} style={{ background: "transparent" }} />
           </button>
@@ -220,6 +230,8 @@ export default function Produtos() {
 
 
           : null}
+
+          
 
 
       </div>
